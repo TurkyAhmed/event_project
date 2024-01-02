@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->float('price');
             $table->boolean('is_main_service');
-            $table->boolean('is_avaliable');
-            $table->string('description');
+            $table->boolean('is_avaliable')->default(1);
+            $table->string('description')->nullable();;
+            $table->softDeletes();
             $table->timestamps();
         });
     }

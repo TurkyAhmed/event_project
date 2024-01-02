@@ -51,7 +51,7 @@ class UserController extends Controller
 
 
     public function update(UserRequest $req, $id){
-        
+
         $user =User::findorfail($id);
         $user->update($req->all());
 
@@ -71,6 +71,27 @@ class UserController extends Controller
 
         return redirect()->route('users.index');
     }
+
+
+        // Soft Delete
+
+        public function softDelete(){
+            $users = User::onlyTrashed()->get();
+            return view('users.usersSoftDelete',compact('users'));
+        }
+
+
+        public function restore($id){
+            User::withTrashed()->where('id',$id)->restore();
+
+            return redirect()->back();
+        }
+
+
+        public function forcedelete($id){
+            User::withTrashed()->where('id',$id)->forcedelete();
+            return redirect()->back();
+        }
 
 
 }

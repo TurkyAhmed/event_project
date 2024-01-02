@@ -2,7 +2,7 @@
 @extends('layouts.main_layout')
 
 @section('content')
-<div class="container pt-5">
+<div class=" container pt-5">
 
     <form action="{{route('halls.update',$hall->id)}}" method="POST">
         @csrf

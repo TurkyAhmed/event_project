@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('capacity');
-            $table->string('feature');
+            $table->string('feature')->nullable();;
             $table->float('price');
-            $table->float('discount');
+            $table->float('discount')->default(0);
             $table->boolean('is_avaliable');
-            $table->string('description');
+            $table->string('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

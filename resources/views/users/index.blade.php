@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container pt-5">
-        <a class="btn btn-primary" href="{{route('users.create')}}"> إضافة مستخدم جديد </a>
+        <h2 class="pb-4"> قائمة المستخدمين </h2>
+        <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('users.create')}}"> إضافة مستخدم  </a>
         <table class="table table-striped">
             <thead>
               <tr>
@@ -20,9 +21,9 @@
                     <td>{{$user->name}} </td>
                     <td>{{$user->email}}</td>
                     <td>
-                        <a href="{{route('users.show',$user->id)}}"> تفاصيل </a>
-                        <a href="{{route('users.edit',$user->id)}}"> تعديل </a>
-                        <a href="{{route('users.delete',$user->id)}}"> حذف </a>
+                        <a href="{{route('users.show',$user->id)}}"> <i class="fa-solid fa-circle-info"></i>  |</a>
+                        <a href="{{route('users.edit',$user->id)}}"> <i class="fa-solid fa-pen-to-square"></i> | </a>
+                        <a href="{{route('users.delete',$user->id)}}"> <i class="fa-solid fa-trash"></i> </a>
                     </td>
                   </tr>
 

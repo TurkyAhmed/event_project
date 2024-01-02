@@ -65,4 +65,24 @@ class ServiceController extends Controller
         Service::findorfail($id)->delete();
         return redirect('services');
     }
+
+       // Soft Delete
+
+       public function softDelete(){
+        $Services = Service::onlyTrashed()->get();
+        return view('Services.ServicesSoftDelete',compact('Services'));
+    }
+
+
+    public function restore($id){
+        Service::withTrashed()->where('id',$id)->restore();
+
+        return redirect()->back();
+    }
+
+
+    public function forcedelete($id){
+        Service::withTrashed()->where('id',$id)->forcedelete();
+        return redirect()->back();
+    }
 }

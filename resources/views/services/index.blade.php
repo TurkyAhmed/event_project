@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container pt-5">
-        <a class="btn btn-primary" href="{{route('services.create')}}"> إضافة خدمة </a>
-        <table class="table table-striped">
+        <h2 class="pb-4"> قائمة الخدمات </h2>
+        <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('halls.create')}}"> إضافة خدمة  </a>
+                <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -20,9 +21,9 @@
                     <td>{{$service->name}} </td>
                     <td>{{$service->price}}</td>
                     <td>
-                        <a href="{{route('services.show',$service->id)}}"> تفاصيل </a>
-                        <a href="{{route('services.edit',$service->id)}}"> تعديل </a>
-                        <a href="{{route('services.delete',$service->id)}}"> حذف </a>
+                        <a href="{{route('services.show',$service->id)}}"> <i class="fa-solid fa-circle-info"></i>  |</a>
+                        <a href="{{route('services.edit',$service->id)}}"> <i class="fa-solid fa-pen-to-square"></i> | </a>
+                        <a href="{{route('services.delete',$service->id)}}"> <i class="fa-solid fa-trash"></i> </a>
                     </td>
                   </tr>
 

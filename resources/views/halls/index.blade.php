@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container pt-5">
-        <a class="btn btn-primary" href="{{route('halls.create')}}"> إضافة قاعة </a>
+        <h2 class="pb-4"> قائمة القاعات </h2>
+        <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('halls.create')}}"> إضافة قاعة  </a>
         <table class="table table-striped">
             <thead>
               <tr>
@@ -20,9 +21,9 @@
                     <td>{{$hall->name}} </td>
                     <td>{{$hall->price}}</td>
                     <td>
-                        <a href="{{route('halls.show',$hall->id)}}"> تفاصيل </a>
-                        <a href="{{route('halls.edit',$hall->id)}}"> تعديل </a>
-                        <a href="{{route('halls.delete',$hall->id)}}"> حذف </a>
+                        <a class="  " href="{{route('halls.show',$hall->id)}}"> <i class="fa-solid fa-circle-info"></i> |</a>
+                        <a class=" " href="{{route('halls.edit',$hall->id)}}"> <i class="fa-solid fa-pen-to-square"></i> |</a>
+                        <a class=" " href="{{route('halls.delete',$hall->id)}}"> <i class="fa-solid fa-trash"></i> </a>
                     </td>
                   </tr>
 

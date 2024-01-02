@@ -39,7 +39,7 @@
             @enderror
           </div>
 
-          <button type="submit" > إضافة خدمة</button>
+          <button type="submit" > إضافة مستخدم</button>
       </form>
 </div>
 

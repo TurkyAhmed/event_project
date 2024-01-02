@@ -7,18 +7,20 @@ use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Database\Query\Builder;
 
 class EmployeeController extends Controller
 {
 
     public function index()
     {
-
         // query buildder
         $employees = DB::table('users')
                         ->join('employees','users.id','=','employees.user_id')
                         ->select('users.*','employees.address')
                         ->get();
+
+
 
         //SQL query
         // $employees = DB::select('
@@ -27,6 +29,7 @@ class EmployeeController extends Controller
 
         //both correct query buildder and SQL query
 
+
         // return $employees;
         return view('employees.index',compact('employees'));
     }
@@ -34,7 +37,7 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('employees.create');
+        return view('employees.create'); 
     }
 
 
@@ -69,6 +72,7 @@ class EmployeeController extends Controller
         ->select('users.*','employees.address')
         ->get()
         ->first();
+
 
         // if use this must get first or in view write as employee[0]->id ... ect.
         // $employee = DB::select("
@@ -124,5 +128,25 @@ class EmployeeController extends Controller
 
         return redirect()->route('employees.index');
 
+    }
+
+       // Soft Delete
+
+       public function softDelete(){
+        $employees = Employee::onlyTrashed()->get();
+        return view('employees.employeesSoftDelete',compact('employees'));
+    }
+
+
+    public function restore($id){
+        Employee::withTrashed()->where('id',$id)->restore();
+
+        return redirect()->back();
+    }
+
+
+    public function forcedelete($id){
+        Employee::withTrashed()->where('id',$id)->forcedelete();
+        return redirect()->back();
     }
 }

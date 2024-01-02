@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container pt-5">
-        <a class="btn btn-primary" href="{{route('employees.create')}}"> إضافة موظف جديد </a>
-        <table class="table table-striped">
+        <h2 class="pb-4"> قائمة الموظفين </h2>
+        <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('halls.create')}}"> إضافة موظف  </a>        <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -22,9 +22,9 @@
                     <td>{{$employee->address}} </td>
                     <td>{{$employee->email}}</td>
                     <td>
-                        <a href="{{route('employees.show',$employee->id)}}"> تفاصيل </a>
-                        <a href="{{route('employees.edit',$employee->id)}}"> تعديل </a>
-                        <a href="{{route('employees.delete',$employee->id)}}"> حذف </a>
+                        <a href="{{route('employees.show',$employee->id)}}"> <i class="fa-solid fa-circle-info"></i> </a>
+                        <a href="{{route('employees.edit',$employee->id)}}"> <i class="fa-solid fa-pen-to-square"></i> | </a>
+                        <a href="{{route('employees.delete',$employee->id)}}"> <i class="fa-solid fa-trash"></i> </a>
                     </td>
                   </tr>
 

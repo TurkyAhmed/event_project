@@ -66,4 +66,25 @@ class HallController extends Controller
         Hall::find($id)->delete();
         return redirect()->route('halls.index');
     }
+
+
+    // Soft Delete
+
+    public function softDelete(){
+        $halls = Hall::onlyTrashed()->get();
+        return view('halls.hallsSoftDelete',compact('halls'));
+    }
+
+
+    public function restore($id){
+        Hall::withTrashed()->where('id',$id)->restore();
+
+        return redirect()->back();
+    }
+
+
+    public function forcedelete($id){
+        Hall::withTrashed()->where('id',$id)->forcedelete();
+        return redirect()->back();
+    }
 }
