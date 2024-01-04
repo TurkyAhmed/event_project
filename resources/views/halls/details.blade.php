@@ -1,8 +1,12 @@
 
-@extends('layouts.main_layout')
+{{-- @extends('layouts.main_layout')
 
-@section('content')
-<div class="details container py-5">
+@section('content') --}}
+
+@extends('dashboard.dashboard')
+@section('dashboard-content')
+
+<div class="details container py-5 pe-5">
 
     {{-- <form action="{{route('halls.edit',$hall->id)}}" method="">
         @csrf
@@ -67,7 +71,7 @@
                     <label for="name" class="form-label"> اسم القاعة :</label>
                     <p class="d-inline-block">{{$hall->name}}</p>
                   </div>
-
+ 
                 <div class="mb-3">
                     <label for="capacity" class="form-label"> سعة القاعة :</label>
                     <p class="d-inline-block">{{$hall->capacity}}</p>
@@ -106,22 +110,10 @@
                 <div class="btn-group d-flex gap-4">
                     <button class="btn btn-primary my-bg-grad w-50" type="submit"> تعديل </button>
                     <a class="btn btn-outline-primary my-bg-transparent bg-tr w-50" href="{{route('halls.index')}}">تراجع</a>
-              </div>
+                </div>
 
             </div>
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
+        </div>
 
       </form>
 </div>

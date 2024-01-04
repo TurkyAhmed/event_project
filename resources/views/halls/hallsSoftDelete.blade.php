@@ -1,7 +1,11 @@
-@extends('layouts.main_layout')
+{{-- @extends('layouts.main_layout')
 
-@section('content')
-    <div class="container pt-5">
+@section('content') --}}
+
+@extends('dashboard.dashboard')
+@section('dashboard-content')
+
+    <div class="container pt-5 pe-5">
 
         <h1> كل القاعات المحذوفة </h1>
 

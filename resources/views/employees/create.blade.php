@@ -1,14 +1,18 @@
 
-@extends('layouts.main_layout')
+{{-- @extends('layouts.main_layout')
 
-@section('content')
-<div class="container pt-5">
+@section('content') --}}
+
+@extends('dashboard.dashboard')
+@section('dashboard-content')
+
+<div class="container pt-5 pe-5">
 
     <form action="{{route('employees.store')}}" method="post">
         @csrf
 
         <div class="mb-3">
-            <label for="name" class="form-label"> اسم المستخدم </label>
+            <label for="name" class="form-label"> اسم الموظف </label>
             <input type="text" name="name" class="form-control" value="{{old('name')}}" id="name" placeholder="اسم المستخدم">
             @error('name')
                 <div class="text-danger fs-6">{{ $message }}</div>
@@ -16,8 +20,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="phone" class="form-label"> رقم جوال المستخدم </label>
-            <input type="text" name="phone" class="form-control" value="{{old('phone')}}" id="phone" placeholder=" رقم جوال المستخدم ">
+            <label for="phone" class="form-label"> رقم جوال الموظف </label>
+            <input type="text" name="phone" class="form-control" value="{{old('phone')}}" id="phone" placeholder=" رقم جوال الموظف ">
             @error('phone')
                 <div class="text-danger fs-6">{{ $message }}</div>
             @enderror
@@ -25,7 +29,7 @@
 
         <div class="mb-3">
             <label for="address" class="form-label"> عنوان الموظف</label>
-            <input type="text" name="address" class="form-control" value="{{old('address')}}" id="address" placeholder=" رقم جوال المستخدم ">
+            <input type="text" name="address" class="form-control" value="{{old('address')}}" id="address" placeholder=" عنوان  الموظف ">
             @error('address')
                 <div class="text-danger fs-6">{{ $message }}</div>
             @enderror
@@ -46,9 +50,20 @@
                 <div class="text-danger fs-6">{{ $message }}</div>
             @enderror
         </div>
+        <div class="mb-3">
+            <label for="password" class="form-label"> كلمة المرور </label>
+            <input type="text" name="password_confirmation" class="form-control" value="{{old('password')}}" id="password" placeholder="  كلمة المرور ">
+            @error('password')
+                <div class="text-danger fs-6">{{ $message }}</div>
+            @enderror
+        </div>
 
-          <button type="submit" > إضافة خدمة</button>
-      </form>
+        <div class="btn-group d-flex gap-4">
+            <button class="btn btn-primary my-bg-grad w-50" type="submit"> إضافة  </button>
+            <a class="btn btn-outline-primary my-bg-transparent bg-tr w-50" href="{{route('employees.index')}}">تراجع</a>
+        </div>
+
+    </form>
 </div>
 
 @endsection

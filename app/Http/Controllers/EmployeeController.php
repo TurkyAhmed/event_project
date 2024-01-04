@@ -37,7 +37,7 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('employees.create'); 
+        return view('employees.create');
     }
 
 
@@ -119,8 +119,11 @@ class EmployeeController extends Controller
     public function delete($id){
         $user_with_employee = User::with('employee')->findOrFail($id);
 
+        return $user_with_employee;
+
         return view('employees.delete',compact('user_with_employee')) ;
     }
+
 
     public function destroy( $id)
     {

@@ -14,11 +14,12 @@ class EmployeesSeeder extends Seeder
      */
     public function run(): void
     {
+        // علي محمد حبيشان
         $user = User::create([
             'name'=>' علي محمد حبيشان ',
             'phone'=>'781015110',
             'email'=>'halls@bnmahfouz.com',
-            'password'=>'123',
+            'password'=>'123456',
         ]);
 
         $employee =new Employee([
@@ -26,5 +27,33 @@ class EmployeesSeeder extends Seeder
         ]);
 
         $user->employee()->save($employee);
+
+        // سعيد محمد الحبشي
+        $user1 = User::create([
+            'name'=>' سعيد محمد الحبشي',
+            'phone'=>'781015110',
+            'email'=>'saeed@gemail.com',
+            'password'=>'123456',
+        ]);
+
+        $employee1 =new Employee([
+            'address'=>' الشرج - باعبود ',
+        ]);
+
+        $user1->employee()->save($employee1);
+
+        // حمود عبدالرقيب العطاس
+        $user2 = User::create([
+            'name'=>' حمود عبدالرقيب العطاس ',
+            'phone'=>'781015110',
+            'email'=>'hamood@bnmahfouz.com',
+            'password'=>'123456',
+        ]);
+
+        $employee2 =new Employee([
+            'address'=>' فوة القديمة ',
+        ]);
+
+        $user2->employee()->save($employee2);
     }
 }

@@ -1,8 +1,8 @@
 
-@extends('layouts.main_layout')
+@extends('dashboard.dashboard')
+@section('dashboard-content')
 
-@section('content')
-<div class="container pt-5">
+<div class="container pt-5 pe-5">
 
     {{-- <form action="{{route('services.edit',$service->id)}}" method="">
         @csrf
@@ -78,18 +78,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="feature" class="form-label"> حالة الخدمة : </label>
-                    <p class="d-inline-block">{{$service->is_main_service? 'خدمة اساسية' : ' خدمة فرعية ' }}</p>
-                </div>
-
-                <div class="mb-3">
-                    <label for="discount" class="form-label"> حالة الخدمة :</label>
-                    <p class="d-inline-block">{{$service->is_avaliable? ' نشط ':' غير نشط '}}</p>
-                </div>
-
-                <div class="mb-3">
-                    <label for="price" class="form-label"> حالة القاعة :</label>
-                    <p class="d-inline-block">{{$hall->status ? 'نشط' : 'غير نشط' }}</p>
+                    <label for="price" class="form-label"> حالة الخدمة :</label>
+                    <p class="d-inline-block">{{$service->status ? 'نشط' : 'غير نشط' }}</p>
                 </div>
 
                 <div class="mb-3">
@@ -103,8 +93,8 @@
               </div>
 
             </div>
-          </div>
-      </form>
+        </div>
+    </form>
 </div>
 
 @endsection

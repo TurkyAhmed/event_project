@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete()->nullable();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->nullable();
             $table->string('title');
             $table->enum('interval',[' morning ','  evenning ']);
-            $table->enum('status', ['Wait', 'Approved', 'Cancel', 'Late'])->default('Wait');
+            $table->enum('status', ['في الانتظار', 'تمت الموافقة', 'تم الغاء الحجز', 'تأخير الحجز'])->default('في الانتظار');
             $table->timestamp('date_from');
             $table->timestamp('date_to')->nullable();
             $table->string('type_of_event');

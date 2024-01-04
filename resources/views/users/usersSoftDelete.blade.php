@@ -1,7 +1,7 @@
-@extends('layouts.main_layout')
+@extends('dashboard.dashboard')
+@section('dashboard-content')
 
-@section('content')
-    <div class="container pt-5">
+    <div class="container pt-5 pe-5">
 
         <h1> كل المستخدمين المحذوفين </h1>
 

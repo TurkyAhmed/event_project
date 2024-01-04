@@ -1,8 +1,12 @@
 
-@extends('layouts.main_layout')
+{{-- @extends('layouts.main_layout')
 
-@section('content')
-<div class="container pt-5">
+@section('content') --}}
+
+@extends('dashboard.dashboard')
+@section('dashboard-content')
+
+    <div class="container pt-5 pe-5">
 
     <form action="{{route('halls.store')}}" method="post">
         @csrf
@@ -42,6 +46,7 @@
           </div>
 
           <div class="mb-3 d-flex">
+            <p class="ms-5"> حالة القاعة:  </p>
             <div class="form-check  ">
                 <input class="form-check-input" type="radio" value="1" name="is_avaliable"  id="is_avaliable_active" checked>
                 <label class="form-check-label" for="is_avaliable_active"> نشط </label>
@@ -57,7 +62,10 @@
             <input type="text" name="description" class="form-control my-input-text" value="{{old('description')}}" id="description" placeholder=" وصف القاعة ">
           </div>
 
-          <button class="btn btn-outline-primary my-bg-grad" type="submit" > إضافة قاعة</button>
+          <div class="btn-group d-flex gap-4">
+            <button class="btn btn-primary my-bg-grad w-50" type="submit"> إضافة  </button>
+            <a class="btn btn-outline-primary my-bg-transparent bg-tr w-50" href="{{route('halls.index')}}">تراجع</a>
+        </div>
       </form>
 </div>
 

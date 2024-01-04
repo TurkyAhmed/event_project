@@ -24,8 +24,8 @@ class UserRequest extends FormRequest
         return [
             'name'=>'required',
             'phone'=>'required',
-            'email'=>'required|unique:users,email,',
-            'password'=>'required',
+            'email'=>'required|unique:users,email,NULL,id',
+            'password' => 'sometimes|required|min:6|confirmed',
         ];
     }
 
@@ -37,6 +37,8 @@ class UserRequest extends FormRequest
             'email.required'=>'*ادخل الحقل رجاءً.',
             'email.unique'=>' الحساب مسجل من قبل ',
             'password.required'=>'*ادخل الحقل رجاءً.',
+            'password.min'=>'*يجب ان تكون كلمة مرورك اكبر من 6 حروف',
+            'password.confirmed'=>'* كلمة المرور غير متطابقة',
 
         ];
     }

@@ -1,8 +1,11 @@
 
-@extends('layouts.main_layout')
+{{-- @extends('layouts.main_layout')
+@section('content') --}}
 
-@section('content')
-<div class="container pt-5">
+@extends('dashboard.dashboard')
+@section('dashboard-content')
+
+<div class="container pt-5 pe-5">
 
     <form action="{{route('employees.update',$user_with_employee->id)}}" method="POST">
         @csrf
@@ -49,9 +52,11 @@
             @enderror
           </div>
 
-          <a href="{{route('employees.index')}}">تراجع</a>
-          <input type="submit" value="حفظ">
-      </form>
+          <div class="btn-group d-flex gap-4">
+            <button class="btn btn-primary my-bg-grad w-50" type="submit"> حفظ  </button>
+            <a class="btn btn-outline-primary my-bg-transparent bg-tr w-50" href="{{route('employees.index')}}">تراجع</a>
+        </div>
+    </form>
 </div>
 
 @endsection

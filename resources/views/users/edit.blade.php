@@ -1,8 +1,7 @@
+@extends('dashboard.dashboard')
+@section('dashboard-content')
 
-@extends('layouts.main_layout')
-
-@section('content')
-<div class="container pt-5">
+    <div class="container pt-5 pe-5">
 
     <form action="{{route('users.update',$user->id)}}" method="POST">
         @csrf
@@ -27,21 +26,29 @@
           <div class="mb-3">
             <label for="email" class="form-label"> البريد الالكتروني </label>
             <input type="email" name="email" class="form-control" value="{{$user->email}}" id="email" placeholder=" البريد الالكتروني  ">
-            @error('phone')
+            @error('email')
                 <div class="text-danger fs-6">{{ $message }}</div>
             @enderror
         </div>
 
-          <div class="mb-3">
+        <div class="mb-3">
             <label for="password" class="form-label"> كلمة المرور</label>
-            <input type="password" name="password" class="form-control" value="{{$user->password}}" id="password" placeholder=" كلمة المرور ">
-            @error('phone')
+            <input type="password" name="password" class="form-control" id="password" placeholder=" كلمة المرور ">
+            @error('password')
                 <div class="text-danger fs-6">{{ $message }}</div>
             @enderror
         </div>
 
-          <a href="{{route('users.index')}}">تراجع</a>
-          <input type="submit" value="حفظ">
+        <div class="mb-3">
+            <label for="password_confirmation" class="form-label">تأكيد كلمة المرور</label>
+            <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="تأكيد كلمة المرور ">
+
+        </div>
+
+        <div class="btn-group d-flex gap-4">
+            <button class="btn btn-primary my-bg-grad w-50" type="submit"> حفظ  </button>
+            <a class="btn btn-outline-primary my-bg-transparent bg-tr w-50" href="{{route('users.index')}}">تراجع</a>
+        </div>
       </form>
 </div>
 

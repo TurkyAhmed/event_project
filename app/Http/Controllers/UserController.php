@@ -5,12 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     public function index(){
 
         $users = User::all();
+        // $users = DB::table('users')
+        //         ->join('employees','users.id','!=','employees.user_id')
+        //         ->select('users.*')
+        //         ->get();
+
+        // $users_ =DB::select('
+        //     select * from users left join employees on users.id != employees.user_id where users.id != employees.user_id
+        // ');
+
+        // return $users_;
         return view('users.index',compact('users'));
     }
 
@@ -53,7 +64,17 @@ class UserController extends Controller
     public function update(UserRequest $req, $id){
 
         $user =User::findorfail($id);
-        $user->update($req->all());
+        if($req->password ==""){
+            $user->update([
+                'name'=>$req->name,
+                'phone'=>$req->phone,
+                'email'=>$req->email,
+            ]);
+            echo "hello";
+        }
+        else{
+            $user->update($req->all());
+        }
 
         return redirect()->route('users.index');
     }

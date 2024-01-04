@@ -20,7 +20,7 @@ class HallSeeder extends Seeder
             'name'=>'قاعة السعادة' ,
             'capacity'=> '25',
             'feature'=> '',
-            'price'=> '120',
+            'price'=> '100',
             'discount'=> 0 ,
             'is_avaliable'=> 1,
             'description'=> '',
@@ -30,10 +30,11 @@ class HallSeeder extends Seeder
             'name'=>'قاعة الهجرين' ,
             'capacity'=> '20',
             'feature'=> '',
-            'price'=> '100',
+            'price'=> '120',
             'discount'=> 0 ,
             'is_avaliable'=> 1,
             'description'=> '',
         ]);
+        
     }
 }

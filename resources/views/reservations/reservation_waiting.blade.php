@@ -31,9 +31,9 @@
                 <td>{{$reservaion->date_from}}</td>
                 <td>{{$reservaion->date_to}}</td>
                 <td>
-                    <a class="  " href="{{route('reservations.show',$reservaion->id)}}"> <i class="fa-solid fa-circle-info"></i> |</a>
-                    <a class=" " href="{{route('reservations.edit',$reservaion->id)}}"> <i class="fa-solid fa-pen-to-square"></i> |</a>
-                    <a class=" " href="{{route('reservations.delete',$reservaion->id)}}"> <i class="fa-solid fa-trash"></i> </a>
+                    <a class=" btn btn-primary " href="{{route('reservations.reservationApproved',$reservaion->id)}}"> تأكيد الحجز </a>
+                    {{-- <a class=" " href="{{route('reservations.edit',$reservaion->id)}}"> <i class="fa-solid fa-pen-to-square"></i> |</a>
+                    <a class=" " href="{{route('reservations.delete',$reservaion->id)}}"> <i class="fa-solid fa-trash"></i> </a> --}}
                 </td>
               </tr>
 

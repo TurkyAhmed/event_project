@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\employeeController;
 use App\Http\Controllers\PublicViewController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,11 @@ use App\Http\Controllers\PublicViewController;
 Route::get('/', function () {
     return view('publicViews.landing_page');
 });
+
+
+Route::get('dashboard',function(){
+    return view('dashboard.dashboard');
+})->name('dashboard');
 
 Route::get('roomdetails/{id}',[PublicViewController::class,'roomdetails'])->name('room.details');
 
@@ -52,5 +58,13 @@ Route::get('employees/softdelete',[ServiceController::class,'SoftDelete'])->name
 Route::get('employees/restore/{id}',[ServiceController::class,'restore'])->name('employees.restore');
 Route::get('employees/forcedelete/{id}',[ServiceController::class,'forcedelete'])->name('employees.forcedelete');
 Route::resource('employees', employeeController::class);
+
+
+
+Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
+
+Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
+Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
+Route::resource('reservations', ReservationController::class);
 
 

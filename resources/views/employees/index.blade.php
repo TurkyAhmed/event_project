@@ -1,9 +1,13 @@
-@extends('layouts.main_layout')
+{{-- @extends('layouts.main_layout')
 
-@section('content')
-    <div class="container pt-5">
+@section('content') --}}
+
+@extends('dashboard.dashboard')
+@section('dashboard-content')
+
+    <div class="container pt-5 pe-5">
         <h2 class="pb-4"> قائمة الموظفين </h2>
-        <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('halls.create')}}"> إضافة موظف  </a>        <table class="table table-striped">
+        <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('employees.create')}}"> إضافة موظف  </a>        <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>

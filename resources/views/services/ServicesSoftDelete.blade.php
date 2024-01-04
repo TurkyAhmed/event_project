@@ -1,8 +1,7 @@
-@extends('layouts.main_layout')
+@extends('dashboard.dashboard')
+@section('dashboard-content')
 
-@section('content')
-    <div class="container pt-5">
-
+    <div class="container pt-5 pe-5">
         <h1> كل الخدمات المحذوفة </h1>
         <table class="table table-dark table-striped mt-2">
             <div class="container pt-5">

@@ -2,8 +2,29 @@
 
 } */
 
+@font-face {
+    font-family: 'myFont';
+    src: url('../fonts/Droid.Arabic.ttf');
+}
+@font-face {
+    font-family: 'myFont1';
+    src: url('../fonts/ah-naskh-hadith.ttf');
+}
+@font-face {
+    font-family: 'myFont2';
+    src: url('../fonts/Cairo-Regular.ttf');
+}
+@font-face {
+    font-family: 'myFont3';
+    src: url('../fonts/Cairo-Bold.ttf');
+}
+
+body{
+    font-family: myFont;
+}
+
 .my-input-text{
-    width: 30rem;
+    /* width: 30rem; */
 }
 
 .my-input-text::placeholder{
@@ -16,9 +37,10 @@
 }
 
 .container > form{
-    display: table;
-    margin: auto;
+    /* display: table;
+    margin: auto; */
     width: 35rem;
+    margin-right: 3rem;
 }
 
 
@@ -232,6 +254,14 @@ nav{
     z-index: 10;
     transform: rotate(270deg);
 
+}
+
+#dashboaed-sidebar{
+    height: calc(100vh - 4rem);
+}
+
+.dashboard-cards .card{
+    box-shadow: 1px 2px 5px #a1979761;
 }
 
 

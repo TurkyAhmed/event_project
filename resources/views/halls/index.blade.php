@@ -1,7 +1,11 @@
-@extends('layouts.main_layout')
+{{-- @extends('layouts.main_layout')
 
-@section('content')
-    <div class="container pt-5">
+@section('content') --}}
+
+@extends('dashboard.dashboard')
+@section('dashboard-content')
+
+    <div class="container pt-5 pe-5">
         <h2 class="pb-4"> قائمة القاعات </h2>
         <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('halls.create')}}"> إضافة قاعة  </a>
         <table class="table table-striped">

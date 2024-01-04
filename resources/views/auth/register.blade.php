@@ -1,5 +1,5 @@
-@extends('dashboard.dashboard')
-@section('dashboard-content')
+@extends('layouts.main_layout')
+@section('content')
 
 <div class="container pt-5 pe-5">
 
@@ -12,9 +12,9 @@
             @error('name')
                 <div class="text-danger fs-6">{{ $message }}</div>
             @enderror
-        </div>
+          </div>
 
-        <div class="mb-3">
+          <div class="mb-3">
             <label for="phone" class="form-label"> رقم جوال المستخدم </label>
             <input type="text" name="phone" class="form-control" value="{{old('phone')}}" id="phone" placeholder=" رقم جوال المستخدم ">
             @error('phone')
@@ -56,4 +56,3 @@
 </div>
 
 @endsection
-

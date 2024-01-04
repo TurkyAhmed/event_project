@@ -1,8 +1,11 @@
 
-@extends('layouts.main_layout')
+{{-- @extends('layouts.main_layout')
+@section('content') --}}
 
-@section('content')
-<div class="container pt-5">
+@extends('dashboard.dashboard')
+@section('dashboard-content')
+
+<div class="container pt-5 pe-5">
 
     {{-- <form action="{{route('employees.edit',$employee->id)}}" method="get">
         @csrf
@@ -85,7 +88,7 @@
               </div>
 
             </div>
-          </div>
+        </div>
 
       </form>
 </div>
