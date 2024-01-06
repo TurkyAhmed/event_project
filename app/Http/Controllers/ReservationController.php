@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Enums\ReservationStatus;
+use App\Mail\Mail as sendMail;
+use App\Models\Hall;
+use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -18,6 +23,7 @@ class ReservationController extends Controller
         return view('reservations.index',compact('reservations'));
     }
 
+    // All Waiting Reservation Order
     public function reservation_waiting(){
         $reservations = DB::table('reservations')
                         ->where('status','في الانتظار')
@@ -30,8 +36,22 @@ class ReservationController extends Controller
     public function reservationApproved($id){
         $reservation = Reservation::findorfail($id);
 
+        $user = User::find($reservation->user_id);
+
+        ////////////////////////////////////////////////////////////
+        // send email for organizer to accept reservation and waiting for pay half balance
+        $mailData = [
+            'user'=>'مرحبا, '.$user->name,
+            'title'=> 'تأكيد الحجز',
+            'body'=>' تم قبول حجزك حسب البيانات المرسلة من قِبلك ونرجو من حضرتك دفع عربون والمقدر 30% من قيمة الحجز ليتم حجز الموعد بشكل نهائي , وتكملة باقي المبلغ قبل الموعد بيومين',
+            'flag'=>'aprroved',
+        ];
+
+        Mail::to('tasg1818@gmail.com')->send(new sendMail($mailData));
+        ///////////////////////////////////////////////
         $reservation->update([
-            'status'=> 'تمت الموافقة'
+            'status'=> 'تمت الموافقة',
+            'employee_id'=> 1,
         ]);
         $reservation->save();
 
@@ -41,7 +61,13 @@ class ReservationController extends Controller
 
     public function create()
     {
-        return view('reservations.create');
+        $halls = Hall::all()->where('is_avaliable',true);
+
+        $services = Service::all()
+                            ->where('is_avaliable',true)
+                            ->where('is_main_service',false);
+
+        return view('reservations.create',compact('halls','services'));
     }
 
     /**
@@ -49,12 +75,10 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        // $arr =$request;
-    //     $arr =ReservationStatus::Approved;;
-    //    return $arr ;
+        // $status = ReservationStatus::Approved->value;
+        // return $status;
 
-    $status = ReservationStatus::Approved->value;
-    return $status;
+        return $request;
     }
 
     /**
