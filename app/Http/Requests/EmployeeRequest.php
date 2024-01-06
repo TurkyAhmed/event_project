@@ -28,7 +28,7 @@ class EmployeeRequest extends FormRequest
             'email'=>'required|unique:users,email',
             'password'=>'required',
         ];
-    }
+    } 
 
     public function messages(): array
     {

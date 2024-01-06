@@ -94,20 +94,55 @@ class EmployeeController extends Controller
 
 
 
-    public function update(EmployeeRequest $request,  $id)
+    public function update(Request $request,  $id)
     {
+        $validatedData = $request->validate([
+            'name'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
+            'email'=>"required|unique:users,email,$id,id",
+        ], [
+            'name.required' => '*ادخل الحقل رجاءً.',
+            'phone.required'=>'*ادخل الحقل رجاءً.',
+            'address.required'=>'*ادخل الحقل رجاءً.',
+            'email.required'=>'*ادخل الحقل رجاءً.',
+            'email.unique'=>' الحساب مسجل من قبل ',
+        ]);
+
         $user = User::findorfail($id);
-        $employee =$user->employee;
 
-        $user->name=$request->name;
-        $user->phone=$request->phone;
-        $user->email=$request->email;
-        $user->password=$request->password;
+        if($request->password == ""){
 
-        $employee->address = $request->address;
+            $employee =$user->employee;
 
-        $user->save();
-        $employee->save();
+            $user->name=$request->name;
+            $user->phone=$request->phone;
+            $user->email=$request->email;
+            $employee->address = $request->address;
+
+            $user->save();
+            $employee->save();
+
+        }
+        else{
+            $validatedData = $request->validate([
+                'password' => 'min:6|confirmed'
+            ], [
+                'password.min'=>'*يجب ان تكون كلمة مرورك اكبر من 6 حروف',
+                'password.confirmed'=>'* كلمة المرور غير متطابقة.',
+            ]);
+
+            $employee =$user->employee;
+
+            $user->name=$request->name;
+            $user->phone=$request->phone;
+            $user->email=$request->email;
+            $user->password=$request->password;
+            $employee->address = $request->address;
+
+            $user->save();
+            $employee->save();
+        }
 
         $employee_ = User::with('employee')->findOrFail($id);
 

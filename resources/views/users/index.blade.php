@@ -31,6 +31,47 @@
 
             </tbody>
         </table>
+
+        <!-- this for laravel-->
+        {{-- <div class="fs-5">
+            {!! $users->links() !!}
+        </div> --}}
+
+        <!-- this for customized pagination links with bootstrap -->
+        <div class="pagination">
+            <ul class="pagination justify-content-center">
+                @if ($users->onFirstPage())
+                    <li class="page-item disabled">
+                        <span class="page-link">&laquo;</span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $users->previousPageUrl() }}" rel="prev">&laquo;</a>
+                    </li>
+                @endif
+                @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
+                    <li class="page-item {{ $page == $users->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+                @if ($users->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $users->nextPageUrl() }}" rel="next">&raquo;</a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <span class="page-link">&raquo;</span>
+                    </li>
+                @endif
+            </ul>
+        </div>
+
+        <!-- Pagination label -->
+        <div class="pagination-label">
+            Page {{ $users->currentPage() }} of {{ $users->lastPage() }}
+        </div>
+
+
     </div>
 
 @endsection

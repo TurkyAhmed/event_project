@@ -55,7 +55,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('reservations.reservation_waiting')}}" class="nav-link link-dark">
+                        <a href="{{route('reservations.getCalender')}}" class="nav-link link-dark">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                            التقويم
                         </a>
@@ -79,7 +79,7 @@
 
             </div>
 
-            <div class="col-10">
+            <div class="col-10 ">
                 {{-- @yield('dashboard-content') --}}
                 @section('dashboard-content')
                     <div class="row dashboard-cards px-5 mx-3 mt-5">

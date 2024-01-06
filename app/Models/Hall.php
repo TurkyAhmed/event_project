@@ -19,5 +19,6 @@ class Hall extends Model
         'discount',
         'is_avaliable',
         'description',
+        'myPhoto',
     ];
 }

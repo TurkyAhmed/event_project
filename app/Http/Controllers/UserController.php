@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index(){
 
-        $users = User::all();
+        $users = User::paginate(2);
         // $users = DB::table('users')
         //         ->join('employees','users.id','!=','employees.user_id')
         //         ->select('users.*')
@@ -61,18 +61,36 @@ class UserController extends Controller
     }
 
 
-    public function update(UserRequest $req, $id){
+    public function update(Request $req, $id){
+
+        $validatedData = $req->validate([
+            'name'=>'required',
+            'phone'=>'required',
+            'email'=>"required|unique:users,email,$id,id",
+        ],
+        [
+            'name.required' => '*ادخل الحقل رجاءً.',
+            'phone.required'=>'*ادخل الحقل رجاءً.',
+            'email.required'=>'*ادخل الحقل رجاءً.',
+            'email.unique'=>' الحساب مسجل من قبل ',
+        ]);
 
         $user =User::findorfail($id);
+
         if($req->password ==""){
             $user->update([
                 'name'=>$req->name,
                 'phone'=>$req->phone,
                 'email'=>$req->email,
             ]);
-            echo "hello";
         }
         else{
+            $validatedData = $req->validate([
+                'password' => 'min:6|confirmed'
+            ], [
+                'password.min'=>'*يجب ان تكون كلمة مرورك اكبر من 6 حروف',
+                'password.confirmed'=>'* كلمة المرور غير متطابقة.',
+            ]);
             $user->update($req->all());
         }
 

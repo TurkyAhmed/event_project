@@ -42,7 +42,6 @@
         <div class="mb-3">
             <label for="password_confirmation" class="form-label">تأكيد كلمة المرور</label>
             <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="تأكيد كلمة المرور ">
-
         </div>
 
         <div class="btn-group d-flex gap-4">

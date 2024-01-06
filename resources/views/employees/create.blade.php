@@ -45,18 +45,16 @@
 
         <div class="mb-3">
             <label for="password" class="form-label"> كلمة المرور </label>
-            <input type="text" name="password" class="form-control" value="{{old('password')}}" id="password" placeholder="  كلمة المرور ">
+            <input type="password" name="password" class="form-control"  id="password" placeholder="  كلمة المرور ">
             @error('password')
                 <div class="text-danger fs-6">{{ $message }}</div>
             @enderror
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label"> كلمة المرور </label>
-            <input type="text" name="password_confirmation" class="form-control" value="{{old('password')}}" id="password" placeholder="  كلمة المرور ">
-            @error('password')
-                <div class="text-danger fs-6">{{ $message }}</div>
-            @enderror
-        </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password_confirmation" class="form-label"> تأكيد كلمة المرور </label>
+            <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder=" تأكيد كلمة المرور ">
+          </div>
 
         <div class="btn-group d-flex gap-4">
             <button class="btn btn-primary my-bg-grad w-50" type="submit"> إضافة  </button>

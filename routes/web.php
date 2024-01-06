@@ -62,9 +62,10 @@ Route::resource('employees', employeeController::class);
 
 
 Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
-
+Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
 Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
 Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
 Route::resource('reservations', ReservationController::class);
+
 
 

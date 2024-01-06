@@ -49,10 +49,58 @@
 
     <main>
 
-  @yield('content')
+        @yield('content')
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
+
+    <footer>
+        <div class="container-fluid bg-liner-black px-5 py-2 mt-3">
+            <div class="row  text-white">
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <p class="d-flex align-items-center">
+                        <img src="{{asset('assets/imgs/event-logo.png')}}" style="width: 80px" alt="Event Time logo">
+                        <span class="fs-3"> حدث تايم </span>
+                    </p>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                   <p> روابط سريعة : </p>
+                   <ul class="list-unstyled">
+                        <li><a class="text-decoration-none text-white" href="#"> القاعات </a></li>
+                        <li><a class="text-decoration-none text-white" href="#"> الخدمات </a></li>
+                        <li><a class="text-decoration-none text-white" href="#"> من نحن؟ </a></li>
+                   </ul>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <p>  تواصل معنا : </p>
+                    <ul class="list-unstyled d-flex gap-2">
+                         <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-facebook"></i> </a></li>
+                         <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-twitter"></i> </a></li>
+                         <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-telegram"></i> </a></li>
+                         <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-whatsapp"></i> </a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <p>   موقعنا : </p>
+                    <ul class="list-unstyled">
+                         <li><a class="text-decoration-none text-white" href="#"> القاعات </a></li>
+                         <li><a class="text-decoration-none text-white" href="#"> الخدمات </a></li>
+                         <li><a class="text-decoration-none text-white" href="#"> من نحن؟ </a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="copy-write text-center text-white-50">
+                <p>TR17&copy; {{date('Y');}}</p>
+            </div>
+
+        </div>
+    </footer>
  </body>
  </html>
