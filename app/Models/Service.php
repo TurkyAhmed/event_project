@@ -19,4 +19,8 @@ class Service extends Model
         'is_avaliable',
         'description',
     ];
+
+    public function resrvation_detail(){
+        return $this->belongsToMany(Reservation_Detail::class);
+    }
 }

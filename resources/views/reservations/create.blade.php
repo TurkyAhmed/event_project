@@ -9,6 +9,7 @@
                     <form action="{{route('reservations.store')}}" method="POST">
                         @csrf
 
+                        {{-- main deatails --}}
                         <div class="row reservation_main_details bg-light">
 
                             <div class="col-10 col-md-6 col-lg-4">
@@ -26,8 +27,8 @@
                                 <label for="interval">الفترة</label>
                                 <select class="form-control" id="interval" name="interval">
                                     <option selected disabled >--اختار الفترة--</option>
-                                    <option value="morning">صباح</option>
-                                    <option value="evening">مساء</option>
+                                    <option value=" morning ">صباح</option>
+                                    <option value="  evenning ">مساء</option>
                                 </select>
                             </div>
                             </div>
@@ -76,26 +77,56 @@
                             </div>
                         </div>
 
+                        {{-- halls with it's services --}}
                         <div id="reservation_hall_with_services">
-                            <div class="mb-3">
-                                <label for="interval">القاعة</label>
-                                <select class="form-control" id="interval" name="hall_id">
-                                    <option selected disabled >--اختار القاعة--</option>
-                                    @foreach ($halls as $hall )
-                                        <option value="{{$hall->id}}" >{{$hall->name}}</option>
+
+                            <div class="hall_with_services">
+
+                                <div class="mb-3">
+                                    <label for="interval">القاعة</label>
+                                    <select class="form-control" id="interval" name="hall_id[]">
+                                        <option selected disabled >--اختار القاعة--</option>
+                                        @foreach ($halls as $hall )
+                                            <option value="{{$hall->id}}" >{{$hall->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="row">
+                                    @foreach ($services as $service )
+                                        <div class="col-12 col-md-2 col-lg-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{$service->id}}" name="service0_id[]" id="services_{{$service->name}}">
+                                                <label class="form-check-label" for="services_{{$service->name}}"> {{$service->name}} </label>
+                                            </div>
+                                        </div>
                                     @endforeach
-                                </select>
+                                </div>
+
                             </div>
 
-                            <div class="row">
-                                @foreach ($services as $service )
-                                    <div class="col-12 col-md-2 col-lg-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{$service->id}}" name="service_id[]" id="services_{{$service->name}}">
-                                            <label class="form-check-label" for="services_{{$service->name}}"> {{$service->name}} </label>
+                            <div class="hall_with_services">
+
+                                <div class="mb-3">
+                                    <label for="interval">القاعة</label>
+                                    <select class="form-control" id="interval" name="hall_id[]">
+                                        <option selected disabled >--اختار القاعة--</option>
+                                        @foreach ($halls as $hall )
+                                            <option value="{{$hall->id}}" >{{$hall->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="row">
+                                    @foreach ($services as $service )
+                                        <div class="col-12 col-md-2 col-lg-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{$service->id}}" name="service1_id[]" id="services_{{$service->name}}">
+                                                <label class="form-check-label" for="services_{{$service->name}}"> {{$service->name}} </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
 
                             </div>
 
@@ -103,34 +134,10 @@
 
                         </div>
 
-                        <div id="reservation_hall_with_services">
-                            <div class="mb-3">
-                                <label for="interval">القاعة</label>
-                                <select class="form-control" id="interval" name="hall_id">
-                                    <option selected disabled >--اختار القاعة--</option>
-                                    @foreach ($halls as $hall )
-                                        <option value="{{$hall->id}}" >{{$hall->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="row">
-                                @foreach ($services as $service )
-                                    <div class="col-12 col-md-2 col-lg-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{$service->id}}" name="service_id[]" id="services_{{$service->name}}">
-                                            <label class="form-check-label" for="services_{{$service->name}}"> {{$service->name}} </label>
-                                        </div>
-                                    </div>
-                                @endforeach
-
-                            </div>
-
-
-
+                        <div>
+                            <button type="submit" class="btn btn-primary "> حجز </button>
+                            <p class="btn btn-secondary" id="add_hall"> إضافة قاعة اخرى </p>
                         </div>
-
-                        <button type="submit" class="btn btn-primary "> حجز </button>
                     </form>
 
 
@@ -141,3 +148,5 @@
     </section>
 
 @endsection
+
+

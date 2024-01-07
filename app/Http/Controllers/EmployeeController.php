@@ -108,7 +108,7 @@ class EmployeeController extends Controller
             'email.required'=>'*ادخل الحقل رجاءً.',
             'email.unique'=>' الحساب مسجل من قبل ',
         ]);
-
+ 
         $user = User::findorfail($id);
 
         if($request->password == ""){

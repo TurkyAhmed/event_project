@@ -5,6 +5,7 @@ use App\Models\Reservation;
 use App\Enums\ReservationStatus;
 use App\Mail\Mail as sendMail;
 use App\Models\Hall;
+use App\Models\Reservation_Detail;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class ReservationController extends Controller
     }
 
 
+    // Approved a waiting resrvating
     public function reservationApproved($id){
         $reservation = Reservation::findorfail($id);
 
@@ -50,7 +52,19 @@ class ReservationController extends Controller
         Mail::to('tasg1818@gmail.com')->send(new sendMail($mailData));
         ///////////////////////////////////////////////
         $reservation->update([
-            'status'=> 'تمت الموافقة',
+            'status'=> ReservationStatus::Approved->value,
+            'employee_id'=> 1,
+        ]);
+        $reservation->save();
+
+        return redirect()->back();
+    }
+
+    // cancelled a waiting resrvating
+    public function reservationcancelled($id){
+        $reservation = Reservation::findorfail($id);
+        $reservation->update([
+            'status'=> ReservationStatus::Cancel->value,
             'employee_id'=> 1,
         ]);
         $reservation->save();
@@ -78,7 +92,36 @@ class ReservationController extends Controller
         // $status = ReservationStatus::Approved->value;
         // return $status;
 
-        return $request;
+        $newReservation = Reservation::create([
+            'user_id'=> 5,
+            'title'=>$request->title,
+            'interval'=> '  evenning ',
+            'status'=> ReservationStatus::Wait->value,
+            'date_from'=>$request->date_from,
+            'date_to'=>$request->date_to,
+            'type_of_event'=>$request->type_of_event,
+            'note'=>$request->note,
+        ]);
+
+
+
+        $countOfHalls = count($request->hall_id);
+
+        for($i=0; $i<$countOfHalls; $i++){
+            $services='service'.$i.'_id';
+            for($j=0; $j < count($request->$services); $j++){
+
+                $reservation_datails =new Reservation_Detail([
+                    'reservation_id' => $newReservation->id,
+                    'hall_id'=>$request->hall_id[$i],
+                    'service_id'=> $request->$services[$j],
+                ]);
+
+                $newReservation->reservation_detail()->save($reservation_datails);
+            }
+        }
+
+        return ' تم الحجز بنجاح ';
     }
 
     /**

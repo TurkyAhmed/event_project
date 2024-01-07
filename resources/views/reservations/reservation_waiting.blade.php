@@ -32,8 +32,8 @@
                 <td>{{$reservaion->date_to}}</td>
                 <td>
                     <a class=" btn btn-primary " href="{{route('reservations.reservationApproved',$reservaion->id)}}"> تأكيد الحجز </a>
-                    {{-- <a class=" " href="{{route('reservations.edit',$reservaion->id)}}"> <i class="fa-solid fa-pen-to-square"></i> |</a>
-                    <a class=" " href="{{route('reservations.delete',$reservaion->id)}}"> <i class="fa-solid fa-trash"></i> </a> --}}
+                    <a class=" btn btn-secondary " href="{{route('reservations.reservationcancelled',$reservaion->id)}}"> الغاء الحجز </a>
+
                 </td>
               </tr>
 

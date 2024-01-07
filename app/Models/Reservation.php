@@ -12,9 +12,10 @@ class Reservation extends Model
     use HasFactory;
 
     use SoftDeletes;
-    
+
     protected $fillable = [
         'user_id',
+        'title',
         'interval',
         'status',
         'date_from',
@@ -27,4 +28,8 @@ class Reservation extends Model
     protected $casts =[
         'status'=>ReservationStatus::class
     ];
+
+    public function reservation_detail(){
+        return $this->hasMany(Reservation_Detail::class);
+    }
 }

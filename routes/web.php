@@ -65,6 +65,7 @@ Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])-
 Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
 Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
 Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
+Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
 Route::resource('reservations', ReservationController::class);
 
 

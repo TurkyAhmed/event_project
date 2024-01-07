@@ -21,4 +21,8 @@ class Hall extends Model
         'description',
         'myPhoto',
     ];
+
+    public function resrvation_detail(){
+        return $this->belongsToMany(Reservation_Detail::class);
+    }
 }

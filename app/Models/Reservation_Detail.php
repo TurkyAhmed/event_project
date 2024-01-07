@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Reservation_Detail extends Model
 {
     use HasFactory;
-    
+
     use SoftDeletes;
 
     protected $fillable = [
@@ -19,4 +19,16 @@ class Reservation_Detail extends Model
         'service_count',
         'note',
     ];
+
+    public function reservation(){
+        return $this->hasOne(Reservation::class);
+    }
+
+    public function hall(){
+        return $this->hasOne(Hall::class);
+    }
+
+    public function service(){
+        return $this->hasOne(Service::class);
+    }
 }
