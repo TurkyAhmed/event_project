@@ -1,9 +1,15 @@
 @extends('dashboard.dashboard')
 @section('dashboard-content')
 
-<div class="container pt-5 pe-5">
+<div class="container py-5 pe-5 my-bg-img">
 
-    <form action="{{route('services.update',$service->id)}}" method="POST">
+    <div class="form-fram">
+        <div class="sub-header-page mb-3">
+            <h3 class="text-center">  الخدمات </h3>
+            <p class="fs-6"> تعديل الخدمة </p>
+        </div>
+
+        <form action="{{route('services.update',$service->id)}}" method="POST">
         @csrf
         @method('PUT')
 
@@ -54,10 +60,11 @@
 
           <div class="btn-group d-flex gap-4">
             <button class="btn btn-primary my-bg-grad w-50" type="submit"> حفظ </button>
-            <a class="btn btn-outline-primary my-bg-transparent bg-tr w-50" href="{{route('halls.index')}}">تراجع</a>
+            <a class="btn btn-outline-primary my-bg-transparent bg-tr w-50" href="{{route('services.index')}}">تراجع</a>
         </div>
 
-      </form>
+        </form>
+    </div>
 </div>
 
 @endsection

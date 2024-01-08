@@ -29,7 +29,6 @@ class ServiceController extends Controller
         $sdrvice = Service::create($request->all());
         return redirect('services');
 
-        // return $sdrvice;
     }
 
 

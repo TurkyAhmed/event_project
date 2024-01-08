@@ -5,20 +5,17 @@
 @extends('dashboard.dashboard')
 @section('dashboard-content')
 
-<div class="container py-5 pe-5">
+<div class="container py-5 pe-5 my-bg-img">
 
+    <div class="form-fram">
+        <div class="sub-header-page mb-3">
+            <h3 class="text-center"> حذف القاعة </h3>
+            <p class="fs-6">  هل تريد فعلاً حذف هذة القاعة؟ </p>
+        </div>
 
-
-    {{-- TODO /list details --}}
-
-    <form action="{{route('halls.destroy',$hall->id)}}" method="POST">
+        <form action="{{route('halls.destroy',$hall->id)}}" method="POST">
         @csrf
         @method('DELETE')
-
-        <div class="mb-3">
-            <h4> حذف القاعة </h4>
-            <h6 class="me-3"> هل تريد فعلاً حذف هذة القاعة؟ </h6>
-        </div>
 
         <div class="card">
             <div class="card-header">
@@ -72,6 +69,7 @@
 
             </div>
         </div>
-    </form>
+        </form>
+    </div>
 </div>
 @endsection

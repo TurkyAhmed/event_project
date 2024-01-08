@@ -258,4 +258,32 @@ public function getCalender(){
     return view('reservations.calender',compact('reservations'));
 }
 
+
+public function report(){
+    $halls = Hall::all();
+    return view('reservations.reports',compact('halls'));
+}
+
+
+public function filterReservations(Request $request){
+
+    $hallId = $request->input('hall_id');
+    $dateFrom = $request->input('date_from');
+    $dateTo = $request->input('date_to');
+
+
+
+    // $filteredReservations = Reservation::all()
+    //                         // ->where('hall_id', $hallId)
+    //                         // ->where('date_from', '>=', $dateFrom)
+    //                         // ->whereDate('date_to', '<=', $dateTo)
+    //                          ;
+
+    $filteredReservations = DB::table('reservations')
+                            ->where('id',5)
+                            ->get();
+
+    return response()->json(['filteredReservations'=>$filteredReservations]);
+}
+
 }

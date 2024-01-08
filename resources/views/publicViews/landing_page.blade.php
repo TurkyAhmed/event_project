@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <section class="hero">
+    {{-- <section class="hero">
         <div class="p-4 p-md-5  text-white rounded bg-dark hero-background">
             <div class="col-md-6 px-0">
               <h1 class="display-4 fst-italic"> حدث تايم </h1>
@@ -10,6 +10,33 @@
               <p class="lead my-3"> الموتمرات والندوات وورش العمل </p>
             </div>
           </div>
+    </section> --}}
+
+    <section class="hero">
+
+
+        <div class="header">
+
+            {{-- <img src="{{asset('assets/imgs/Luxury.jpg')}}" alt=""> --}}
+            <!--Waves Container-->
+            <div>
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                  <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+                </svg>
+            </div>
+            <!--Waves end-->
+
+        </div>
+
     </section>
 
     <!-- <section class="about-us pt-7rem bg-light text-center">
@@ -20,128 +47,260 @@
     </section> -->
 
 
-
-    <section class="myservices pt-7rem bg-light text-center ">
-      <h1 class="pb-5"> الخدمات </h1>
+    {{-- services --}}
+    <section class="myservices pt-7rem   ">
+      <h1 class="pb-5 text-center"> الخدمات </h1>
       <div class="container">
           <div class="row  d-flex justify-content-center">
-              <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+
+              <div class="col-10 col-md-6 mx-auto">
                   <div class="services-card">
-                      <div class="card" style="width: 16rem;">
-                          <img src="./assets/imgs/Luxury.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
+                      <div class="card border-0" >
+                        <div class="row">
+                            <div class="col-2 ">
+                                {{-- <img src="./assets/imgs/Luxury.jpg" class="card-img-top" alt="..."> --}}
+                                <p class="fs_4rem text-end"><i class="fa-solid fa-wifi"></i></p>
+                            </div>
+                            <div class="col-10 ">
+                                 <div class="card-body">
+                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                   </div>
               </div>
-              <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+              <div class="col-10 col-md-6 mx-auto">
                   <div class="services-card">
-                      <div class="card" style="width: 16rem;">
-                          <img src="./assets/imgs/Luxury.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
+                      <div class="card border-0" >
+                        <div class="row align-items-center">
+                            <div class="col-2 ">
+                                <p class="fs_4rem text-end"><i class="fa-regular fa-snowflake"></i></p>
+                            </div>
+                            <div class="col-10 ">
+                                <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                   </div>
               </div>
-              <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+              <div class="col-10 col-md-6 mx-auto">
                   <div class="services-card">
-                      <div class="card" style="width: 16rem;">
-                          <img src="./assets/imgs/Luxury.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
+                      <div class="card border-0" >
+                        <div class="row align-items-center">
+                            <div class="col-2 ">
+                                <p class="fs_4rem text-end"><i class="fa-solid fa-square-parking"></i></p>
+                            </div>
+                            <div class="col-10 ">
+                                <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                   </div>
               </div>
-              <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+              <div class="col-10 col-md-6 mx-auto">
                   <div class="services-card">
-                      <div class="card" style="width: 16rem;">
-                          <img src="./assets/imgs/Luxury.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
+                      <div class="card border-0" >
+                        <div class="row align-items-center">
+                            <div class="col-2 ">
+                                <p class="fs_4rem text-end"><i class="fa-solid fa-tv"></i></p>
+                            </div>
+                            <div class="col-10 ">
+                                <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                   </div>
               </div>
+              <div class="col-10 col-md-6 mx-auto">
+                <div class="services-card">
+                    <div class="card border-0" >
+                        <div class="row align-items-center">
+                            <div class="col-2 ">
+                                <p class="fs_4rem"><img src="{{asset('assets/imgs/tea-cup.png')}}"   alt="..."></p>
+                            </div>
+                            <div class="col-10 ">
+                                <div class="card-body">
+                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-md-6 mx-auto">
+                <div class="services-card">
+                    <div class="card border-0" >
+                        <div class="row align-items-center">
+                            <div class="col-2 ">
+                                <p class="fs_4rem"><i class="fa-solid fa-ban-smoking"></i></p>
+                            </div>
+                            <div class="col-10 ">
+                                <div class="card-body">
+                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-md-6 mx-auto">
+                <div class="services-card">
+                    <div class="card border-0" >
+                        <div class="row align-items-center">
+                            <div class="col-2 ">
+                                <p class="fs_4rem text_primary"><img src="{{asset('assets/imgs/sandwich.svg')}}" style="width: 55px" alt=""></p>
+                            </div>
+                            <div class="col-10 ">
+                                <div class="card-body">
+                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-md-6 mx-auto">
+                <div class="services-card">
+                    <div class="card border-0" >
+                        <div class="row align-items-center">
+                            <div class="col-2 ">
+                                <p class="fs_4rem text_primary"><i class="fas fa-headset"></i></p>
+                            </div>
+                            <div class="col-10 ">
+                                <div class="card-body">
+                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
           </div>
       </div>
   </section>
 
-
-    <section class="halls pt-7rem  bg-light ">
+  {{-- halls --}}
+    <section class="halls pt-7rem   ">
         <h1 class=" pb-5 text-center">القاعات</h1>
         <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-10 col-md-6 col-lg-4">
-                    <div class="halls-card">
-                        <div class="card" style="width: 25rem;">
-                            <img src="./assets/imgs/Luxury.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title"> قاعة السعادة </h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                          </div>
+            <div class="row halls-card d-flex justify-content-center">
+
+                <div class="col-10 col-md-6 col-lg-3 mb-3">
+                    <div class="card rounded-3" style="width: 19rem;">
+                        <img src="./assets/imgs/slam.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"> قاعة السعادة </h5>
+                          <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
+                        </div>
+                        <div class="">
+                            <a href="#" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
+                                <span> <i class="fa fa-angle-left position-relative" aria-hidden="true"></i></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-10 col-md-6 col-lg-4">
-                    <div class="halls-card">
-                        <div class="card" style="width: 25rem;">
-                            <img src="./assets/imgs/Luxury.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                          </div>
+
+                <div class="col-10 col-md-6 col-lg-3 mb-3">
+                    <div class="card rounded-3" style="width: 19rem;">
+                        <img src="./assets/imgs/shabam.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"> قاعة السعادة </h5>
+                          <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
+                        </div>
+                        <div class="">
+                            <a href="#" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
+                                <span> <i class="fa fa-angle-left position-relative" aria-hidden="true"></i></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-10 col-md-6 col-lg-4">
-                    <div class="halls-card">
-                        <div class="card" style="width: 25rem;">
-                            <img src="./assets/imgs/Luxury.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                          </div>
+
+                 <div class="col-10 col-md-6 col-lg-3 mb-3">
+                    <div class="card rounded-3" style="width: 19rem;">
+                        <img src="./assets/imgs/istdama.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"> قاعة السعادة </h5>
+                          <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
+                        </div>
+                        <div class="">
+                            <a href="#" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
+                                <span> <i class="fa fa-angle-left position-relative" aria-hidden="true"></i></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                 <div class="col-10 col-md-6 col-lg-3 mb-3">
+                    <div class="card rounded-3" style="width: 19rem;">
+                        <img src="./assets/imgs/conv.jpg" style="height:13.5rem" class="card-img-top img-fluid " alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"> قاعة السعادة </h5>
+                          <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
+                        </div>
+                        <div class="">
+                            <a href="#" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
+                                <span> <i class="fa fa-angle-left position-relative" aria-hidden="true"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section class="question pt-7rem text-center bg-light pb-5" >
+    <section class="question pt-7rem text-center  pb-5" >
         <h1 class="pb-5"> الاسئلة الشائعة </h1>
         <div class="container">
 
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                      Accordion Item #1
+                    <button class="accordion-button collapsed text-end" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        ما هي أنواع الفعاليات التي يمكنني إدارتها باستخدام موقع حدث تايم للمعارض والمؤتمرات؟
                     </button>
                   </h2>
                   <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                    <div class="accordion-body"> يمكنك إدارة مجموعة واسعة من الفعاليات المهنية، بما في ذلك المؤتمرات والقمم والندوات والمعارض وفعاليات التواصل والحفلات وإطلاق المنتجات ومؤتمرات التكنولوجيا والابتكار. </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                      Accordion Item #2
+                        هل يمكنني حجز القاعة لإقامة دورة تدريبية؟
                     </button>
                   </h2>
                   <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                    <div class="accordion-body"> يمكنك حجز القاعة لإقامة دورة تدريبية. تمتاز القاعة بمساحتها الواسعة وتوفرها لعقد الدورات وورش العمل. </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                      Accordion Item #3
+                        ما هي الخدمات المتوفرة في القاعة؟
                     </button>
                   </h2>
                   <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                    <div class="accordion-body">القاعة توفر العديد من الخدمات لتلبية احتياجات الأشخاص الذين يستخدمونها. بعض الخدمات المتوفرة في القاعة تشمل:
+
+                        مساحة القاعة: تتميز القاعة بمساحتها البالغة 30 متر مربع، مما يتيح المساحة الكافية لإقامة الدورات وورش العمل والفعاليات الأخرى.
+
+                        تجهيزات التكييف: القاعة مجهزة بنظام تكييف لضمان راحة الحضور وتوفير البيئة المناسبة للتعلم والمشاركة.
+
+                        شبكة الإنترنت واي فاي: يتوفر اتصال إنترنت لاسلكي عالي السرعة في القاعة، مما يتيح للحضور الوصول إلى الموارد العبر الإنترنت والتواصل مع الآخرين.
+
+                        شاشة عرض كبيرة: تتوفر شاشة عرض كبيرة في القاعة، ما يسهّل عرض المحتوى المرئي والشرائح التقديمية والمواد التعليمية الأخرى.
+
+                        ستاند الأوراق: يوفر القاعة ستاند للأوراق، وهو عبارة عن حامل يمكن استخدامه لعرض المستندات والملاحظات والرسومات وغيرها.
+
+                        ربط بث الألياف: بالإضافة إلى ذلك، يمكن ربط القاعة بالألياف البصرية لإجراء بث مباشر، مما يتيح إمكانية البث المباشر للفعاليات أو الدورات التدريبية.</div>
                   </div>
                 </div>
               </div>
@@ -149,6 +308,62 @@
 
     </section>
 
+    <section class="contact_us">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 col-lg-6 d-md-block text-center">
+                    <p class="fs-3 mb-2"><i class="fa-solid fa-location-dot"></i></p>
+                    <h3>عنواننا</h3>
+                    <p>حضرموت - المكلا - اربعين شقة</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.1442846419914!2d49.113878625002656!3d14.533738285944715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3de8e69793c145e7%3A0x55d32bd799340eb6!2z2KPYqNix2KfYrCDYqNmGINmF2K3ZgdmI2Lg!5e0!3m2!1sar!2s!4v1704668537606!5m2!1sar!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <div class="col-10 col-lg-6 d-md-block">
+                    <div class="row text-center">
+                        <div class="col-6 m-auto">
+                            <p class="fs-3 mb-2"><i class="fa fa-envelope"></i></p>
+                            <h3>راسلنا عبر</h3>
+                            <p class="fs-5">tasg@gmail.com</p>
+                        </div>
+                        <div class="col-6 m-auto">
+                            {{-- <p class="fs-3 mb-2"><i class="bi bi-telephone-plus"></i></p> --}}
+                            <p class="fs-3 mb-2"><i class="bi bi-telephone-plus-fill"></i></p>
+                            <h3>اتصل بنا عبر</h3>
+                            <p class="fs-5"> 739531388 967+</p>
+                        </div>
+                    </div>
+
+                    <form action="">
+                        <div class="row">
+                            <div class="col-10 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label"> الاسم </label>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder=" ادخل اسمك ">
+                                </div>
+                            </div>
+                            <div class="col-10 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label"> الاسم </label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="  بريدك الالكتروني ">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label"> العنوان </label>
+                                <input type="text" name="subject" class="form-control" id="subject" placeholder=" عنوان الرسالة ">
+                            </div>
+                            <div class="mb-3">
+                                <label for="content" class="form-label"> الرسالة </label>
+                                <textarea class="form-control" name="content" id="content" cols="30" rows="9" placeholder="  الرسالة "></textarea>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
 
 @endsection
 

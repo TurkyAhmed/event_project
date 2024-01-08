@@ -6,9 +6,15 @@
 @extends('dashboard.dashboard')
 @section('dashboard-content')
 
-<div class="container pt-5 pe-5">
+<div class="container py-5 pe-5 my-bg-img">
 
-    <form action="{{route('employees.store')}}" method="post">
+    <div class="form-fram">
+        <div class="sub-header-page mb-3">
+            <h3 class="text-center">  القاعات </h3>
+            <p class="fs-6"> إضافة موظف جديدة </p>
+        </div>
+
+        <form action="{{route('employees.store')}}" method="post">
         @csrf
 
         <div class="mb-3">
@@ -61,7 +67,8 @@
             <a class="btn btn-outline-primary my-bg-transparent bg-tr w-50" href="{{route('employees.index')}}">تراجع</a>
         </div>
 
-    </form>
+        </form>
+    </div>
 </div>
 
 @endsection

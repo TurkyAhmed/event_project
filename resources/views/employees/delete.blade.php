@@ -4,14 +4,17 @@
 @extends('dashboard.dashboard')
 @section('dashboard-content')
 
-<div class="container py-5 pe-5">
+<div class="container py-5 pe-5 my-bg-img">
 
-    <form action="{{route('employees.destroy',$user_with_employee->id)}}" method="POST">
+    <div class="form-fram">
+        <div class="sub-header-page mb-3">
+            <h3 class="text-center"> حذف الموظف </h3>
+            <p class="fs-6">  هل تريد فعلاً حذف هذة الموظف </p>
+        </div>
+
+        <form action="{{route('employees.destroy',$user_with_employee->id)}}" method="POST">
         @csrf
         @method('DELETE')
-
-        <h4> حذف الموظف </h4>
-        <h6> هل تريد فعلاً حذف هذا الموظف ؟ </h6>
 
         <div class="card">
             <div class="card-header">
@@ -45,6 +48,7 @@
 
             </div>
         </div>
-    </form>
+        </form>
+    </div>
 </div>
 @endsection

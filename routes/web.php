@@ -66,6 +66,8 @@ Route::get('reservations/calender', [ReservationController::class,'getCalender']
 Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
 Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
 Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
+Route::get('reservations/report', [ReservationController::class,'report'])->name('reservations.report');
+Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations');
 Route::resource('reservations', ReservationController::class);
 
 

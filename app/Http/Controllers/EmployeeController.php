@@ -108,7 +108,7 @@ class EmployeeController extends Controller
             'email.required'=>'*ادخل الحقل رجاءً.',
             'email.unique'=>' الحساب مسجل من قبل ',
         ]);
- 
+
         $user = User::findorfail($id);
 
         if($request->password == ""){
@@ -154,7 +154,7 @@ class EmployeeController extends Controller
     public function delete($id){
         $user_with_employee = User::with('employee')->findOrFail($id);
 
-        return $user_with_employee;
+        // return $user_with_employee;
 
         return view('employees.delete',compact('user_with_employee')) ;
     }
