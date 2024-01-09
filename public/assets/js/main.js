@@ -39,20 +39,19 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
 
+      // sidbar active
       // to rednder partichal view
       // Add a click event listener to the sidebar links
-    // $('#dashboaed-sidebar a.nav-link').on('click', function(e) {
-    //     e.preventDefault(); // Prevent the default link behavior
 
-    //     // Get the URL of the link
+    // $('#dashboaed-sidebar a.nav-link').on('click', function(e) {
+    //     e.preventDefault();
+
     //     var url = $(this).attr('href');
 
-    //     // Use AJAX to load the content from the URL
     //     $.ajax({
     //         url: url,
     //         type: 'GET',
     //         success: function(response) {
-    //             // Update the content of the dashboard section
     //             $('#dashboard-content').html(response);
     //         },
     //         error: function(error) {
@@ -60,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
     //         }
     //     });
     // });
+
+    // end sidebar
 
 
     // add new hall with its services in reservation
@@ -92,10 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    btn_add_hall.addEventListener('click', () => {
-        console.log('ok');
-        document.getElementById('reservation_hall_with_services').append(hall_with_services);
-    });
+    // btn_add_hall.addEventListener('click', () => {
+    //     console.log('ok');
+    //     document.getElementById('reservation_hall_with_services').append(hall_with_services);
+    // });
 });
 
 

@@ -1,23 +1,18 @@
+@extends('layouts.main_layout')
+@section('content')
+    <div class="container-fluid mt-5">
+        <div class="row ">
+            <div class="col-12 col-md-3 bg-light position-fixed h_100vh pt-5">
 
-@extends('dashboard.dashboard')
-@section('dashboard-content')
-
-    <div class="container py-5 pe-5">
-        <div class="reservation_filter bg-light px-4 py-3">
-        <div class="row">
-            <div class="col-10 col-md-4">
                 <div class="mb-3">
-                    <label for="interval">القاعة</label>
-                    <select class="form-control" id="hall" name="hall_id">
+                    <select class="form-select" id="hall" name="hall_id">
                         <option selected disabled >--اختار القاعة--</option>
                         @foreach ($halls as $hall )
                             <option value="{{$hall->id}}" >{{$hall->name}}</option>
                         @endforeach
                     </select>
                 </div>
-            </div>
 
-            <div class="col-10 col-md-4">
                 <div class="mb-3">
                     <label for="date_from" class="form-label">  من تاريخ </label>
                     <input type="date" name="date_from" class="form-control" value="{{ date('Y-m-d') }}" id="date_from" >
@@ -25,9 +20,7 @@
                         <div class="text-danger fs-6">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
 
-            <div class="col-10 col-md-4">
                 <div class="mb-3">
                     <label for="date_to" class="form-label">  الى تاريخ </label>
                     <input type="date" name="date_to" class="form-control" value="{{ date('Y-m-d') }}" id="date_to" >
@@ -35,23 +28,29 @@
                         <div class="text-danger fs-6">{{ $message }}</div>
                     @enderror
                 </div>
+
+
+            </div>
+
+            <div class="col-12 col-lg-9 mt-5 absolute_left_0">
+                <div class="container">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th>العنوان</th>
+                                <th>الفترة</th>
+                                <th>الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody  id="reservations_filtered">
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
         </div>
-        </div>
-
-        <table class="table container">
-            <thead>
-                <tr>
-                    <th>العنوان</th>
-                    <th>الفترة</th>
-                    <th>الحالة</th>
-                </tr>
-            </thead>
-            <tbody  id="reservations_filtered">
-            </tbody>
-        </table>
     </div>
-
 
     <script>
         $(document).ready(function() {
@@ -69,7 +68,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: '/reservations/filter',
+                    url: '/users/filter',
                     data: {
                         hall_id: hallId,
                         date_from: dateFrom,
@@ -105,5 +104,3 @@
         });
     </script>
 @endsection
-
-

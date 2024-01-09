@@ -271,17 +271,29 @@ public function filterReservations(Request $request){
     $dateFrom = $request->input('date_from');
     $dateTo = $request->input('date_to');
 
-
-
-    // $filteredReservations = Reservation::all()
-    //                         // ->where('hall_id', $hallId)
-    //                         // ->where('date_from', '>=', $dateFrom)
-    //                         // ->whereDate('date_to', '<=', $dateTo)
-    //                          ;
-
     $filteredReservations = DB::table('reservations')
-                            ->where('id',5)
+                            ->join('reservation__details','reservations.id','reservation_id')
+                            ->join('halls','halls.id','hall_id')
+                            ->join('services','services.id','service_id')
+                            ->where('hall_id', $hallId)
+                            ->where('date_from', '>=', $dateFrom)
+                            ->where('date_to', '<=', $dateTo)
+                            ->select('reservations.*')
+                            ->distinct()
                             ->get();
+
+
+
+    // $filteredReservations = DB::select('
+    //     SELECT * FROM reservations
+    //     inner join reservation__details on reservations.id = reservation_id
+    //     inner join halls on halls.id = hall_id
+    //     inner join services on services.id = service_id
+    //     ;
+    // ');
+
+
+
 
     return response()->json(['filteredReservations'=>$filteredReservations]);
 }

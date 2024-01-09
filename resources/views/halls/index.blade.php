@@ -1,6 +1,3 @@
-{{-- @extends('layouts.main_layout')
-
-@section('content') --}}
 
 @extends('dashboard.dashboard')
 @section('dashboard-content')

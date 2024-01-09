@@ -53,7 +53,7 @@
   }
 
   .sticky-top.navbar-dark .navbar-brand img {
-    max-height: 45px;
+    max-height: 58px;
   }
 
   @media (max-width: 991.98px) {
@@ -84,12 +84,13 @@
       top: 0;
       left: 0;
       z-index: 999;
-      background: transparent !important;
+      background: transparent ;
     }
 
     .sticky-top.navbar-dark {
       position: fixed;
-      background: var(--_primary_grad) !important;
+      background: #1b617d;
+      background-image: var(--_primary_grad) !important;
     }
   }
 
@@ -97,6 +98,7 @@
 
 
   /***  Hero ***/
+
 
 
 .header {
@@ -158,6 +160,21 @@
     }
   }
 
+
+  .header{
+      width: 100% ;
+      height: 97vh;
+      background-image: url('../imgs/hero.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 13%;
+  }
+
+  .header>div{
+    position: relative;
+    top: 85vh;
+  }
+
   /*** End Hero ***/
 
 body{
@@ -166,6 +183,10 @@ body{
 
 .fs_4rem{
     font-size: 4rem;
+}
+
+.h_100vh{
+    height: 100vh;
 }
 
 /* .my-input-text{
@@ -405,9 +426,7 @@ nav{
 
 }
 
-#dashboaed-sidebar{
-    height: calc(100vh - 4rem);
-}
+
 
 .dashboard-cards .card{
     box-shadow: 1px 2px 5px #a1979761;
@@ -435,11 +454,11 @@ nav{
     background-image: linear-gradient(85deg, #4f5657, #313131);
 }
 
-footer{
+/* footer{
     position: fixed;
     bottom: 0;
     width: 100%;
-}
+} */
 
 .form-fram{
     background-color: transparent;
@@ -457,3 +476,94 @@ footer{
     color: var(--_primary);
 }
 
+
+
+#dashboaed-content{
+    position: absolute;
+    left: 0;
+}
+
+#dashboaed-sidebar .my-bg-grad{
+    background: rgb(75,101,108);
+    background: linear-gradient(60deg, rgba(75,101,108,1) 0%, rgba(9,88,121,1) 38%, rgba(126,160,183,1) 100%);
+}
+
+
+/* Dashboard chart js */
+
+.reservation_status,
+.card_shadow{
+    display: flex;
+    flex-flow: row-reverse;
+    align-items: center;
+    gap:24px;
+    margin: 0 auto;
+    width: fit-content;
+    box-shadow: 0 4px 12px -2px rgba(0,0,0,0.3);
+    border-radius: 20px;
+    padding: 8px 32px;
+    transition: all 400ms ease;
+}
+
+.reservation_status:hover,
+.card_shadow:hover{
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px -7px rgba(0,0,0,0.3);
+}
+
+/* End Dashboard chart js */
+
+/* dashboard */
+.card_shadow{
+    width: 100%;
+    justify-content: space-around;
+    align-items: normal;
+    flex-flow: column;
+}
+/*end dashboard*/
+
+/* log in */
+
+input[target="ltr"]{
+    direction: ltr;
+}
+
+.login_form{
+    box-shadow: 0 4px 12px -2px rgba(0,0,0,0.3);
+    border-radius: 15px;
+    padding: 1rem 15px;
+    max-width: 30rem;
+    min-width: 23rem;
+}
+
+.login_form input[target="ltr"]{
+    /* max-width: 100%; */
+    min-width: 10.97rem;
+}
+
+.login_form p a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.7rem;
+    margin-right: 1rem;
+}
+
+.login_form button{
+    font-size: 1rem;
+    padding: 5px 2rem;
+}
+/* end log in */
+
+
+.absolute_left_0{
+    position: absolute;
+    left: 0;
+}
+
+
+footer
+{
+    position: relative;
+    bottom: -40rem;
+
+}

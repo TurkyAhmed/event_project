@@ -87,4 +87,10 @@ class HallController extends Controller
         Hall::withTrashed()->where('id',$id)->forcedelete();
         return redirect()->back();
     }
+
+    public function landingpageHallDetails($id){
+        $hall = Hall::find($id);
+
+        return view('halls.landingpage_hall_details',compact('hall'));
+    }
 }

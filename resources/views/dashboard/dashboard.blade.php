@@ -1,16 +1,16 @@
-@extends('layouts.main_layout')
+@extends('layouts.main_layout_without_nav')
 
 @section('content')
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
-                <div id="dashboaed-sidebar" class=" d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-                    {{-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-                      <span class="fs-4">Sidebar</span>
+            <div id="dashboaed-sidebar" class="col-2 position-fiexd">
+                <div  class=" d-flex flex-column flex-shrink-0 p-3 bg-light h_100vh" style="width: 280px;">
+                    <a href="/" class="my-bg-grad d-flex align-items-center mb-3 mb-md-0  link-dark text-decoration-none">
+                      <img src="{{asset('assets/imgs/event-logo.png')}}" style="width: 90px" alt="">
+                      <span class="fs-4 text-white"> حدث تايم </span>
                     </a>
-                    <hr>--}}
+                    <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                       <li class="nav-item">
                         <a href="{{route('dashboard')}}" class="nav-link active" aria-current="page">
@@ -85,15 +85,15 @@
 
             </div>
 
-            <div class="col-10 ">
-                {{-- @yield('dashboard-content') --}}
+            <div id="dashboaed-content" class="col-10">
+
                 @section('dashboard-content')
                     <div class="row dashboard-cards px-5 mx-3 mt-5">
 
                         <div class="col-10 col-md-6 col-lg-4 mb-3 ">
-                            <div class=" card  width-100 px-4" >
-                                <div class="row d-flex align-items-center">
-                                    <div class="card-body col-8">
+                            <div class=" card card_shadow w-100 px-4" >
+                                <div class="row d-flex align-items-center ">
+                                    <div class="card-body col-8 pe-5">
                                         <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
                                         <h6 class="card-subtitle mb-2 ">  القاعات </h6>
                                     </div>
@@ -105,9 +105,9 @@
                         </div>
 
                         <div class="col-10 col-md-6 col-lg-4 mb-3 ">
-                            <div class=" card  width-100 px-4" >
-                                <div class="row d-flex align-items-center">
-                                    <div class="card-body col-8">
+                            <div class=" card card_shadow w-100 px-4" >
+                                <div class="row d-flex align-items-center ">
+                                    <div class="card-body col-8 pe-5">
                                         <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
                                         <h6 class="card-subtitle mb-2 ">  الخدمات </h6>
                                     </div>
@@ -120,9 +120,9 @@
                         </div>
 
                         <div class="col-10 col-md-6 col-lg-4 mb-3 ">
-                            <div class=" card  width-100 px-4" >
-                                <div class="row d-flex align-items-center">
-                                    <div class="card-body col-8">
+                            <div class=" card card_shadow w-100 px-4" >
+                                <div class="row d-flex align-items-center ">
+                                    <div class="card-body col-8 pe-5 ">
                                         <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
                                         <h6 class="card-subtitle mb-2 "> الحجوزرات المنتظرة </h6>
                                     </div>
@@ -134,7 +134,34 @@
                         </div>
 
                     </div>
+
+                    <div class="container mt-5">
+                        <div class="row chart_js">
+
+                            <div class="col-12 col-md-6">
+                                <div class="container">
+                                    <h3 class="d-block me-5 mb-3"> حالات الحجز </h3>
+                                    <div class="reservation_status me-3">
+                                        <div class="chart_container">
+                                            <canvas class="myChart"></canvas>
+                                        </div>
+
+                                        <div class="details">
+                                            <ul class="list-unstyled">
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
                 @show
+
                 {{-- <div id="dashboard-content">
                     <!-- Content goes here -->
                 </div> --}}
@@ -142,6 +169,51 @@
         </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        const chartDate = {
+            labels : ['تم' , 'في الانتظار', 'تم قبولة'],
+            data : [25,30,45],
+        };
+
+        const myChart = document.querySelector('.myChart');
+        const ul = document.querySelector('.details ul');
+
+        new Chart(myChart, {
+            type: 'doughnut',
+            data: {
+              labels: chartDate.labels,
+              datasets: [{
+                label: '# of Votes',            // title when hover
+                data: chartDate.data,
+              }]
+            },
+            options: {
+                borderWidth: 10,
+                borderRadius: 2,
+                hoverBorderWidth: 0,
+                plugins:{
+                    legend:{
+                        display: false,
+                    }
+                }
+            }
+        });
+
+        const reservation_statusUl = () =>{
+            chartDate.labels.forEach((item,i) => {
+                console.log('print ok');
+                let li = document.createElement('li');
+                li.innerHTML = `${item}: <span class="percentage">${chartDate.data[i]}%</span>`;
+                ul.appendChild(li);
+            });
+        }
+
+        reservation_statusUl();
+
+    </script>
 @endsection
 
 

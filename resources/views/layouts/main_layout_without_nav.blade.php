@@ -13,76 +13,13 @@
 </head>
  <body>
 
-    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white d-flex align-items-center" href="#">
-                <img src="{{asset('assets/imgs/event-logo.png')}}" alt="" width="80" height="80" class="d-inline-block align-text-top">
-                <h1>حدث تايم</h1>
-            </a>
-            <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item ">
-                  <a class="nav-link active me-5" aria-current="page" href="#"> الرئيسية </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">القاعات</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"> الخدمات </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">تواصل معنا</a>
-                </li>
-              </ul>
-            </div>
-            <div class="login-bar d-flex justify-content-between">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">إشتراك</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> تسجيل الدخول </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> --}}
-
-    <nav class="navbar navbar-expand-lg navbar-dark  px-4 px-lg-5 py-3 py-lg-0">
-        <a href="" class="navbar-brand p-0 d-flex">
-            <img src="{{asset('assets/imgs/event-logo.png')}}" alt="" width="80" height="80" class="d-inline-block align-text-top">
-            <h1>حدث تايم</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="fa fa-bars"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0 pe-4">
-                <a href="#" class="nav-item nav-link active">الرئيسية</a>
-                <a href="#" class="nav-item nav-link">القاعات</a>
-                <a href="#" class="nav-item nav-link">الخدمات</a>
-                <a href="#" class="nav-item nav-link">تواصل معنا</a>
-            </div>
-            <div class="login-bar d-flex justify-content-between">
-                {{-- <ul class="navbar-nav">
-                    <li class="nav-item"> --}}
-                        <a class="nav-item nav-link text-white" href="#">إشتراك</a>
-                    {{-- </li>
-                    <li class="nav-item"> --}}
-                        <a class="nav-item nav-link text-white" href="#"> تسجيل الدخول </a>
-                    {{-- </li>
-                </ul> --}}
-            </div>
-        </div>
-    </nav>
-
     <main>
 
         @yield('content')
 
     </main>
 
-    <footer>
+    {{-- <footer>
         <div class="container-fluid bg-liner-black px-5 py-2 mt-3">
             <div class="row  text-white">
 
@@ -115,7 +52,7 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <p>   موقعنا : </p>
                     {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6448.710933152055!2d49.11199782322345!3d14.529847326651062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3de8e69793c145e7%3A0x55d32bd799340eb6!2z2KPYqNix2KfYrCDYqNmGINmF2K3ZgdmI2Lg!5e0!3m2!1sar!2s!4v1704592186565!5m2!1sar!2s"
-                    width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
+                    width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
             </div>
@@ -125,9 +62,10 @@
             </div>
 
         </div>
-    </footer>
+    </footer> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{asset('assets/js/wow.min.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
  </body>

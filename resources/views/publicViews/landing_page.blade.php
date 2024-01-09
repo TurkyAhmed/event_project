@@ -4,6 +4,7 @@
 
     {{-- <section class="hero">
         <div class="p-4 p-md-5  text-white rounded bg-dark hero-background">
+            <img src="{{asset('assets/imgs/hero.png')}}" alt="">
             <div class="col-md-6 px-0">
               <h1 class="display-4 fst-italic"> حدث تايم </h1>
               <p class="lead my-3"> <Span class="display-4"> حيث تبدأ كل الفعاليات </Span> </p>
@@ -13,11 +14,9 @@
     </section> --}}
 
     <section class="hero">
-
-
         <div class="header">
 
-            {{-- <img src="{{asset('assets/imgs/Luxury.jpg')}}" alt=""> --}}
+            {{-- <img src="{{asset('assets/imgs/hero.png')}}" alt=""> --}}
             <!--Waves Container-->
             <div>
                 <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -26,8 +25,8 @@
                     <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
                 </defs>
                 <g class="parallax">
-                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(27,97,125,1)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.3)" />
 
                 <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
                 </g>
@@ -36,7 +35,6 @@
             <!--Waves end-->
 
         </div>
-
     </section>
 
     <!-- <section class="about-us pt-7rem bg-light text-center">
@@ -55,7 +53,7 @@
 
               <div class="col-10 col-md-6 mx-auto">
                   <div class="services-card">
-                      <div class="card border-0" >
+                      <div class="card  border-0" >
                         <div class="row">
                             <div class="col-2 ">
                                 {{-- <img src="./assets/imgs/Luxury.jpg" class="card-img-top" alt="..."> --}}
@@ -63,7 +61,7 @@
                             </div>
                             <div class="col-10 ">
                                  <div class="card-body">
-                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                    <p class="card-text"> توفير خدمة الإنترنت في قاعة الحجز يعزز تجربة العملاء ويسهل التواصل والعمل الاحترافي. كما يدعم التقنية والابتكار ويوفر مصدرًا إضافيًا للإيرادات </p>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +93,7 @@
                             </div>
                             <div class="col-10 ">
                                 <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text"> توفير موقف سيارات بجانب قاعة الحجز يسهل ويحسن تجربة العملاء، ويزيد من الأمان والثقة، مما يساهم في زيادة الرضا والطلب على الحجوزات. </p>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +191,7 @@
             <div class="row halls-card d-flex justify-content-center">
 
                 <div class="col-10 col-md-6 col-lg-3 mb-3">
-                    <div class="card rounded-3" style="width: 19rem;">
+                    <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/slam.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
                           <h5 class="card-title"> قاعة السعادة </h5>
@@ -208,7 +206,7 @@
                 </div>
 
                 <div class="col-10 col-md-6 col-lg-3 mb-3">
-                    <div class="card rounded-3" style="width: 19rem;">
+                    <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/shabam.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
                           <h5 class="card-title"> قاعة السعادة </h5>
@@ -223,7 +221,7 @@
                 </div>
 
                  <div class="col-10 col-md-6 col-lg-3 mb-3">
-                    <div class="card rounded-3" style="width: 19rem;">
+                    <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/istdama.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
                           <h5 class="card-title"> قاعة السعادة </h5>
@@ -238,7 +236,7 @@
                 </div>
 
                  <div class="col-10 col-md-6 col-lg-3 mb-3">
-                    <div class="card rounded-3" style="width: 19rem;">
+                    <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/conv.jpg" style="height:13.5rem" class="card-img-top img-fluid " alt="...">
                         <div class="card-body">
                           <h5 class="card-title"> قاعة السعادة </h5>
@@ -353,8 +351,10 @@
                             </div>
                             <div class="mb-3">
                                 <label for="content" class="form-label"> الرسالة </label>
-                                <textarea class="form-control" name="content" id="content" cols="30" rows="9" placeholder="  الرسالة "></textarea>
-
+                                <textarea class="form-control" name="content" id="content" cols="30" rows="7" placeholder="  الرسالة "></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary w-100"> ارسال </button>
                             </div>
                         </div>
                     </form>

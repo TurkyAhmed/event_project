@@ -30,7 +30,12 @@ Route::get('dashboard',function(){
 
 Route::get('roomdetails/{id}',[PublicViewController::class,'roomdetails'])->name('room.details');
 
+Route::get('login',function(){
+    return view('auth.login');
+})->name('login');
 
+
+Route::get('halls/landingpageHallDetails/{id}',[HallController::class,'landingpageHallDetails'])->name('halls.landingpageHallDetails');
 Route::get('halls/delete/{id}',[HallController::class,'delete'])->name('halls.delete');
 Route::get('halls/softdelete',[HallController::class,'SoftDelete'])->name('halls.softdelete');
 Route::get('halls/restore/{id}',[HallController::class,'restore'])->name('halls.restore');
@@ -45,6 +50,8 @@ Route::get('services/forcedelete/{id}',[ServiceController::class,'forcedelete'])
 Route::resource('services', ServiceController::class);
 
 
+Route::get('users/report',[UserController::class,'report'])->name('users.report');
+Route::get('users/filter',[UserController::class,'filterReservations'])->name('users.filterReservations');
 Route::get('users/delete/{id}',[UserController::class,'delete'])->name('users.delete');
 Route::get('users/softdelete',[UserController::class,'SoftDelete'])->name('users.softdelete');
 Route::get('users/restore/{id}',[UserController::class,'restore'])->name('users.restore');
