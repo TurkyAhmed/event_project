@@ -27,8 +27,8 @@
                                 <label for="interval">الفترة</label>
                                 <select class="form-control" id="interval" name="interval">
                                     <option selected disabled >--اختار الفترة--</option>
-                                    <option value=" morning ">صباح</option>
-                                    <option value="  evenning ">مساء</option>
+                                    <option value="صباح">صباح</option>
+                                    <option value="مساء">مساء</option>
                                 </select>
                             </div>
                             </div>

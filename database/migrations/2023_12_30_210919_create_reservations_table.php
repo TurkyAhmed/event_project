@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('employee_id')->nullable()->constrained('employees')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('title');
-            $table->enum('interval',['morning','evenning']);
+            $table->enum('interval',['صباح','مساء']);
             $table->enum('status', ['في الانتظار', 'تمت الموافقة', 'تم الغاء الحجز', 'تأخير الحجز'])->default('في الانتظار');
             $table->timestamp('date_from');
             $table->timestamp('date_to')->nullable();
