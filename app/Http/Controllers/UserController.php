@@ -12,7 +12,11 @@ class UserController extends Controller
 {
     public function index(){
 
-        $users = User::paginate(2);
+        // $users =User::find(1);
+
+
+
+        $users = User::paginate(3);
         // $users = DB::table('users')
         //         ->join('employees','users.id','!=','employees.user_id')
         //         ->select('users.*')
@@ -100,8 +104,14 @@ class UserController extends Controller
 
 
     public function delete($id){
-        $user =User::findorfail($id);
-        return view('users.delete',compact('user'));
+        if(auth()->user()->role_id !=2){
+            $user =User::findorfail($id);
+            return view('users.delete',compact('user'));
+        }
+        else{
+            return redirect()->back();
+        }
+
     }
 
 

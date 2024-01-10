@@ -1,58 +1,60 @@
-@extends('layouts.main_layout')
-@section('content')
+<x-guest-layout>
+    <x-authentication-card>
+        <x-slot name="logo">
+            <x-authentication-card-logo />
+        </x-slot>
 
-<div class="container pt-5 pe-5">
+        <x-validation-errors class="mb-4" />
 
-    <form action="{{route('users.store')}}" method="post">
-        @csrf
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-        <div class="mb-3">
-            <label for="name" class="form-label"> اسم المستخدم </label>
-            <input type="text" name="name" class="form-control" value="{{old('name')}}" id="name" placeholder="اسم المستخدم">
-            @error('name')
-                <div class="text-danger fs-6">{{ $message }}</div>
-            @enderror
-          </div>
+            <div>
+                <x-label for="name" value="{{ __('Name') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            </div>
 
-          <div class="mb-3">
-            <label for="phone" class="form-label"> رقم جوال المستخدم </label>
-            <input type="text" name="phone" class="form-control" value="{{old('phone')}}" id="phone" placeholder=" رقم جوال المستخدم ">
-            @error('phone')
-                <div class="text-danger fs-6">{{ $message }}</div>
-            @enderror
-        </div>
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('Email') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            </div>
 
-          <div class="mb-3">
-            <label for="email" class="form-label"> البريد الالكتروني </label>
-            <input type="text" name="email" class="form-control" value="{{old('email')}}" id="email" placeholder=" البريد الالكتروني ">
-            @error('email')
-                <div class="text-danger fs-6">{{ $message }}</div>
-            @enderror
-          </div>
+            <div class="mt-4">
+                <x-label for="password" value="{{ __('Password') }}" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            </div>
 
-          <div class="mb-3">
-            <label for="password" class="form-label"> كلمة المرور </label>
-            <input type="password" name="password" class="form-control"  id="password" placeholder="  كلمة المرور ">
-            @error('password')
-                <div class="text-danger fs-6">{{ $message }}</div>
-            @enderror
-          </div>
+            <div class="mt-4">
+                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
 
-          <div class="mb-3">
-            <label for="password_confirmation" class="form-label"> تأكيد كلمة المرور </label>
-            <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder=" تأكيد كلمة المرور ">
-            @error('password_confirmation')
-                <div class="text-danger fs-6">{{ $message }}</div>
-            @enderror
-          </div>
+            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                <div class="mt-4">
+                    <x-label for="terms">
+                        <div class="flex items-center">
+                            <x-checkbox name="terms" id="terms" required />
 
-        <div class="btn-group d-flex gap-4">
-            <button class="btn btn-primary my-bg-grad w-50" type="submit"> إضافة  </button>
-            <a class="btn btn-outline-primary my-bg-transparent bg-tr w-50" href="{{route('users.index')}}">تراجع</a>
-        </div>
+                            <div class="ms-2">
+                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
+                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
+                                ]) !!}
+                            </div>
+                        </div>
+                    </x-label>
+                </div>
+            @endif
 
+            <div class="flex items-center justify-end mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
 
-    </form>
-</div>
-
-@endsection
+                <x-button class="ms-4">
+                    {{ __('Register') }}
+                </x-button>
+            </div>
+        </form>
+    </x-authentication-card>
+</x-guest-layout>

@@ -4,7 +4,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div id="dashboaed-sidebar" class="col-2 position-fiexd">
+            <div id="dashboaed-sidebar" class="col-2 position-fiexd ">
                 <div  class=" d-flex flex-column flex-shrink-0 p-3 bg-light h_100vh" style="width: 280px;">
                     <a href="/" class="my-bg-grad d-flex align-items-center mb-3 mb-md-0  link-dark text-decoration-none">
                       <img src="{{asset('assets/imgs/event-logo.png')}}" style="width: 90px" alt="">
@@ -85,9 +85,15 @@
 
             </div>
 
-            <div id="dashboaed-content" class="col-10">
+            <div id="dashboaed-content " class="col-10 ">
 
                 @section('dashboard-content')
+                    <div class="container pt-3 pe-5">
+                        <div class="dashboard-top">
+                            <h3 class=" pt-5 pe-5 text-white">الاحصائيات</h3>
+                        </div>
+
+                    </div>
                     <div class="row dashboard-cards px-5 mx-3 mt-5">
 
                         <div class="col-10 col-md-6 col-lg-4 mb-3 ">
@@ -135,13 +141,13 @@
 
                     </div>
 
-                    <div class="container mt-5">
+                    <div class="container ">
                         <div class="row chart_js">
-
                             <div class="col-12 col-md-6">
                                 <div class="container">
                                     <h3 class="d-block me-5 mb-3"> حالات الحجز </h3>
                                     <div class="reservation_status me-3">
+
                                         <div class="chart_container">
                                             <canvas class="myChart"></canvas>
                                         </div>
@@ -151,14 +157,9 @@
                                             </ul>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-
-
                         </div>
-
                     </div>
                 @show
 

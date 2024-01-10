@@ -3,7 +3,9 @@
 
     <div class="container pt-5 pe-5">
         <h2 class="pb-4"> قائمة المستخدمين </h2>
-        <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('users.create')}}"> إضافة مستخدم  </a>
+        @if (auth()->user()->role_id !=2)
+            <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('users.create')}}"> إضافة مستخدم  </a>
+        @endif
         <table class="table table-striped">
             <thead>
               <tr>

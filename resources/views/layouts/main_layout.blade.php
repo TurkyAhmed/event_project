@@ -64,14 +64,27 @@
                 <a href="#" class="nav-item nav-link">تواصل معنا</a>
             </div>
             <div class="login-bar d-flex justify-content-between">
-                {{-- <ul class="navbar-nav">
+                @if(Auth::check())
+                    {{-- <ul class="navbar-nav">
+                        <li class="nav-item"> --}}
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="nav-item nav-link btn btn-link text-white">تسجيل الخروج</button>
+
+                            </form>
+                        <a class="btn btn-primary" href="{{route('profile.show')}}"> profile</a>
+                        {{-- </li>
+                    </ul> --}}
+                @else
+                      {{-- <ul class="navbar-nav">
                     <li class="nav-item"> --}}
-                        <a class="nav-item nav-link text-white" href="#">إشتراك</a>
+                        <a class="nav-item nav-link text-white" href="{{route('register')}}">إشتراك</a>
                     {{-- </li>
                     <li class="nav-item"> --}}
-                        <a class="nav-item nav-link text-white" href="#"> تسجيل الدخول </a>
+                        <a class="nav-item nav-link text-white" href="{{route('login')}}"> تسجيل الدخول </a>
                     {{-- </li>
-                </ul> --}}
+                    </ul> --}}
+                @endif
             </div>
         </div>
     </nav>

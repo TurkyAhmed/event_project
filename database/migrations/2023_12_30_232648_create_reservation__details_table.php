@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('hall_id')->constrained('halls');
             $table->foreignId('service_id')->constrained('services');
             $table->unsignedInteger('service_count')->default(1);
+            $table->float('service_price');
             $table->text('note')->nullable();
             $table->softDeletes();
             $table->timestamps();

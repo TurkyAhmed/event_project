@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
     {
         User::create([
             //مؤسسة حضرموت
+            'role_id'=> 2,
             'name'=>' مؤسسة حضرموت ',
             'phone'=>'781015110',
             'email'=>'hadramout@gemail.com',
@@ -23,6 +24,7 @@ class UserSeeder extends Seeder
 
         User::create([
             // منظمة المناخ
+            'role_id'=> 2,
             'name'=>'  منظمة المناخ ',
             'phone'=>'781015110',
             'email'=>'mnakh@gemail.com',
@@ -32,6 +34,7 @@ class UserSeeder extends Seeder
 
         User::create([
             // وزارة التعليم
+            'role_id'=> 2,
             'name'=>'  وزارة التعليم  ',
             'phone'=>'781015110',
             'email'=>'education@gemail.com',

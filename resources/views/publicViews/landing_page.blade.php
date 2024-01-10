@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-10 ">
                                 <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text">هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. </p>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="col-10 ">
                                 <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text">هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. </p>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                             </div>
                             <div class="col-10 ">
                                 <div class="card-body">
-                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                    <p class="card-text"> هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.  </p>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                             </div>
                             <div class="col-10 ">
                                 <div class="card-body">
-                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                    <p class="card-text"> هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.  </p>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                             </div>
                             <div class="col-10 ">
                                 <div class="card-body">
-                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                    <p class="card-text"> هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.  </p>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                             </div>
                             <div class="col-10 ">
                                 <div class="card-body">
-                                    <p class="card-text">نوفر خدمة انترنت </p>
+                                    <p class="card-text"> هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.  </p>
                                   </div>
                             </div>
                         </div>
@@ -185,6 +185,9 @@
   </section>
 
   {{-- halls --}}
+  {{-- @if (auth()->user()->role_id != 2) --}}
+
+
     <section class="halls pt-7rem   ">
         <h1 class=" pb-5 text-center">القاعات</h1>
         <div class="container">
@@ -209,7 +212,7 @@
                     <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/shabam.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
-                          <h5 class="card-title"> قاعة السعادة </h5>
+                          <h5 class="card-title"> قاعة الهجرين </h5>
                           <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
                         </div>
                         <div class="">
@@ -224,7 +227,7 @@
                     <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/istdama.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
-                          <h5 class="card-title"> قاعة السعادة </h5>
+                          <h5 class="card-title"> قاعة الاستدامة  </h5>
                           <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
                         </div>
                         <div class="">
@@ -239,7 +242,7 @@
                     <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/conv.jpg" style="height:13.5rem" class="card-img-top img-fluid " alt="...">
                         <div class="card-body">
-                          <h5 class="card-title"> قاعة السعادة </h5>
+                          <h5 class="card-title"> قاعة الاجتماعات </h5>
                           <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
                         </div>
                         <div class="">
@@ -251,9 +254,13 @@
                 </div>
 
             </div>
+            <div class="col-4 w-100 text-center mt-3 btn_more_halls">
+                <p><a class="btn btn-primary bg-grad" href="#"> المزيد </a></p>
+            </div>
         </div>
     </section>
 
+    {{-- @endif --}}
     <section class="question pt-7rem text-center  pb-5" >
         <h1 class="pb-5"> الاسئلة الشائعة </h1>
         <div class="container">

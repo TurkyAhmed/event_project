@@ -8,6 +8,9 @@ use App\Http\Controllers\employeeController;
 use App\Http\Controllers\PublicViewController;
 use App\Http\Controllers\ReservationController;
 
+// use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController ;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,12 +22,40 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
+Route::group(['middleware' => ['auth']], function () {
+    //==Admin====================================================================================
+    // Routes accessible to the admin role
+    Route::group(['middleware' => ['role:admin']], function () {
+
+        Route::resource('halls', HallController::class);
+    });
+
+    //==Organizer====================================================================================
+    // Routes accessible to the organizer role
+    Route::group(['middleware' => ['role:organizer']], function () {
+
+        Route::get('landingpage',function(){
+            return view('publicViews.landing_page');
+        });
+    });
+
+    // Routes accessible to all authenticated users
+    // Add your common routes here
+});
+
 Route::get('/', function () {
     return view('publicViews.landing_page');
 });
 
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-Route::get('dashboard',function(){
+
+// Route::get('landingpage',function(){
+//     return view('publicViews.landing_page');
+// });
+
+
+Route::get('admin/dashboard',function(){
     return view('dashboard.dashboard');
 })->name('dashboard');
 
@@ -35,12 +66,13 @@ Route::get('login',function(){
 })->name('login');
 
 
+Route::get('halls/landingpageHalls',[HallController::class,'landingpageHalls'])->name('halls.landingpageHalls');
 Route::get('halls/landingpageHallDetails/{id}',[HallController::class,'landingpageHallDetails'])->name('halls.landingpageHallDetails');
 Route::get('halls/delete/{id}',[HallController::class,'delete'])->name('halls.delete');
 Route::get('halls/softdelete',[HallController::class,'SoftDelete'])->name('halls.softdelete');
 Route::get('halls/restore/{id}',[HallController::class,'restore'])->name('halls.restore');
 Route::get('halls/forcedelete/{id}',[HallController::class,'forcedelete'])->name('halls.forcedelete');
-Route::resource('halls', HallController::class);
+// Route::resource('halls', HallController::class);
 
 
 Route::get('services/delete/{id}',[ServiceController::class,'delete'])->name('services.delete');
@@ -79,3 +111,13 @@ Route::resource('reservations', ReservationController::class);
 
 
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

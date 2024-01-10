@@ -88,6 +88,13 @@ class HallController extends Controller
         return redirect()->back();
     }
 
+
+    public function landingpageHalls(){
+        $halls = Hall::all();
+        return view('halls.landingpage_halls',compact('halls'));
+    }
+
+
     public function landingpageHallDetails($id){
         $hall = Hall::find($id);
 

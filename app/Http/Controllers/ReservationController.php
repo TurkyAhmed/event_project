@@ -49,6 +49,7 @@ class ReservationController extends Controller
             'flag'=>'aprroved',
         ];
 
+        // Mail::to($user->email)->send(new sendMail($mailData));
         Mail::to('tasg1818@gmail.com')->send(new sendMail($mailData));
         ///////////////////////////////////////////////
         $reservation->update([
@@ -93,7 +94,8 @@ class ReservationController extends Controller
         // return $status;
 
         $newReservation = Reservation::create([
-            'user_id'=> 5,
+            'user_id'=> auth()->user()->id,
+            'employee_id'=>null,
             'title'=>$request->title,
             'interval'=> '  evenning ',
             'status'=> ReservationStatus::Wait->value,

@@ -16,6 +16,7 @@ class EmployeesSeeder extends Seeder
     {
         // علي محمد حبيشان
         $user = User::create([
+            'role_id'=> 1,
             'name'=>' علي محمد حبيشان ',
             'phone'=>'781015110',
             'email'=>'halls@bnmahfouz.com',
@@ -30,6 +31,7 @@ class EmployeesSeeder extends Seeder
 
         // سعيد محمد الحبشي
         $user1 = User::create([
+            'role_id'=> 1,
             'name'=>' سعيد محمد الحبشي',
             'phone'=>'781015110',
             'email'=>'saeed@gemail.com',
@@ -44,6 +46,7 @@ class EmployeesSeeder extends Seeder
 
         // حمود عبدالرقيب العطاس
         $user2 = User::create([
+            'role_id'=> 1,
             'name'=>' حمود عبدالرقيب العطاس ',
             'phone'=>'781015110',
             'email'=>'hamood@bnmahfouz.com',
