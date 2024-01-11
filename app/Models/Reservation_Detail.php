@@ -17,7 +17,7 @@ class Reservation_Detail extends Model
         'hall_id',
         'service_id',
         'service_count',
-        'price',
+        'service_price',
         'note',
     ];
 

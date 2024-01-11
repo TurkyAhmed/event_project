@@ -26,11 +26,12 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
+            </div>
         </section>
 
         <section class="halls_deatails">
             <div class="container">
-                @for ( $i=0 ; $i < count($halls) ; $i+=2)
+                @for ( $i=0 ; $i <2 ; $i+=2)
                     <div class="row px-3 pt-5">
                         <div class="col-12 col-md-6 px-3 position-relative">
                                 <img class="img-fluid" src="{{asset('assets/imgs/istdama.jpg')}}" targer="r_hall1" alt="">
@@ -74,7 +75,9 @@
                             <h5 class="mt-3">سعر القاعة :</h5>
                             <p class="pe-4"> سعر القاعة للحجز الواحد <strong class="fs-5">{{$halls[$i]->price}}<span target="dolar">$</span> </strong> </p>
                         </div>
-
+                    </div>
+                        @if(isset($halls[$i+1]))
+                    <div class="row px-3 pt-5">
                         <div class="col-12 col-md-6 px-3 order-2 position-relative">
                                 <img class="img-fluid" src="{{asset('assets/imgs/istdama.jpg')}}" targer="l_hall1" alt="">
                                 <img class="img-fluid" src="{{asset('assets/imgs/slam.jpg')}}" targer="l_hall2" alt="">
@@ -112,13 +115,12 @@
 
                         <h5 class="mt-3">سعر القاعة :</h5>
                         <p class="pe-4"> سعر القاعة للحجز الواحد <strong class="fs-5">{{$halls[$i]->price}}<span target="dolar">$</span> </strong> </p>
-
+                        @endif
                     </div>
                 @endfor
             </div>
 
         </section>
-    </div>
 
 
 

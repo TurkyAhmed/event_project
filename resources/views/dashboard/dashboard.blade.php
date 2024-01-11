@@ -175,8 +175,8 @@
     <script>
 
         const chartDate = {
-            labels : ['تم' , 'في الانتظار', 'تم قبولة'],
-            data : [25,30,45],
+            labels : @json($labels),
+            data :@json($data),
         };
 
         const myChart = document.querySelector('.myChart');
@@ -207,7 +207,7 @@
             chartDate.labels.forEach((item,i) => {
                 console.log('print ok');
                 let li = document.createElement('li');
-                li.innerHTML = `${item}: <span class="percentage">${chartDate.data[i]}%</span>`;
+                li.innerHTML = `${item}: <span class="percentage">${chartDate.data[i]}</span>`;
                 ul.appendChild(li);
             });
         }

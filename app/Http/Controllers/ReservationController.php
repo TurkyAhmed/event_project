@@ -93,11 +93,14 @@ class ReservationController extends Controller
         // $status = ReservationStatus::Approved->value;
         // return $status;
 
+        // return auth()->user();
+
         $newReservation = Reservation::create([
-            'user_id'=> auth()->user()->id,
+            // 'user_id'=> auth()->user()->id,
+            'user_id'=> 5,
             'employee_id'=>null,
             'title'=>$request->title,
-            'interval'=> '  evenning ',
+            'interval'=>$request->interval,
             'status'=> ReservationStatus::Wait->value,
             'date_from'=>$request->date_from,
             'date_to'=>$request->date_to,
@@ -117,6 +120,8 @@ class ReservationController extends Controller
                     'reservation_id' => $newReservation->id,
                     'hall_id'=>$request->hall_id[$i],
                     'service_id'=> $request->$services[$j],
+                    'service_count'=> 1, //TODO edit
+                    'service_price'=> 10, //TODO edit
                 ]);
 
                 $newReservation->reservation_detail()->save($reservation_datails);

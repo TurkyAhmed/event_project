@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class UserSeeder extends Seeder
             'name'=>' مؤسسة حضرموت ',
             'phone'=>'781015110',
             'email'=>'hadramout@gemail.com',
-            'password'=>'123456',
+            'password'=>Hash::make('123456'),
         ]);
 
         User::create([
@@ -28,7 +29,7 @@ class UserSeeder extends Seeder
             'name'=>'  منظمة المناخ ',
             'phone'=>'781015110',
             'email'=>'mnakh@gemail.com',
-            'password'=>'123456',
+            'password'=>Hash::make('123456'),
         ]);
 
 
@@ -38,7 +39,7 @@ class UserSeeder extends Seeder
             'name'=>'  وزارة التعليم  ',
             'phone'=>'781015110',
             'email'=>'education@gemail.com',
-            'password'=>'123456',
+            'password'=>Hash::make('123456'),
         ]);
     }
 }

@@ -72,7 +72,7 @@
                                 <button type="submit" class="nav-item nav-link btn btn-link text-white">تسجيل الخروج</button>
 
                             </form>
-                        <a class="btn btn-primary" href="{{route('profile.show')}}"> profile</a>
+                        {{-- <a class="btn btn-primary" href="{{route('profile.show')}}"> profile</a> --}}
                         {{-- </li>
                     </ul> --}}
                 @else
