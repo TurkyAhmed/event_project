@@ -15,6 +15,11 @@
                 </div>
             @endforeach
         </div>
+        <div class="h_100vh mt-5 pt-5 d-flex align-items-start gap-3">
+            <p class="btn btn-primary "><a class="text-decoration-none text-white" href="{{route('reservations.store_reservation')}}">تأكيد الحجز</a></p>
+            <p class="btn btn-secondary"><a class="text-decoration-none text-white" href="{{route('cart.cancelAllReservation')}}">الغاء الحجز</a></p>
+        </div>
+
     </div>
 
 @endsection

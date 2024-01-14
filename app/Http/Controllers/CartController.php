@@ -13,6 +13,7 @@ class CartController extends Controller
 
     public function addToCart(Request $request){
         $hall_id = $request->hall_id;
+        // return $request;
 
         $hall = Hall::find($hall_id);
 
@@ -26,6 +27,8 @@ class CartController extends Controller
         } else {
             // Add the service to the cart with the specified quantity
             $cart[$hall_id] = [
+                'date_from'=>$request->date_from,
+                'date_to'=>$request->date_to,
                 'services_ids' => $request->service_id,
                 'price' => $request->price,
                 'quantity'=>$request->quantity
@@ -34,9 +37,8 @@ class CartController extends Controller
 
         session()->put('cart',$cart);
 
-
-        // $_cart = session()->get('cart', []);
-
+        $_cart= session()->get('cart', []);
+        // return $_cart;
 
         return redirect()->route('cart.index');
     }
@@ -102,6 +104,8 @@ class CartController extends Controller
 
         if (isset($cart[$hallId])) {
             // Update the relevant values in the cart item
+            $cart[$hallId]['date_from'] = $request->date_from;
+            $cart[$hallId]['date_to'] = $request->date_to;
             $cart[$hallId]['price'] = $request->price;
             $cart[$hallId]['quantity'] = $request->quantity;
             $cart[$hallId]['totalOfService'] = $request->totalOfService;
@@ -113,15 +117,12 @@ class CartController extends Controller
 
         $_cart = session()->get('cart', []);
 
-
         return redirect()->route('cart.index') ;
     }
 
 
     public function cancelSpecificreservation($id){
         $cart = session()->get('cart', []);
-
-
 
         if (isset($cart[$id])) {
             unset($cart[$id]);
@@ -134,6 +135,10 @@ class CartController extends Controller
     }
 
 
+    public function cancelAllReservation(){
+        session()->flush();
+        return redirect()->route('cart.index');
+    }
 
     public function destroy($id){
         session()->flush();

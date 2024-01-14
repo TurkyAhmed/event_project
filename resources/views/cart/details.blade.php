@@ -4,6 +4,8 @@
         <div class="row mt-5">
             <h4>{{$hall->name}}</h4>
 
+            <p> من تاريخ  : {{$cartItem['date_from']}}</p>
+            <p> الى تاريخ : {{$cartItem['date_to']}}</p>
             @foreach ($cartItem['services_ids'] as $index => $serviceId)
                 <p>الخدمة {{ $services[$index]->name }}</p>
                 <p>السعر {{ $cartItem['price'][$index] }}</p>

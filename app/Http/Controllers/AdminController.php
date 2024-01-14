@@ -23,8 +23,6 @@ class AdminController extends Controller
         //     select status ,count(*) as count from reservations group by status;
         // ');
 
-
-
         // Prepare the chart data
         $labels = ['في الانتظار','تمت الموافقة','تم الغاء الحجز','تأخير الحجز'];
         $data = [
@@ -33,6 +31,8 @@ class AdminController extends Controller
             $reservationStatusCounts['تم الغاء الحجز'] ?? 0,
             $reservationStatusCounts[ 'تأخير الحجز'] ?? 0,
         ];
+
+
 
         // return $data;
         return view('dashboard.dashboard',compact('labels','data'));

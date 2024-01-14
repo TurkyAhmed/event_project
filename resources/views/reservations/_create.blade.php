@@ -58,7 +58,7 @@
 
                             <div class="col-10 col-md-6 col-lg-4">
                             <div class="mb-3">
-                                <label for="date_to" class="form-label">  من تاريخ </label>
+                                <label for="date_to" class="form-label">  الى تاريخ </label>
                                 <input type="date" name="date_to" class="form-control" value="{{ old('date_to', date('Y-m-d'))}}" id="date_to" >
                                 @error('date_to')
                                     <div class="text-danger fs-6">{{ $message }}</div>

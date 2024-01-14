@@ -101,6 +101,7 @@ Route::resource('employees', employeeController::class);
 
 
 
+Route::get('reservations/store', [ReservationController::class,'store'])->name('reservations.store_reservation');
 Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details');
 Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
 Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
@@ -126,6 +127,7 @@ Route::middleware([
 
 //==Cart================================================================
 Route::get('cart/cancelSpecificreservation/{id}', [CartController::class,'cancelSpecificreservation'])->name('cart.cancelSpecificreservation');
+Route::get('cart/cancelAllReservation', [CartController::class,'cancelAllReservation'])->name('cart.cancelAllReservation');
 Route::POST('cart/add', [CartController::class,'addToCart'])->name('cart.addToCart');
 Route::resource('cart', CartController::class);
 

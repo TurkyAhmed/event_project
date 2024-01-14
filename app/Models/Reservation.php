@@ -32,4 +32,9 @@ class Reservation extends Model
     public function reservation_detail(){
         return $this->hasMany(Reservation_Detail::class);
     }
+
+    // public function reservationDetails()
+    // {
+    //     return $this->hasMany(Reservation_Detail::class);
+    // }
 }

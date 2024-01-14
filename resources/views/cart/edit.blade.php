@@ -63,10 +63,34 @@
                     </div>
 
                     <div class="col-12 col-lg-7 mt-3">
-                        <h4 class="text-center mt-5"> الخدمات المضافة للقاعة </h4>
                         <form action="{{route('cart.update',$hall->id)}}" method="Post">
                             @csrf
                             @method('PUT')
+
+                            <h4>فترة الحجز</h4>
+                            <div class="row">
+                                <div class="col-10 col-md-6 col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="date_from" class="form-label">  من تاريخ </label>
+                                        <input type="date" name="date_from" class="form-control" value="{{ old('date_from', $cartItem['date_from'])}}" id="date_from" >
+                                        @error('date_from')
+                                            <div class="text-danger fs-6">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    </div>
+
+                                    <div class="col-10 col-md-6 col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="date_to" class="form-label">  الى تاريخ </label>
+                                        <input type="date" name="date_to" class="form-control" value="{{ old('date_to', $cartItem['date_to'])}}"  id="date_to" >
+                                        @error('date_to')
+                                            <div class="text-danger fs-6">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    </div>
+                            </div>
+                            <h4 class="text-center mt-5"> الخدمات المضافة للقاعة </h4>
+
                             <table class="table" id="table_pill">
                                 <thead>
                                   <tr>

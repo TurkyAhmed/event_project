@@ -42,21 +42,18 @@
                                     <th scope="col">اسم الخدمة</th>
                                     <th scope="col">الكمية</th>
                                     <th scope="col">سعر الواحد</th>
-                                    {{-- <th scope="col"> الاجمالي </th> --}}
                                     <th scope="col"> الاجراءات </th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($services as $service)
+                                    @foreach ($allServices as $service)
                                     <tr >
                                         <th  scope="row">1</th>
                                         <td >{{$service->name}}<input type="hidden" name="service_id[]" value="{{$service->id}}"></td>
                                         <td >1 </td>
                                         <td > {{$service->price}}</td>
-                                        {{-- <td class="text-center total_service_price"></td> --}}
                                         <td >
                                             <button class="btn btn-primary btn_add"> اضافة </button>
-                                            {{-- <button class="btn btn-secondary btn_cancel"> الغاء </button> --}}
                                         </td>
                                     </tr>
                                     @endforeach
@@ -66,15 +63,16 @@
                     </div>
 
                     <div class="col-12 col-lg-7 mt-3">
-                        <form action="{{route('cart.addToCart')}}" method="Post">
+                        <form action="{{route('reservations.update',$reservationDetails[0]->reservation_id)}}" method="Post">
                             @csrf
+                            @method('PUT')
 
                             <h4>فترة الحجز</h4>
                             <div class="row">
                                 <div class="col-10 col-md-6 col-lg-4">
                                     <div class="mb-3">
                                         <label for="date_from" class="form-label">  من تاريخ </label>
-                                        <input type="date" name="date_from" class="form-control" value="{{ old('date_from', date('Y-m-d'))}}" id="date_from" >
+                                        <input type="date" name="date_from" class="form-control" value="{{date('Y-m-d'), $reservationDetails[0]->date_from}}" id="date_from" >
                                         @error('date_from')
                                             <div class="text-danger fs-6">{{ $message }}</div>
                                         @enderror
@@ -84,15 +82,15 @@
                                     <div class="col-10 col-md-6 col-lg-4">
                                     <div class="mb-3">
                                         <label for="date_to" class="form-label">  الى تاريخ </label>
-                                        <input type="date" name="date_to" class="form-control" value="{{ old('date_to', date('Y-m-d'))}}"  id="date_to" >
+                                        <input type="date" name="date_to" class="form-control" value="{{ date('Y-m-d'), $reservationDetails[0]->date_to}}"  id="date_to" >
                                         @error('date_to')
                                             <div class="text-danger fs-6">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     </div>
                             </div>
-
                             <h4 class="text-center mt-5"> الخدمات المضافة للقاعة </h4>
+
                             <table class="table" id="table_pill">
                                 <thead>
                                   <tr>
@@ -108,24 +106,43 @@
                                     <tr>
                                         <td scope="col">1</td>
                                         <td >
-                                            {{$hall->name}}
-                                            <input type="hidden" name="hall_id" value="{{$hall->id}}">
+                                            {{$reservationDetails[0]->hall_name}}
+                                            <input type="hidden" name="hall_id" value="{{$reservationDetails[0]->hall_id}}">
                                         </td>
-                                        <td >{{$hall->price}}</td>
+                                        <td >{{$reservationDetails[0]->hall_price}}</td>
                                         <td >1</td>
-                                        <td >{{$hall->price}}</td>
+                                        <td >{{$reservationDetails[0]->hall_price}}</td>
                                         <td ></td>
                                     </tr>
+                                    @php
+                                        $total = $reservationDetails[0]->hall_price;
+                                    @endphp
+                                    @foreach ($reservationDetails as $index => $value)
+                                    <tr>
+                                        <td scope="col">1</td>
+                                        <td >
+                                            {{$value->service_name}}
+                                            <input type="hidden" name="services_ids[]" value="{{$value->service_id}}">
+                                        </td>
+                                        <td ><input type="text" class="border-0 w_6rem" name="price[]" value="{{$value->service_price}}" /></td>
+                                        <td ><input type="number" class="w_6rem" name="quantity[]" value="{{$value->service_count}}" min="1" /></td>
+                                        <td ><input type="text" class="border-0 w_6rem" name="totalOfService[]" value="{{$value->service_price * $value->service_count}}" /></td>
+                                        <td> <p class=" btn_cancel" style="cursor: pointer;"> الغاء </p> </td>
+                                    </tr>
+                                    @php
+                                        $total += $value->service_price * $value->service_count;
+                                    @endphp
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">الاجمالي</td>
-                                        <td colspan="3" id="total_of_services" class="text-center">{{$hall->price}}</td>
+                                        <td colspan="3" id="total_of_services" class="text-center">{{$total}} </td>
                                     </tr>
                                 </tfoot>
                             </table>
                             <div>
-                                <button type="submit" class="btn btn-success">إضافة إلى العربة</button>
+                                <button type="submit" class="btn btn-success"> حفظ التغيير </button>
                             </div>
                         </form>
                     </div>
@@ -138,8 +155,7 @@
 @push('scripts')
     <script>
         $( document ).ready(function() {
-
-
+            console.log( "document loaded" );
 
             let btn_add = $('.btn_add');
             let btn_cancel = $('.btn_cancel');
@@ -162,55 +178,19 @@
                 // Create a new row in the #hall_with_services table
                 let newRow = $('<tr></tr>');
                 newRow.append('<th scope="row">'+ i +'</th>');
-                newRow.append(`<td >${serviceName}<input type="hidden" name="service_id[]" value="${serviceId}"></td>`);
+                newRow.append(`<td >${serviceName}<input type="hidden" name="services_ids[]" value="${serviceId}"></td>`);
                 newRow.append(`<td > <input type="text" class="border-0 w_6rem" name="price[]" value="${price}" /> </td>`);
-
-
-                let td =document.createElement('td');
-
-
-                let _input =document.createElement('input');
-                _input.name="quantity[]";
-                _input.classList ="w_6rem";
-                _input.type='number';
-                _input.value='1';
-
-                _input.addEventListener('input',()=>{
-                    totalOfService.value=_input.value * price ;
-
-                    total.text(parseInt(total.text()) + parseInt(totalOfService.value) -price);
-                });
-
-
-
-                let totalOfService =document.createElement('input');
-                totalOfService.name="totalOfService[]";
-                totalOfService.classList ="w_6rem border-0";
-                totalOfService.type='number';
-                totalOfService.value=_total;
-
-
-
-                td.appendChild(_input);
-                newRow.append(td);
-
-
-                td =document.createElement('td');
-                td.appendChild(totalOfService);
-                newRow.append(td);
-
-                console.log(typeof(parseInt(total.text())));
-                console.log(typeof(+totalOfService.value));
-
+                newRow.append(`<td > <input type="number" class="w_6rem" name="quantity[]" value="1" min="1" /> </td>`);
+                newRow.append(`<td> <input type="text" class="border-0 w_6rem" name="totalOfService[]" value="${_total}" /> </td>`);
                 newRow.append('<td> <p class=" btn_cancel" style="cursor: pointer;"> الغاء </p> </td>');
 
-                // Append the new row to the #hall_with_services table
+                // Appand the new row to the #hall_with_services table
                 $('#hall_with_services').append(newRow);
 
                 i++;
 
                 total.text(parseInt(total.text())+_total);
-                // console.log(+total.text());
+                console.log(+total.text());
 
                 btn_cancel = $('.btn_cancel');
 
@@ -224,24 +204,12 @@
               console.log('in cancel function');
               let row = $(this).closest('tr');
 
-              let serviceName = row.find('input[name="service_name[]"]').val();
+              let serviceName = row.find('input[name="services_ids[]"]').val();
               let quantity = parseInt(row.find('input[name="quantity[]"]').val());
-            //   let quantity = parseInt(row.find('td:nth-child(3)').text());
               let price = parseFloat(row.find('input[name="price[]"]').val());
               let _total = price * quantity;
 
-              console.log('==========');
-              console.log(quantity);
-              console.log(price);
-              console.log(_total);
-              console.log('==========');
-
-            //   let pillTable = $('#hall_with_services');
-            //   console.log(pillTable);
-            //   let pillTableRow = pillTable.find('td:contains("' + serviceName + '")').closest('tr');
-            //   pillTableRow.remove();
-
-            row.remove();
+              row.remove();
 
               i--;
 
@@ -252,11 +220,6 @@
 
         });
 
-
-
-        $( window ).on( "load", function() {
-            console.log( "window loaded" );
-        });
     </script>
 @endpush
 @endsection

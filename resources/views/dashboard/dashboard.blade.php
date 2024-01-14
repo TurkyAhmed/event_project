@@ -78,7 +78,7 @@
                     <div class="dropdown">
                       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle mx-2">
-                        {{-- <strong class="ms-4">{{auth()->user()->name}}</strong> --}}
+                        <strong class="ms-4">{{auth()->user()->name}}</strong>
                       </a>
                       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                         <li><a class="dropdown-item" href="#">New project...</a></li>

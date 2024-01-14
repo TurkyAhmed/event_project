@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
-class ReservationController extends Controller
+class _ReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -99,54 +99,6 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
-        $cart = session()->get('cart', []);
-
-
-
-        // Iterate over the cart items
-        foreach ($cart as $hall_id => $item) {
-            // $date_from = $item['date_from'];
-            // $date_to = $item['date_to'];
-
-            $reservation = Reservation::create([
-                // 'employee_id' => $employee_id,
-                'user_id' => auth()->user()->id,
-                'title' => "تجريبي",
-                'interval' => "صباح",
-                'status' => 'في الانتظار',
-                'date_from' =>  $item['date_from'],
-                'date_to' =>  $item['date_to'],
-                'type_of_event' => 'مؤتمر',
-                'note' => "",
-            ]);
-
-            $service_ids = $item['services_ids'];
-            $prices = $item['price'];
-            $quantities = $item['quantity'];
-            // $totalOfServices = $item['totalOfService'];
-
-            // Create the reservation details record for each item
-            for ($i = 0; $i < count($service_ids); $i++) {
-                $service_id = $service_ids[$i];
-                $price = $prices[$i];
-                $quantity = $quantities[$i];
-                // $totalOfService = $totalOfServices[$i];
-
-                $reservation->reservation_detail()->create([
-                    'hall_id' => $hall_id,
-                    'service_id' => $service_id,
-                    'service_count' => $quantity,
-                    'service_price' => $price,
-                    'note' => null, // Replace with the actual note value if needed
-                ]);
-            }
-        }
-
-        // Clear the cart after storing the data
-        session()->forget('cart');
-
-        return 'تمت الاضافة بنجاح';
-        return redirect()->route('cart.index');
 
     }
 
@@ -154,45 +106,17 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show(string $id)
     {
-        $reservationDetails = DB::select("
-        select reservations.*, reservation__details.*,halls.name as hall_name, halls.price as hall_price , services.name as service_name, users.name
-        from reservations inner join reservation__details
-        on reservations.id = reservation__details.reservation_id
-        inner join services on services.id = reservation__details.service_id
-        inner join halls on halls.id = reservation__details.hall_id
-        inner join users on users.id = reservations.user_id
-        where reservations.id = $id && reservation__details.deleted_at is null;
-        ");
-
-        return $reservationDetails;
-
-        return view('reservations.details',compact('reservationDetails')) ;
-        // return $reservation_details ;
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit(string $id)
     {
-        $reservationDetails = DB::select("
-        select reservations.*, reservation__details.*,halls.name as hall_name,  halls.price as hall_price , services.name as service_name
-        from reservations inner join reservation__details
-        on reservations.id = reservation__details.reservation_id
-        inner join services on services.id = reservation__details.service_id
-        inner join halls on halls.id = reservation__details.hall_id
-        where reservations.id = $id && reservation__details.deleted_at is null;
-        ");
-
-        $allServices = Service::all()
-                        ->where('is_avaliable',true)
-                        ->where('is_main_service',false);
-
-        // return $reservationDetails;
-
-        return view('reservations.edit', compact('reservationDetails','allServices'));
+        //
     }
 
     /**
@@ -200,64 +124,18 @@ class ReservationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $reservation = Reservation::findorfail($id);
-        $reservation_details = $reservation->reservation_detail;
-
-        // return $reservation_datails;
-        // return $reservation_datails[0]->hall_id;
-
-        $reservation->title = "عنوان بعد التعديل";
-        // $reservation->interval = $request->input('interval');
-        // $reservation->status = $request->input('status');
-        $reservation->date_from = $request->input('date_from');
-        $reservation->date_to = $request->input('date_to');
-        // $reservation->type_of_event = $request->input('type_of_event');
-        $reservation->note = $request->input('note');
-        $reservation->save();
-
-        $services_ids = $request->input('services_ids');
-        $services_prices = $request->input('price');
-        $quantities = $request->input('quantity');
-
-        // to solve diffiernt records between database and request or you can delete past record for this reservation and create new to
-        // store in database
-        $reservation->reservation_detail()->delete();
-
-        // Create the reservation details record for each item
-        for ($i = 0; $i < count($services_ids); $i++) {
-            $service_id = $services_ids[$i];
-            $price = $services_prices[$i];
-            $quantity = $quantities[$i];
-
-            $reservation->reservation_detail()->create([
-                'hall_id' => $request->input('hall_id'),
-                'service_id' => $service_id,
-                'service_count' => $quantity,
-                'service_price' => $price,
-                'note' => null, // change with the actual note value
-            ]);
-        }
-
-
-        return 'done' ;
+        //
     }
-
 
     public function delete(string $id)
     {
-        $reservation = Reservation::findOrFail($id);
-        $reservation->delete();
-
-        return redirect()->route('reservations.index');
+        //
     }
 
 
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $reservation = Reservation::findOrFail($id);
-        $reservation->delete();
-
-        return redirect()->route('reservations.index');
+        //
     }
 
 
