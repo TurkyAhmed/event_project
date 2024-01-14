@@ -1,48 +1,55 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+@extends('layouts.main_layout_without_nav')
+@section('content')
 
-        <x-validation-errors class="mb-4" />
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        align-items: center;
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
+    }
+</style>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+    {{-- <x-guest-layout> --}}
+        <x-authentication-card>
 
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
+            <x-validation-errors class="mb-4" />
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
+            @if (session('status'))
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    {{ session('status') }}
+                </div>
+            @endif
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+            <form method="POST" action="{{ route('login') }}" class="auth_form">
+                @csrf
+                <h4 class="text-center pt-3 mb-5"> تسجيل الخول </h4>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+                <label for="email" class="form-label pe-3">البريد الالكتروني</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text rounded-0 rounded-end text_primary" id="basic-addon1">@</span>
+                    <input type="text" id="email" name="email" class="form-control rounded-0 rounded-start my-input-text" target="ltr" placeholder="Email ">
+                </div>
 
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+                <label for="password" class="form-label pe-3"> كلمة المرور</label>
+                <div class="input-group mb-2">
+                    <span class="input-group-text rounded-0 rounded-end text_primary" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" id="password" name="password" class="form-control rounded-0 rounded-start my-input-text" target="ltr" placeholder="password ">
+                </div>
+                <p><a href="#" class="decoration-none" > نسيت كلمة المرور </a></p>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary mx-auto mb-5"> تسجيل الدخول </button>
+                </div>
+
+                <p class="text-center mb-0"><a href="{{route('register')}}" class="decoration-none " >  ليس لي حساب؟ اشتراك </a></p>
+
+            </form>
+
+
+        </x-authentication-card>
+    {{-- </x-guest-layout> --}}
+
+@endsection
+

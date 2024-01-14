@@ -32,11 +32,11 @@
           <div class="mb-3 d-flex">
             <p class="ms-3"> نوع الخدمة : </p>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="is_main_service" value="1" id="status_on" {{ $service->status ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="is_main_service" value="1" id="status_on" {{ $service->is_main_service ? 'checked' : '' }}>
                 <label class="form-check-label" for="status_on">خدمة اساسية</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="is_main_service" value="0" id="status_off" {{ !$service->status ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="is_main_service" value="0" id="status_off" {{ !$service->is_main_service ? 'checked' : '' }}>
                 <label class="form-check-label" for="status_off"> خدمة ثانوية</label>
             </div>
         </div>
@@ -44,11 +44,11 @@
           <div class="mb-3 d-flex">
             <p class="ms-3"> حالة الخدمة : </p>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="is_avaliable" value="1" id="status_on" {{ $service->status ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="is_avaliable" value="1" id="status_on" {{ $service->is_avaliable ? 'checked' : '' }}>
                 <label class="form-check-label" for="status_on">نشط</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="is_avaliable" value="0" id="status_off" {{ !$service->status ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="is_avaliable" value="0" id="status_off" {{ !$service->is_avaliable ? 'checked' : '' }}>
                 <label class="form-check-label" for="status_off">غير نشط</label>
             </div>
         </div>

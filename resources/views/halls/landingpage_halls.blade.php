@@ -31,7 +31,7 @@
 
         <section class="halls_deatails">
             <div class="container">
-                @for ( $i=0 ; $i <2 ; $i+=2)
+                @for ( $i=0 ; $i < count($halls) ; $i+=2)
                     <div class="row px-3 pt-5">
                         <div class="col-12 col-md-6 px-3 position-relative">
                                 <img class="img-fluid" src="{{asset('assets/imgs/istdama.jpg')}}" targer="r_hall1" alt="">
@@ -53,7 +53,7 @@
                                         {{-- <div class=" col-6 "> --}}
                                             @if(str_contains($feature,'مساحة'))
                                                 <p class="pe-4"><i class="fa-solid fa-ruler-combined "></i> {{$feature}}</p>
-                                            @elseif (str_contains($feature,'إمكانية'))
+                                            @elseif (str_contains($feature,'عقد'))
                                                 <p  class="pe-4">{{$feature}}</p>
                                             @elseif (str_contains($feature,'مكيفة'))
                                                 <p class="pe-4"><i class="fa-regular fa-snowflake"></i> {{$feature}} </p>
@@ -65,7 +65,6 @@
                                                 <p class="pe-4"><img src="{{asset('assets/imgs/stand.svg')}}" alt="icon">{{$feature}} </p>
                                             @elseif (str_contains($feature,'الياف'))
                                                 <p class="pe-4"><img src="{{asset('assets/imgs/broadcastlivemessagenewsreport.svg')}}" alt="icon">{{$feature}} </p>
-
                                             @endif
                                         {{-- </div> --}}
                                     @endforeach
@@ -74,6 +73,23 @@
 
                             <h5 class="mt-3">سعر القاعة :</h5>
                             <p class="pe-4"> سعر القاعة للحجز الواحد <strong class="fs-5">{{$halls[$i]->price}}<span target="dolar">$</span> </strong> </p>
+
+                            @if($halls[$i]->discount != 0)
+                                <h5 class="mt-3">خصم القاعة :</h5>
+                                <p class="pe-4"> الخصم <strong>{{$halls[$i]->discount}} <span target="dolar">$</span></strong> </p>
+                                <p class="pe-4"> السعر السابق <del>{{$halls[$i]->price}}</del><span target="dolar">$</span> السعر الحالي <ins>{{$halls[$i]->price - $halls[$i]->discount}}</ins><span target="dolar">$</span> </p>
+                            @endif
+
+                            @php
+                                $descriptions = explode('|',$halls[$i]->description);
+                            @endphp
+                            @if($descriptions[0] != null)
+                                <h5 class="mt-3">وصف القاعة :</h5>
+                                @foreach ($descriptions as $description)
+                                    <p class="pe-4"> {{$description}} </p>
+                                @endforeach
+                            @endif
+
                         </div>
                     </div>
                         @if(isset($halls[$i+1]))
@@ -111,10 +127,28 @@
                                 @endif
                             @endforeach
 
+                            <h5 class="mt-3">سعر القاعة :</h5>
+                            <p class="pe-4"> سعر القاعة للحجز الواحد <strong class="fs-5">{{$halls[$i]->price}}<span target="dolar">$</span> </strong> </p>
+
+                            @if($halls[$i]->discount != 0)
+                                <h5 class="mt-3">خصم القاعة :</h5>
+                                <p class="pe-4"> الخصم <strong>{{$halls[$i]->discount}} <span target="dolar">$</span></strong> </p>
+                                <p class="pe-4"> السعر السابق <del>{{$halls[$i]->price}}</del><span target="dolar">$</span> السعر الحالي <ins>{{$halls[$i]->price - $halls[$i]->discount}}</ins><span target="dolar">$</span> </p>
+                            @endif
+
+                            @php
+                                $descriptions = explode('|',$halls[$i+1]->description);
+                            @endphp
+
+                            @if($descriptions[0] != null)
+                                <h5 class="mt-3">وصف القاعة :</h5>
+                                @foreach ($descriptions as $description)
+                                    <p class="pe-4"> {{$description}} </p>
+                                @endforeach
+                            @endif
                         </div>
 
-                        <h5 class="mt-3">سعر القاعة :</h5>
-                        <p class="pe-4"> سعر القاعة للحجز الواحد <strong class="fs-5">{{$halls[$i]->price}}<span target="dolar">$</span> </strong> </p>
+
                         @endif
                     </div>
                 @endfor

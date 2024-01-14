@@ -26,6 +26,7 @@ class ServiceController extends Controller
 
     public function store(ServicesRequest $request)
     {
+        return $request ;
         $sdrvice = Service::create($request->all());
         return redirect('services');
 
@@ -47,6 +48,8 @@ class ServiceController extends Controller
 
     public function update(ServicesRequest $request, $id)
     {
+        return $request ;
+        
         $service = Service::find($id);
         $service->update($request->all());
         return redirect('services');

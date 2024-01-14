@@ -20,6 +20,41 @@
     src: url('../fonts/Cairo-Bold.ttf');
 }
 
+body{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* Start my_classes */
+
+.fs_4rem{
+    font-size: 4rem;
+}
+
+.h_100vh{
+    min-height: 100vh;
+}
+
+.w_6rem{
+    width: 6rem;
+}
+
+.my-input-text::placeholder{
+    color: rgb(203, 203, 197);
+}
+
+.my-input-text:focus{
+    border-color: #86b7fe;
+     box-shadow:0 0 0 0.10rem rgba(13,110,253,.25);
+}
+
+.ff_alnaskh{
+    font-family: myFont1;
+}
+
+/* End my_classes */
+
 /* @media screen and (min-width: 768px)
 .contact_us .d-md-block {
     display: block!important;
@@ -42,18 +77,18 @@
     padding: 20px 0;
   }
 
-  .navbar-dark .navbar-nav .nav-link:hover,
+  /* .navbar-dark .navbar-nav .nav-link:hover,
   .navbar-dark .navbar-nav .nav-link.active {
     color: var(--_primary_grad) !important;
-  }
+  } */
 
   .navbar-dark .navbar-brand img {
-    max-height: 60px;
+    max-height: 55px;
     transition: 0.5s;
   }
 
   .sticky-top.navbar-dark .navbar-brand img {
-    max-height: 58px;
+    max-height: 65px;
   }
 
   @media (max-width: 991.98px) {
@@ -84,7 +119,8 @@
       top: 0;
       left: 0;
       z-index: 999;
-      background: transparent ;
+      /* background: transparent ; */
+      background: rgba(0,0,0,0.3);
     }
 
     .sticky-top.navbar-dark {
@@ -92,15 +128,16 @@
       background: #1b617d;
       background-image: var(--_primary_grad) !important;
     }
+
+    .header{
+        height: 97vh;
+    }
   }
 
   /*** End Navbar ***/
 
 
   /***  Hero ***/
-
-
-
 .header {
     position:relative;
     text-align:center;
@@ -149,7 +186,7 @@
   /*Shrinking for mobile*/
   @media (max-width: 768px) {
     .waves {
-      height:40px;
+      height:3.5rem;
       min-height:40px;
     }
     .content {
@@ -158,12 +195,125 @@
     h1 {
       font-size:24px;
     }
+    .header{
+        height: 90vh;
+    }
   }
+
+  /*halls_reservation_create*/
+
+  .halls .container-fluid {
+    padding-right: 0;
+    overflow: hidden;
+  }
+
+  .reservation__hall__item {
+    height: 493px;
+    position: relative;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+
+  .reservation__hall__item:hover .reservation__hall__title {
+    top: 0;
+    margin-top: 0;
+    padding: 32px 25px 0;
+  }
+
+  .reservation__hall__item:hover a {
+    bottom: 32px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .reservation__hall__item a {
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Barlow Condensed", sans-serif;
+    position: relative;
+    padding: 4px 0;
+    display: inline-block;
+    position: absolute;
+    left: 25px;
+    bottom: 0px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all, 0.5s;
+    -o-transition: all, 0.5s;
+    transition: all, 0.5s;
+  }
+
+  .reservation__hall__item a:before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: #e9ad28;
+    content: "";
+  }
+
+  .reservation__hall__title {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    padding: 0 25px;
+    margin-top: -120px;
+    -webkit-transition: all, 0.5s;
+    -o-transition: all, 0.5s;
+    transition: all, 0.5s;
+  }
+
+  .reservation__hall__title h4 {
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+
+  .reservation__hall__title h2 {
+    font-size: 48px;
+    color: #ffffff;
+    position: relative;
+    padding-left: 12px;
+  }
+
+  .reservation__hall__title h2 sup {
+    font-size: 20px;
+    position: absolute;
+    right: -12px;
+    top: 15px;
+  }
+
+  .reservation__hall__title h2 span {
+    font-size: 18px;
+  }
+
+  .halls .set-bg[data-setbg="hr-1.jpg"] {
+    background-image: url("../imgs/istdama.jpg");
+    background-size: cover;
+  }
+
+  .halls .set-bg[data-setbg="family.jpg"] {
+    background-image: url("../imgs/istdama.jpg");
+    background-size: cover;
+  }
+
+  .halls .set-bg[data-setbg="dexelary2.jpg"]  {
+    background-image: url("../imgs/istdama.jpg");
+    background-size: cover;
+  }
+
+  .halls .set-bg[data-setbg="suite.png"]  {
+    background-image: url("../imgs/istdama.jpg");
+    background-size: cover;
+  }
+
+  /**/
 
 
   .header{
       width: 100% ;
-      height: 97vh;
+      /* height: 90vh; */
       background-image: url('../imgs/hero.png');
       background-size: cover;
       background-repeat: no-repeat;
@@ -181,26 +331,12 @@ body{
     font-family: myFont;
 }
 
-.fs_4rem{
-    font-size: 4rem;
-}
 
-.h_100vh{
-    height: 100vh;
-}
 
 /* .my-input-text{
     width: 30rem;
 } */
 
-.my-input-text::placeholder{
-    color: rgb(203, 203, 197);
-}
-
-.my-input-text:focus{
-    border-color: #86b7fe;
-     box-shadow:0 0 0 0.10rem rgba(13,110,253,.25);
-}
 
 .container > form{
     /* display: table;
@@ -264,10 +400,7 @@ table a i:hover{
     --text-color:#ff6347;
 }
 
-@font-face {
-    font-family: 'myFont';
-    src: url('./assets/fonts/glyphicons-halflings-regular.ttf');
-}
+
 
 
 *,body{
@@ -335,11 +468,6 @@ nav{
     /* padding: 100%; */
 }
 
-.hero{
-    background-image: url("../imgs/Luxury.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 .pt-7rem{
     padding-top: 7rem ;
@@ -349,22 +477,32 @@ nav{
     color: var(--text-color);
 }
 
-.question .accordion .accordion-button::before {
+.question .accordion .accordion-button::after {
     flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
     content: "";
-    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-size: 1.25rem;
     transition: transform 0.2s ease-in-out;
+    box-shadow: none;
 }
 
-.question .accordion .accordion-button::after {
+/* .question .accordion .accordion-button::before {
     width: 0;
     height: 0;
+} */
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
 }
+
+
 
 
 .try .background{
@@ -548,6 +686,58 @@ nav{
     background-color: var(--_primary);
 }
 
+.card_shadow.card_hover {
+    padding-top: 1rem;
+    height: 7rem;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.card_shadow.card_hover:hover{
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px -7px rgba(0,0,0,0.3);
+    background-color:#d0e5ed;
+}
+
+
+
+.card_shadow_left{
+    display: flex;
+    flex-flow: row-reverse;
+    align-items: center;
+    margin: 0 auto;
+    width: fit-content;
+    box-shadow: 0 4px 12px -2px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding: 8px 32px;
+    transition: all 400ms ease;
+    width: 100%;
+    flex-flow: row;
+    position: relative;
+    overflow: hidden;
+}
+
+.card_shadow_left::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0.5rem;
+    height: 100%;
+    background-color: var(--_primary);
+}
+
+.card_shadow_left:hover{
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px -7px rgba(0,0,0,0.3);
+    background-color:#d0e5ed;
+}
+
+img[target="icon_size"]{
+    width: 5rem;
+}
+
 .halls-card .card_shadow::after{
     height: 3px;
 }
@@ -563,7 +753,7 @@ input[target="ltr"]{
     direction: ltr;
 }
 
-.login_form{
+.auth_form{
     box-shadow: 0 4px 12px -2px rgba(0,0,0,0.3);
     border-radius: 15px;
     padding: 1rem 15px;
@@ -571,21 +761,22 @@ input[target="ltr"]{
     min-width: 23rem;
 }
 
-.login_form input[target="ltr"]{
+.auth_form input[target="ltr"]{
     /* max-width: 100%; */
     min-width: 10.97rem;
 }
 
-.login_form p a {
+.auth_form p a {
     text-decoration: none;
     color: #333;
     font-size: 0.7rem;
     margin-right: 1rem;
 }
 
-.login_form button{
+.auth_form button{
     font-size: 1rem;
     padding: 5px 2rem;
+    margin: auto;
 }
 /* end log in */
 
@@ -654,3 +845,11 @@ img[targer="l_hall2"]{
     padding: 0.4rem;
     background-color: #fff;
 }
+
+.form_contact_us{
+    /* border: 2px solid; */
+    padding: 1rem;
+    box-shadow: -1px 1px 10px 0px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+

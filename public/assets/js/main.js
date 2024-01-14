@@ -27,7 +27,7 @@ $(window).scroll(function () {
 document.addEventListener('DOMContentLoaded', function() {
 
     let side_bar_link = document.querySelectorAll('#dashboaed-sidebar a.nav-link ')
-    console.log(side_bar_link.length);
+    // console.log(side_bar_link.length);
 
     side_bar_link.forEach(link => {
         link.addEventListener('click', () => {
@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       });
 
+    //   let tr = document.createElement(tr);
+    //   let td = document.createElement(td);
+    //   td =
 
       // sidbar active
       // to rednder partichal view

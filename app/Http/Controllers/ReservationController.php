@@ -73,7 +73,6 @@ class ReservationController extends Controller
         return redirect()->back();
     }
 
-
     public function create()
     {
         $halls = Hall::all()->where('is_avaliable',true);
@@ -85,51 +84,24 @@ class ReservationController extends Controller
         return view('reservations.create',compact('halls','services'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
+    public function reservation_details($id){
+        $hall = Hall::findOrFail($id);
+        $services = DB::table('services')
+                    ->where('is_avaliable',1)
+                    ->where('is_main_service',0)
+                    ->get();
+
+        return view("reservations.reservation_details",compact('hall','services')) ;
+    }
+
+
+
     public function store(Request $request)
     {
-        // $status = ReservationStatus::Approved->value;
-        // return $status;
 
-        // return auth()->user();
-
-        $newReservation = Reservation::create([
-            // 'user_id'=> auth()->user()->id,
-            'user_id'=> 5,
-            'employee_id'=>null,
-            'title'=>$request->title,
-            'interval'=>$request->interval,
-            'status'=> ReservationStatus::Wait->value,
-            'date_from'=>$request->date_from,
-            'date_to'=>$request->date_to,
-            'type_of_event'=>$request->type_of_event,
-            'note'=>$request->note,
-        ]);
-
-
-
-        $countOfHalls = count($request->hall_id);
-
-        for($i=0; $i<$countOfHalls; $i++){
-            $services='service'.$i.'_id';
-            for($j=0; $j < count($request->$services); $j++){
-
-                $reservation_datails =new Reservation_Detail([
-                    'reservation_id' => $newReservation->id,
-                    'hall_id'=>$request->hall_id[$i],
-                    'service_id'=> $request->$services[$j],
-                    'service_count'=> 1, //TODO edit
-                    'service_price'=> 10, //TODO edit
-                ]);
-
-                $newReservation->reservation_detail()->save($reservation_datails);
-            }
-        }
-
-        return ' تم الحجز بنجاح ';
     }
+
 
     /**
      * Display the specified resource.
@@ -303,6 +275,57 @@ public function filterReservations(Request $request){
 
 
     return response()->json(['filteredReservations'=>$filteredReservations]);
+}
+
+
+
+
+
+
+
+// == archive =======================================================
+
+public function _store(Request $request)
+{
+    // $status = ReservationStatus::Approved->value;
+    // return $status;
+
+    // return auth()->user();
+
+    $newReservation = Reservation::create([
+        // 'user_id'=> auth()->user()->id,
+        'user_id'=> 5,
+        'employee_id'=>null,
+        'title'=>$request->title,
+        'interval'=>$request->interval,
+        'status'=> ReservationStatus::Wait->value,
+        'date_from'=>$request->date_from,
+        'date_to'=>$request->date_to,
+        'type_of_event'=>$request->type_of_event,
+        'note'=>$request->note,
+    ]);
+
+
+
+    $countOfHalls = count($request->hall_id);
+
+    for($i=0; $i<$countOfHalls; $i++){
+        $services='service'.$i.'_id';
+        for($j=0; $j < count($request->$services); $j++){
+
+            $reservation_datails =new Reservation_Detail([
+                'reservation_id' => $newReservation->id,
+                'hall_id'=>$request->hall_id[$i],
+                'service_id'=> $request->$services[$j],
+                'service_count'=> 1, //TODO edit
+                'service_price'=> 10, //TODO edit
+            ]);
+
+            $newReservation->reservation_detail()->save($reservation_datails);
+        }
+    }
+
+    return redirect()->route('reservations.index');
 }
 
 }

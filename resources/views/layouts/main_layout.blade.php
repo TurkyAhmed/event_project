@@ -8,8 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    <title>Document</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    @stack('style')
 </head>
  <body>
 
@@ -49,28 +50,31 @@
     </nav> --}}
 
     <nav class="navbar navbar-expand-lg navbar-dark  px-4 px-lg-5 py-3 py-lg-0">
-        <a href="" class="navbar-brand p-0 d-flex">
+        <a href="" class="navbar-brand p-0 d-flex flex-row align-items-center">
             <img src="{{asset('assets/imgs/event-logo.png')}}" alt="" width="80" height="80" class="d-inline-block align-text-top">
-            <h1>حدث تايم</h1>
+            <h5>حدث تايم</h5>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 pe-4">
-                <a href="#" class="nav-item nav-link active">الرئيسية</a>
-                <a href="#" class="nav-item nav-link">القاعات</a>
-                <a href="#" class="nav-item nav-link">الخدمات</a>
-                <a href="#" class="nav-item nav-link">تواصل معنا</a>
+                <a href="#" class="nav-item nav-link fs-5 active">الرئيسية</a>
+                <a href="#" class="nav-item nav-link fs-5">القاعات</a>
+                <a href="#" class="nav-item nav-link fs-5">الخدمات</a>
+                <a href="#" class="nav-item nav-link fs-5">تواصل معنا</a>
+                @if(Auth::check())
+                    <a href="{{route('reservations.create')}}" class="nav-item nav-link fs-5"> الحجز </a>
+                @endif
             </div>
             <div class="login-bar d-flex justify-content-between">
                 @if(Auth::check())
                     {{-- <ul class="navbar-nav">
                         <li class="nav-item"> --}}
+                            <a class="nav-item nav-link text-white fs-5" href="{{route('cart.index')}}"><img src="{{asset('assets/imgs/cart-shopping-fast.svg')}}" alt=""></a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="nav-item nav-link btn btn-link text-white">تسجيل الخروج</button>
-
+                                <button type="submit" class="nav-item nav-link btn btn-link text-white fs-5">تسجيل الخروج</button>
                             </form>
                         {{-- <a class="btn btn-primary" href="{{route('profile.show')}}"> profile</a> --}}
                         {{-- </li>
@@ -78,10 +82,10 @@
                 @else
                       {{-- <ul class="navbar-nav">
                     <li class="nav-item"> --}}
-                        <a class="nav-item nav-link text-white" href="{{route('register')}}">إشتراك</a>
+                        <a class="nav-item nav-link text-white fs-5" href="{{route('register')}}">إشتراك</a>
                     {{-- </li>
                     <li class="nav-item"> --}}
-                        <a class="nav-item nav-link text-white" href="{{route('login')}}"> تسجيل الدخول </a>
+                        <a class="nav-item nav-link text-white fs-5" href="{{route('login')}}"> تسجيل الدخول </a>
                     {{-- </li>
                     </ul> --}}
                 @endif
@@ -107,26 +111,26 @@
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-3">
-                   <p> روابط سريعة : </p>
+                   <p class="fs-5"> روابط سريعة : </p>
                    <ul class="list-unstyled">
-                        <li><a class="text-decoration-none text-white" href="#"> القاعات </a></li>
-                        <li><a class="text-decoration-none text-white" href="#"> الخدمات </a></li>
-                        <li><a class="text-decoration-none text-white" href="#"> من نحن؟ </a></li>
+                        <li class="pe-3 fs-6"><a class="text-decoration-none text-white" href="#"> القاعات </a></li>
+                        <li class="pe-3 fs-6"><a class="text-decoration-none text-white" href="#"> الخدمات </a></li>
+                        <li class="pe-3 fs-6"><a class="text-decoration-none text-white" href="#"> من نحن؟ </a></li>
                    </ul>
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-3">
-                    <p>  تواصل معنا : </p>
-                    <ul class="list-unstyled d-flex gap-2">
-                         <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-facebook"></i> </a></li>
-                         <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-twitter"></i> </a></li>
-                         <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-telegram"></i> </a></li>
-                         <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-whatsapp"></i> </a></li>
+                    <p class="fs-5">  تواصل معنا : </p>
+                    <ul class="list-unstyled d-flex gap-2 flex-column">
+                         {{-- <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-facebook"></i> </a></li> --}}
+                         <li class="pe-3"><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-twitter"></i> </a></li>
+                         {{-- <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-telegram"></i> </a></li> --}}
+                         <li class="pe-3"><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-whatsapp"></i> </a></li>
                     </ul>
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-3">
-                    <p>   موقعنا : </p>
+                    <p class="fs-5">   موقعنا : </p>
                     {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6448.710933152055!2d49.11199782322345!3d14.529847326651062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3de8e69793c145e7%3A0x55d32bd799340eb6!2z2KPYqNix2KfYrCDYqNmGINmF2K3ZgdmI2Lg!5e0!3m2!1sar!2s!4v1704592186565!5m2!1sar!2s"
                     width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
                 </div>
@@ -143,5 +147,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="{{asset('assets/js/wow.min.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
+    @stack('scripts')
  </body>
  </html>

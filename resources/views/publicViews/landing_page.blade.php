@@ -121,7 +121,8 @@
                     <div class="card border-0" >
                         <div class="row align-items-center">
                             <div class="col-2 ">
-                                <p class="fs_4rem"><img src="{{asset('assets/imgs/tea-cup.png')}}"   alt="..."></p>
+                                {{-- <p class="fs_4rem"><img src="{{asset('assets/imgs/tea-cup.png')}}"   alt="..."></p> --}}
+                                <p class="fs_4rem"><img src="{{asset('assets/imgs/mug-tea.svg')}}" style="width: 60px"  alt=""></p>
                             </div>
                             <div class="col-10 ">
                                 <div class="card-body">
@@ -193,7 +194,7 @@
         <div class="container">
             <div class="row halls-card d-flex justify-content-center">
 
-                <div class="col-10 col-md-6 col-lg-3 mb-3">
+                <div class="col-10 col-md-6 col-lg-3 mb-3 gap-2">
                     <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/slam.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
@@ -201,14 +202,14 @@
                           <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
                         </div>
                         <div class="">
-                            <a href="#" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
+                            <a href="{{route('halls.landingpageHallDetails',1)}}" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
                                 <span> <i class="fa fa-angle-left position-relative" aria-hidden="true"></i></span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-10 col-md-6 col-lg-3 mb-3">
+                <div class="col-10 col-md-6 col-lg-3 mb-3 gap-2">
                     <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/shabam.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
@@ -216,14 +217,14 @@
                           <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
                         </div>
                         <div class="">
-                            <a href="#" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
+                            <a href="{{route('halls.landingpageHallDetails',2)}}" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
                                 <span> <i class="fa fa-angle-left position-relative" aria-hidden="true"></i></span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                 <div class="col-10 col-md-6 col-lg-3 mb-3">
+                 <div class="col-10 col-md-6 col-lg-3 mb-3 gap-2">
                     <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/istdama.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
@@ -231,14 +232,14 @@
                           <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
                         </div>
                         <div class="">
-                            <a href="#" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
+                            <a href="{{route('halls.landingpageHallDetails',3)}}" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
                                 <span> <i class="fa fa-angle-left position-relative" aria-hidden="true"></i></span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                 <div class="col-10 col-md-6 col-lg-3 mb-3">
+                 <div class="col-10 col-md-6 col-lg-3 mb-3 gap-2">
                     <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
                         <img src="./assets/imgs/conv.jpg" style="height:13.5rem" class="card-img-top img-fluid " alt="...">
                         <div class="card-body">
@@ -246,7 +247,7 @@
                           <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
                         </div>
                         <div class="">
-                            <a href="#" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
+                            <a href="{{route('halls.landingpageHallDetails',7)}}" class="btn d-flex"> <p class="text-myblue ms-2"> تفاصيل </p>
                                 <span> <i class="fa fa-angle-left position-relative" aria-hidden="true"></i></span>
                             </a>
                         </div>
@@ -255,7 +256,7 @@
 
             </div>
             <div class="col-4 w-100 text-center mt-3 btn_more_halls">
-                <p><a class="btn btn-primary bg-grad" href="#"> المزيد </a></p>
+                <p><a class="btn btn-primary bg-grad" href="{{route('halls.landingpageHalls')}}"> المزيد </a></p>
             </div>
         </div>
     </section>
@@ -278,22 +279,22 @@
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    <button class="accordion-button collapsed text-end" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                         هل يمكنني حجز القاعة لإقامة دورة تدريبية؟
                     </button>
                   </h2>
                   <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body"> يمكنك حجز القاعة لإقامة دورة تدريبية. تمتاز القاعة بمساحتها الواسعة وتوفرها لعقد الدورات وورش العمل. </div>
+                    <div class="accordion-body text-end"> يمكنك حجز القاعة لإقامة دورة تدريبية. تمتاز القاعة بمساحتها الواسعة وتوفرها لعقد الدورات وورش العمل. </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    <button class="accordion-button collapsed text-end" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                         ما هي الخدمات المتوفرة في القاعة؟
                     </button>
                   </h2>
                   <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">القاعة توفر العديد من الخدمات لتلبية احتياجات الأشخاص الذين يستخدمونها. بعض الخدمات المتوفرة في القاعة تشمل:
+                    <div class="accordion-body text-end">القاعة توفر العديد من الخدمات لتلبية احتياجات الأشخاص الذين يستخدمونها. بعض الخدمات المتوفرة في القاعة تشمل:
 
                         مساحة القاعة: تتميز القاعة بمساحتها البالغة 30 متر مربع، مما يتيح المساحة الكافية لإقامة الدورات وورش العمل والفعاليات الأخرى.
 
@@ -316,14 +317,16 @@
     <section class="contact_us">
         <div class="container">
             <div class="row">
-                <div class="col-10 col-lg-6 d-md-block text-center">
+                <div class="col-12 col-lg-6 d-md-block text-center mb-5 mb-lg-0">
                     <p class="fs-3 mb-2"><i class="fa-solid fa-location-dot"></i></p>
                     <h3>عنواننا</h3>
                     <p>حضرموت - المكلا - اربعين شقة</p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.1442846419914!2d49.113878625002656!3d14.533738285944715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3de8e69793c145e7%3A0x55d32bd799340eb6!2z2KPYqNix2KfYrCDYqNmGINmF2K3ZgdmI2Lg!5e0!3m2!1sar!2s!4v1704668537606!5m2!1sar!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="d-flex justify-content-center">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.1442846419914!2d49.113878625002656!3d14.533738285944715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3de8e69793c145e7%3A0x55d32bd799340eb6!2z2KPYqNix2KfYrCDYqNmGINmF2K3ZgdmI2Lg!5e0!3m2!1sar!2s!4v1704668537606!5m2!1sar!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
 
-                <div class="col-10 col-lg-6 d-md-block">
+                <div class="col-12 col-lg-6 d-md-block">
                     <div class="row text-center">
                         <div class="col-6 m-auto">
                             <p class="fs-3 mb-2"><i class="fa fa-envelope"></i></p>
@@ -338,15 +341,15 @@
                         </div>
                     </div>
 
-                    <form action="">
+                    <form action="" class="form_contact_us">
                         <div class="row">
-                            <div class="col-10 col-lg-6">
+                            <div class="col-12 col-lg-6">
                                 <div class="mb-3">
                                     <label for="name" class="form-label"> الاسم </label>
                                     <input type="text" name="name" class="form-control" id="name" placeholder=" ادخل اسمك ">
                                 </div>
                             </div>
-                            <div class="col-10 col-lg-6">
+                            <div class="col-12 col-lg-6">
                                 <div class="mb-3">
                                     <label for="email" class="form-label"> الاسم </label>
                                     <input type="email" name="email" class="form-control" id="email" placeholder="  بريدك الالكتروني ">

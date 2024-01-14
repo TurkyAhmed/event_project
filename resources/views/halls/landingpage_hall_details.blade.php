@@ -1,21 +1,136 @@
 @extends('layouts.main_layout')
 @section('content')
-<div class="container pt-5 mt-5">
-    <div class="row">
-        <p> الاسم : {{$hall->name}}</p>
-        <p> السعة : {{$hall->capacity}}</p>
-        <p> المميزات : {{$hall->feature}}</p>
-        @php
 
-            $features = explode('|',$hall->feature);
-            echo $features[0];
-        @endphp
-        <p> الميزة الاولى : {{$features[0]}}</p>
-        <p> السعر : {{$hall->price}}</p>
-        <p> الخصم : {{$hall->discount}}</p>
-        <p> الوصف : {{$hall->description}}</p>
-
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-</div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{{asset('assets/imgs/slam.jpg')}}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+
+    <div class="container pt-5 mt-5">
+        <div class="row">
+            <h1 class="mb-5"> {{$hall->name}}</h1>
+
+            @php
+                $descriptions = explode('|',$hall->description);
+            @endphp
+            <h4 class=""> سعة القاعة : </h4>
+            @if($descriptions[0] != null)
+                <p class="fs-5 pe-5"> تتسع القاعة للـ {{$hall->capacity}} شخص , ولكن قد تختلف سعتها على حسب نظام ترتيب الطاولات وسيكون سعتها موضحا بالشكل التالي :</p>
+                <div class="row mb-5">
+                    @foreach ($descriptions as $description)
+                        <div class="col-12 col-md-6 col-lg-4 mb-3">
+                            <div class="card_shadow card_hover">
+                              <p class="pe-2 pt-2 fs-5"> {{$description}} </p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+            <p class="fs-5 pe-5 mb-5"> تتسع القاعة للـ {{$hall->capacity}} شخص. </p>
+            @endif
+
+
+            @php
+                $features = explode('|',$hall->feature);
+            @endphp
+            <h4> مميزات القاعة :</h4>
+            <div class="row mb-5">
+                @foreach ($features as $feature)
+                  {{-- <div class="col-12 col-md-4 "> --}}
+                      {{-- <div class="card_shadow_left d-flex mb-3"> --}}
+                          @if(str_contains($feature,'مساحة'))
+                              <div class="col-12 col-md-4 ">
+                                  <div class="card_shadow card_hover d-flex mb-3">
+                                      <i class="fa-solid fa-ruler-combined "></i>
+                                      <p class="pe-4 fs-5"> {{$feature}}</p>
+                                  </div>
+                                </div>
+                          @elseif (str_contains($feature,'إمكانية'))
+                              <div class="col-12 col-md-4 ">
+                                  <div class="card_shadow card_hover d-flex mb-3">
+                                      <p  class="pe-4 fs-5">{{$feature}}</p>
+                                  </div>
+                              </div>
+                          @elseif (str_contains($feature,'مكيفة'))
+                              <div class="col-12 col-md-4 ">
+                                  <div class="card_shadow card_hover d-flex mb-3">
+                                      <i class="fa-regular fa-snowflake"></i>
+                                      <p class="pe-4 fs-5"> {{$feature}} </p>
+                                  </div>
+                              </div>
+                          @elseif (str_contains($feature,'إنترنت'))
+                              <div class="col-12 col-md-4 ">
+                                  <div class="card_shadow card_hover d-flex mb-3">
+                                      <p class="pe-4 fs-5"><i class="fa-solid fa-wifi"></i> {{$feature}} </p>
+                                  </div>
+                              </div>
+                          @elseif (str_contains($feature,'شاشة '))
+                              <div class="col-12 col-md-4 ">
+                                  <div class="card_shadow card_hover d-flex mb-3">
+                                      <i class="fa-solid fa-tv"></i>
+                                      <p class="pe-4 fs-5"> {{$feature}} </p>
+                                  </div>
+                              </div>
+                          @elseif (str_contains($feature,'ستاند'))
+                              <div class="col-12 col-md-4 ">
+                                  <div class="card_shadow card_hover d-flex mb-3">
+                                      <img src="{{asset('assets/imgs/stand.svg')}}" target="icon_size" alt="">
+                                      <p class="pe-4 fs-5">{{$feature}} </p>
+                                  </div>
+                                </div>
+                          @elseif (str_contains($feature,'الياف'))
+                              <div class="col-12 col-md-4 ">
+                                  <div class="card_shadow card_hover d-flex mb-3">
+                                      <img src="{{asset('assets/imgs/sticky_notes_icon.svg')}}" target="icon_size" alt="">
+                                      <p class="pe-4 fs-5">{{$feature}} </p>
+                                  </div>
+                              </div>
+                          @endif
+                      {{-- </div> --}}
+                  {{-- </div> --}}
+
+                @endforeach
+            </div>
+
+            <h4> سعر القاعة :</h4>
+            <p class="pe-4 fs-5">سعر القاعة للحجز الواحد  <strong>{{$hall->price}}<span target="dolar">$</span></strong> </p>
+            @if($hall->discount != 0)
+                <h5 class="mt-3">خصم القاعة :</h5>
+                <p class="pe-4 fs-5"> الخصم <strong>{{$hall->discount}}<span target="dolar">$</span></strong> </p>
+                <p class="pe-4 fs-5"> السعر السابق <del>{{$hall->price}}</del><span target="dolar">$</span> السعر الحالي <ins>{{$hall->price - $hall->discount}}</ins><span target="dolar">$</span> </p>
+            @endif
+
+
+            {{-- @php
+                $descriptions = explode('|',$hall->description);
+            @endphp
+            @if($descriptions[0] != null)
+                <h4 class="mt-5">وصف القاعة</h4>
+                @foreach ($descriptions as $description)
+                    <p class="pe-4"> {{$description}} </p>
+                @endforeach
+            @endif --}}
+
+        </div>
+    </div>
 
 @endsection

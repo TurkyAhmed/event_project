@@ -10,8 +10,10 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
+// class User extends Model
 {
     use HasApiTokens;
     use HasFactory;

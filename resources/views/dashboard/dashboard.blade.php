@@ -67,18 +67,28 @@
                         </a>
                       </li>
                     </ul>
+
+
+
+
+
+
+
                     <hr>
                     <div class="dropdown">
                       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle mx-2">
-                        <strong class="ms-4">تركي احمد</strong>
+                        {{-- <strong class="ms-4">{{auth()->user()->name}}</strong> --}}
                       </a>
                       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                         <li><a class="dropdown-item" href="#">New project...</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{route('profile.show')}}">Profile</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <li><button class="dropdown-item" href="#">تسجيل الخروج</button></li>
+                        </form>
                       </ul>
                     </div>
                 </div>
@@ -175,8 +185,11 @@
     <script>
 
         const chartDate = {
-            labels : @json($labels),
-            data :@json($data),
+
+
+
+            labels : ['في الانتظار','تمت الموافقة','تم الغاء الحجز','تأخير الحجز'],
+            data :[1,1,1,1],
         };
 
         const myChart = document.querySelector('.myChart');

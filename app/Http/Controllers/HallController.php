@@ -12,7 +12,7 @@ class HallController extends Controller
 
     public function index()
     {
-        $halls = Hall::all();
+        $halls = Hall::paginate(3);
         // dd($halls);
         return view('halls.index',['halls'=>$halls]);
     }

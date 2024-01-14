@@ -32,6 +32,40 @@
 
             </tbody>
         </table>
+
+        <div class="pagination">
+            <ul class="pagination justify-content-center">
+                @if ($halls->onFirstPage())
+                    <li class="page-item disabled">
+                        <span class="page-link">&laquo;</span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $halls->previousPageUrl() }}" rel="prev">&laquo;</a>
+                    </li>
+                @endif
+                @foreach ($halls->getUrlRange(1, $halls->lastPage()) as $page => $url)
+                    <li class="page-item {{ $page == $halls->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+                @if ($halls->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $halls->nextPageUrl() }}" rel="next">&raquo;</a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <span class="page-link">&raquo;</span>
+                    </li>
+                @endif
+            </ul>
+        </div>
+
+        <!-- Pagination label -->
+        <div class="pagination-label">
+            Page {{ $halls->currentPage() }} of {{ $halls->lastPage() }}
+        </div>
+
     </div>
 
 @endsection

@@ -26,7 +26,7 @@ class AdminController extends Controller
 
 
         // Prepare the chart data
-        $labels = ['في الانتظار','تمت الموافقة','تم الغاء الحجز','تأخير الحجز',];
+        $labels = ['في الانتظار','تمت الموافقة','تم الغاء الحجز','تأخير الحجز'];
         $data = [
             $reservationStatusCounts['في الانتظار'] ?? 0,
             $reservationStatusCounts['تمت الموافقة'] ?? 0,

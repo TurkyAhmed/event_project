@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HallController;
 use App\Http\Controllers\ServiceController;
@@ -28,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Routes accessible to the admin role
     Route::group(['middleware' => ['role:admin']], function () {
 
+        Route::resource('halls', HallController::class);
 
     });
 
@@ -39,7 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
             return view('publicViews.landing_page');
         });
     });
-
+    //==Auth====================================================================================
     // Routes accessible to all authenticated users
     // Add your common routes here
 });
@@ -71,7 +73,7 @@ Route::get('halls/delete/{id}',[HallController::class,'delete'])->name('halls.de
 Route::get('halls/softdelete',[HallController::class,'SoftDelete'])->name('halls.softdelete');
 Route::get('halls/restore/{id}',[HallController::class,'restore'])->name('halls.restore');
 Route::get('halls/forcedelete/{id}',[HallController::class,'forcedelete'])->name('halls.forcedelete');
-Route::resource('halls', HallController::class);
+// Route::resource('halls', HallController::class);
 
 
 Route::get('services/delete/{id}',[ServiceController::class,'delete'])->name('services.delete');
@@ -99,6 +101,7 @@ Route::resource('employees', employeeController::class);
 
 
 
+Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details');
 Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
 Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
 Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
@@ -120,3 +123,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//==Cart================================================================
+Route::get('cart/cancelSpecificreservation/{id}', [CartController::class,'cancelSpecificreservation'])->name('cart.cancelSpecificreservation');
+Route::POST('cart/add', [CartController::class,'addToCart'])->name('cart.addToCart');
+Route::resource('cart', CartController::class);
+
