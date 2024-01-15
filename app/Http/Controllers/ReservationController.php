@@ -28,6 +28,7 @@ class ReservationController extends Controller
     public function reservation_waiting(){
         $reservations = DB::table('reservations')
                         ->where('status','في الانتظار')
+                        ->where('deleted_at', null)
                         ->get();
 
         return view('reservations.reservation_waiting',compact('reservations'));
@@ -75,13 +76,11 @@ class ReservationController extends Controller
 
     public function create()
     {
-        $halls = Hall::all()->where('is_avaliable',true);
+        $halls = Hall::all()
+                ->where('is_avaliable',true)
+                ->where('deleted_at', null);
 
-        $services = Service::all()
-                            ->where('is_avaliable',true)
-                            ->where('is_main_service',false);
-
-        return view('reservations.create',compact('halls','services'));
+        return view('reservations.create',compact('halls'));
     }
 
 
@@ -90,6 +89,7 @@ class ReservationController extends Controller
         $services = DB::table('services')
                     ->where('is_avaliable',1)
                     ->where('is_main_service',0)
+                    ->where('deleted_at', null)
                     ->get();
 
         return view("reservations.reservation_details",compact('hall','services')) ;
@@ -111,13 +111,13 @@ class ReservationController extends Controller
             $reservation = Reservation::create([
                 // 'employee_id' => $employee_id,
                 'user_id' => auth()->user()->id,
-                'title' => "تجريبي",
-                'interval' => "صباح",
+                'title' => $item['title'],
+                'interval' => $item['interval'],
                 'status' => 'في الانتظار',
                 'date_from' =>  $item['date_from'],
                 'date_to' =>  $item['date_to'],
-                'type_of_event' => 'مؤتمر',
-                'note' => "",
+                'type_of_event' => $item['type_of_event'],
+                'note' => $item['note'],
             ]);
 
             $service_ids = $item['services_ids'];
@@ -145,7 +145,7 @@ class ReservationController extends Controller
         // Clear the cart after storing the data
         session()->forget('cart');
 
-        return 'تمت الاضافة بنجاح';
+        // return 'تمت الاضافة بنجاح';
         return redirect()->route('cart.index');
 
     }
@@ -188,7 +188,8 @@ class ReservationController extends Controller
 
         $allServices = Service::all()
                         ->where('is_avaliable',true)
-                        ->where('is_main_service',false);
+                        ->where('is_main_service',false)
+                        ->where('deleted_at', null);
 
         // return $reservationDetails;
 
@@ -206,12 +207,12 @@ class ReservationController extends Controller
         // return $reservation_datails;
         // return $reservation_datails[0]->hall_id;
 
-        $reservation->title = "عنوان بعد التعديل";
-        // $reservation->interval = $request->input('interval');
+        $reservation->title = $request->input('title');
+        $reservation->interval = $request->input('interval');
         // $reservation->status = $request->input('status');
         $reservation->date_from = $request->input('date_from');
         $reservation->date_to = $request->input('date_to');
-        // $reservation->type_of_event = $request->input('type_of_event');
+        $reservation->type_of_event = $request->input('type_of_event');
         $reservation->note = $request->input('note');
         $reservation->save();
 
@@ -239,7 +240,9 @@ class ReservationController extends Controller
         }
 
 
-        return 'done' ;
+        return redirect()->route('cart.index')->with('successMsg','تم التعديل بنجاح') ;
+
+
     }
 
 

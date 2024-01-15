@@ -36,6 +36,10 @@ body{
     min-height: 100vh;
 }
 
+.h_70vh{
+    min-height: 70vh;
+}
+
 .w_6rem{
     width: 6rem;
 }
@@ -136,6 +140,13 @@ body{
 
   /*** End Navbar ***/
 
+  /* Sidebar */
+
+  #dashboaed-sidebar .nav-link.active{
+    background-color: #1b617d;
+  }
+
+  /*End Sidebar */
 
   /***  Hero ***/
 .header {

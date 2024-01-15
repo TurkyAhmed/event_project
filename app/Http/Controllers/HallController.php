@@ -12,8 +12,8 @@ class HallController extends Controller
 
     public function index()
     {
-        $halls = Hall::paginate(3);
-        // dd($halls);
+        $halls = Hall::paginate(10);
+
         return view('halls.index',['halls'=>$halls]);
     }
 
@@ -27,7 +27,7 @@ class HallController extends Controller
     public function store(HallRequest $request)
     {
         Hall::create($request->all());
-        return redirect('halls');
+        return redirect()->route('halls.index')->with('successMsg', 'تم الاضافة بنجاح');
     }
 
 
@@ -51,20 +51,19 @@ class HallController extends Controller
     {
         $hall = Hall::find($id);
         $hall->update($request->all());
-        return redirect()->route('halls.index');
+        return redirect()->route('halls.index')->with('successMsg', 'تم التعديل بنجاح');
     }
 
 
     public function delete($id){
         $hall = Hall::find($id);
         return view('halls.delete',compact('hall'));
-
     }
 
     public function destroy( $id)
     {
         Hall::find($id)->delete();
-        return redirect()->route('halls.index');
+        return redirect()->route('halls.index')->with('successMsg', 'تم الحذف بنجاح');
     }
 
 
@@ -78,7 +77,6 @@ class HallController extends Controller
 
     public function restore($id){
         Hall::withTrashed()->where('id',$id)->restore();
-
         return redirect()->back();
     }
 

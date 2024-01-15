@@ -16,7 +16,7 @@ class UserController extends Controller
 
 
 
-        $users = User::paginate(3);
+        $users = User::paginate(10);
         // $users = DB::table('users')
         //         ->join('employees','users.id','!=','employees.user_id')
         //         ->select('users.*')

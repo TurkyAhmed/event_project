@@ -1,157 +1,99 @@
-@extends('layouts.main_layout_without_nav')
-
-@section('content')
-
-    <div class="container-fluid">
-        <div class="row">
-            <div id="dashboaed-sidebar" class="col-2 position-fiexd ">
-                <div  class=" d-flex flex-column flex-shrink-0 p-3 bg-light h_100vh" style="width: 280px;">
-                    <a href="/" class="my-bg-grad d-flex align-items-center mb-3 mb-md-0  link-dark text-decoration-none">
-                      <img src="{{asset('assets/imgs/event-logo.png')}}" style="width: 90px" alt="">
-                      <span class="fs-4 text-white"> حدث تايم </span>
-                    </a>
-                    <hr>
-                    <ul class="nav nav-pills flex-column mb-auto">
-                      <li class="nav-item">
-                        <a href="{{route('dashboard')}}" class="nav-link active" aria-current="page">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                          الرئيسية
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{route('halls.index')}}" class="nav-link link-dark">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                          القاعات
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{route('services.index')}}" class="nav-link link-dark">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                          الخدمات
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{route('employees.index')}}" class="nav-link link-dark">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-                          الموظفين
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{route('users.index')}}" class="nav-link link-dark">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                          المستخدمين
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{route('reservations.index')}}" class="nav-link link-dark">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                          الحجوزات
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{route('reservations.reservation_waiting')}}" class="nav-link link-dark">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                          الحجوزرات المنتظرة
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{route('reservations.getCalender')}}" class="nav-link link-dark">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                           التقويم
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{route('reservations.report')}}" class="nav-link link-dark">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                            التقارير
-                        </a>
-                      </li>
-                    </ul>
-
-
-
-
-
-
-
-                    <hr>
-                    <div class="dropdown">
-                      <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle mx-2">
-                        <strong class="ms-4">{{auth()->user()->name}}</strong>
-                      </a>
-                      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="{{route('profile.show')}}">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <li><button class="dropdown-item" href="#">تسجيل الخروج</button></li>
-                        </form>
-                      </ul>
+@extends('layouts.main_layout_dashboard')
+    @section('dashboaed-content')
+        <div class="container pt-3 pe-5">
+            <div class="dashboard-top">
+                <h3 class=" pt-5 pe-5 text-white">الاحصائيات</h3>
+            </div>
+        </div>
+         {{-- احصائيات --}}
+        <div class="row dashboard-cards px-5 mx-3 mt-5">
+            <div class="col-10 col-md-6 col-lg-4 mb-3 ">
+                <div class=" card card_shadow w-100 px-4" >
+                    <div class="row d-flex align-items-center ">
+                        <div class="card-body col-8 pe-5">
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h6 class="card-subtitle mb-2 ">  القاعات </h6>
+                        </div>
+                        <div class="col-4">
+                            {{-- <p class="fs-1">{{$viewData['hallsCount']}}</p> --}}
+                            <p class="fs-1">5</p>
+                        </div>
                     </div>
                 </div>
-
             </div>
-
-            <div id="dashboaed-content " class="col-10 ">
-
-                @section('dashboard-content')
-                    <div class="container pt-3 pe-5">
-                        <div class="dashboard-top">
-                            <h3 class=" pt-5 pe-5 text-white">الاحصائيات</h3>
+            <div class="col-10 col-md-6 col-lg-4 mb-3 ">
+                <div class=" card card_shadow w-100 px-4" >
+                    <div class="row d-flex align-items-center ">
+                        <div class="card-body col-8 pe-5">
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h6 class="card-subtitle mb-2 ">  الخدمات </h6>
                         </div>
-
+                        <div class="col-4">
+                            {{-- <p class="fs-1">{{$viewData['servicesCount']}}</p> --}}
+                            <p class="fs-1">7</p>
+                        </div>
                     </div>
-                    <div class="row dashboard-cards px-5 mx-3 mt-5">
-
-                        <div class="col-10 col-md-6 col-lg-4 mb-3 ">
-                            <div class=" card card_shadow w-100 px-4" >
-                                <div class="row d-flex align-items-center ">
-                                    <div class="card-body col-8 pe-5">
-                                        <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
-                                        <h6 class="card-subtitle mb-2 ">  القاعات </h6>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="fs-1">6</p>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+            </div>
+            <div class="col-10 col-md-6 col-lg-4 mb-3 ">
+                <div class=" card card_shadow w-100 px-4" >
+                    <div class="row d-flex align-items-center ">
+                        <div class="card-body col-8 pe-5 ">
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h6 class="card-subtitle mb-2 "> الحجوزرات المنتظرة </h6>
                         </div>
-
-                        <div class="col-10 col-md-6 col-lg-4 mb-3 ">
-                            <div class=" card card_shadow w-100 px-4" >
-                                <div class="row d-flex align-items-center ">
-                                    <div class="card-body col-8 pe-5">
-                                        <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
-                                        <h6 class="card-subtitle mb-2 ">  الخدمات </h6>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="fs-1">16</p>
-                                    </div>
-                                </div>
-
-                            </div>
+                        <div class="col-4">
+                            {{-- <p class="fs-1">{{$viewData['reservationsWaitingCount']}}</p> --}}
+                            <p class="fs-1">5</p>
                         </div>
-
-                        <div class="col-10 col-md-6 col-lg-4 mb-3 ">
-                            <div class=" card card_shadow w-100 px-4" >
-                                <div class="row d-flex align-items-center ">
-                                    <div class="card-body col-8 pe-5 ">
-                                        <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
-                                        <h6 class="card-subtitle mb-2 "> الحجوزرات المنتظرة </h6>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="fs-1">3</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-
-                    <div class="container ">
+                </div>
+            </div>
+            <div class="col-10 col-md-6 col-lg-4 mb-3 ">
+                <div class=" card card_shadow w-100 px-4" >
+                    <div class="row d-flex align-items-center ">
+                        <div class="card-body col-8 pe-5 ">
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h6 class="card-subtitle mb-2 "> حجوزرات الاسبوع </h6>
+                        </div>
+                        <div class="col-4">
+                            {{-- <p class="fs-1">{{$viewData['reservationsweekly']}}</p> --}}
+                            <p class="fs-1">9</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-md-6 col-lg-4 mb-3 ">
+                <div class=" card card_shadow w-100 px-4" >
+                    <div class="row d-flex align-items-center ">
+                        <div class="card-body col-8 pe-5 ">
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h6 class="card-subtitle mb-2 "> الحجوزرات الملغية </h6>
+                        </div>
+                        <div class="col-4">
+                            {{-- <p class="fs-1">{{$viewData['reservationsCancelled']}}</p> --}}
+                            <p class="fs-1">10</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-md-6 col-lg-4 mb-3 ">
+                <div class=" card card_shadow w-100 px-4" >
+                    <div class="row d-flex align-items-center ">
+                        <div class="card-body col-8 pe-5 ">
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h6 class="card-subtitle mb-2 "> العملاء  </h6>
+                        </div>
+                        <div class="col-4">
+                            {{-- <p class="fs-1">{{$viewData['usersCount']}}</p> --}}
+                            <p class="fs-1">12</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Chart js --}}
+        <div class="container ">
                         <div class="row chart_js">
                             <div class="col-12 col-md-6">
                                 <div class="container">
@@ -170,66 +112,130 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @show
-
-                {{-- <div id="dashboard-content">
-                    <!-- Content goes here -->
-                </div> --}}
-            </div>
         </div>
-    </div>
+        {{-- Reservation waiting --}}
+        <div class="container">
+                        <h2 class="pb-4"> قائمة الحجوزات المنتظرة</h2>
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col"> عنوان الحجز  </th>
+                                <th scope="col">  الجهةالحاجزة </th>
+                                <th scope="col">  الحالة </th>
+                                <th scope="col">  من تاريخ </th>
+                                <th scope="col">  إلى تاريخ </th>
+                                <th scope="col"> الإجراءات </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $counter = 1 ;
+                                @endphp
+                                @foreach ($reservationsWaiting as $reservaion)
+
+                                  <tr>
+                                    <th scope="row">{{$counter}}</th>
+                                    <td>{{$reservaion->title}} </td>
+                                    <td>{{$reservaion->user_id}}</td>
+                                    <td>{{$reservaion->status}}</td>
+                                    <td>{{$reservaion->date_from}}</td>
+                                    <td>{{$reservaion->date_to}}</td>
+                                    <td>
+                                        <a class=" btn btn-primary " href="{{route('reservations.reservationApproved',$reservaion->id)}}"> تأكيد الحجز </a>
+                                        <a class=" btn btn-secondary " href="{{route('reservations.reservationcancelled',$reservaion->id)}}"> الغاء الحجز </a>
+
+                                    </td>
+                                  </tr>
+
+                                @php
+                                  $counter++ ;
+                                @endphp
+                                @endforeach
+
+                            </tbody>
+                        </table>
+
+                         <!-- this for customized pagination links with bootstrap -->
+                        <div class="pagination d-flex justify-content-between">
+                            <ul class="pagination justify-content-center">
+                                @if ($reservationsWaiting->onFirstPage())
+                                    <li class="page-item disabled">
+                                        <span class="page-link">&laquo;</span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $reservationsWaiting->previousPageUrl() }}" rel="prev">&laquo;</a>
+                                    </li>
+                                @endif
+                                @foreach ($reservationsWaiting->getUrlRange(1, $reservationsWaiting->lastPage()) as $page => $url)
+                                    <li class="page-item {{ $page == $reservationsWaiting->currentPage() ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                @endforeach
+                                @if ($reservationsWaiting->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $reservationsWaiting->nextPageUrl() }}" rel="next">&raquo;</a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled">
+                                        <span class="page-link">&raquo;</span>
+                                    </li>
+                                @endif
+                            </ul>
+
+                            <!-- Pagination label -->
+                            <div class="pagination-label ةس-5">
+                                صفحة {{ $reservationsWaiting->currentPage() }} من {{ $reservationsWaiting->lastPage() }}
+                            </div>
+
+                        </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
 
-        const chartDate = {
+        </div>
 
-
-
-            labels : ['في الانتظار','تمت الموافقة','تم الغاء الحجز','تأخير الحجز'],
-            data :[1,1,1,1],
-        };
-
-        const myChart = document.querySelector('.myChart');
-        const ul = document.querySelector('.details ul');
-
-        new Chart(myChart, {
-            type: 'doughnut',
-            data: {
-              labels: chartDate.labels,
-              datasets: [{
-                label: '# of Votes',            // title when hover
-                data: chartDate.data,
-              }]
-            },
-            options: {
-                borderWidth: 10,
-                borderRadius: 2,
-                hoverBorderWidth: 0,
-                plugins:{
-                    legend:{
-                        display: false,
+        {{-- javaScript --}}
+        @push('javascript')
+        <script>
+            const chartDate = {
+                labels: @json($labels),
+                data: @json($data),
+                //labels : ['في الانتظار','تمت الموافقة','تم الغاء الحجز','تأخير الحجز'],
+                //data :[1,1,1,1],
+            }
+            const myChart = document.querySelector('.myChart');
+            const ul = document.querySelector('.details ul')
+            new Chart(myChart, {
+                type: 'doughnut',
+                data: {
+                  labels: chartDate.labels,
+                  datasets: [{
+                    label: '# of Votes',            // title when hover
+                    data: chartDate.data,
+                  }]
+                },
+                options: {
+                    borderWidth: 10,
+                    borderRadius: 2,
+                    hoverBorderWidth: 0,
+                    plugins:{
+                        legend:{
+                            display: false,
+                        }
                     }
                 }
+            })
+            const reservation_statusUl = () =>{
+                chartDate.labels.forEach((item,i) => {
+                    console.log('print ok');
+                    let li = document.createElement('li');
+                    li.innerHTML = `${item}: <span class="percentage">${chartDate.data[i]}</span>`;
+                    ul.appendChild(li);
+                });
             }
-        });
-
-        const reservation_statusUl = () =>{
-            chartDate.labels.forEach((item,i) => {
-                console.log('print ok');
-                let li = document.createElement('li');
-                li.innerHTML = `${item}: <span class="percentage">${chartDate.data[i]}</span>`;
-                ul.appendChild(li);
-            });
-        }
-
-        reservation_statusUl();
-
-    </script>
-@endsection
-
-
-
+            reservation_statusUl()
+        </script>
+        @endpush
+    @endsection
 

@@ -1,5 +1,6 @@
-@extends('layouts.main_layout')
-@section('content')
+@extends('layouts.main_layout_dashboard')
+     @section('dashboaed-content')
+
     <div class="container-fluid mt-5">
         <div class="row ">
             <div class="col-12 col-md-3 bg-light position-fixed h_100vh pt-5">

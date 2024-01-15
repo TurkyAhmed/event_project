@@ -3,8 +3,8 @@
 
 @section('content') --}}
 
-@extends('dashboard.dashboard')
-@section('dashboard-content')
+@extends('layouts.main_layout_dashboard')
+     @section('dashboaed-content')
 
 <div class="container py-5 pe-5 my-bg-img">
 
@@ -54,11 +54,11 @@
 
           <div class="mb-3 d-flex">
             <div class="form-check ">
-                <input class="form-check-input" type="radio" name="is_avaliable" value="1" id="status_on" {{ $hall->status ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="is_avaliable" value="1" id="status_on" {{ $hall->is_avaliable ? 'checked' : '' }}>
                 <label class="form-check-label" for="status_on">نشط</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="is_avaliable" value="0" id="status_off" {{ !$hall->status ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="is_avaliable" value="0" id="status_off" {{ !$hall->is_avaliable ? 'checked' : '' }}>
                 <label class="form-check-label" for="status_off">غير نشط</label>
             </div>
         </div>

@@ -1,5 +1,6 @@
-@extends('dashboard.dashboard')
-@section('dashboard-content')
+@extends('layouts.main_layout_dashboard')
+     @section('dashboaed-content')
+
 
 <div class="container py-5 pe-5 my-bg-img">
 

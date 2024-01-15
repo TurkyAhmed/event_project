@@ -1,7 +1,8 @@
 {{-- @extends('layouts.main_layout')
 @section('content') --}}
-@extends('dashboard.dashboard')
-@section('dashboard-content')
+@extends('layouts.main_layout_dashboard')
+     @section('dashboaed-content')
+
 
     <div class="container pt-5 pe-5">
 

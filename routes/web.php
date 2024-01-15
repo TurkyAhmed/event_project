@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Routes accessible to the admin role
     Route::group(['middleware' => ['role:admin']], function () {
 
-        Route::resource('halls', HallController::class);
+        // Route::resource('halls', HallController::class);
 
     });
 
@@ -58,7 +58,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 // });
 
 
-Route::get('admin/dashboard',[AdminController::class,'dashboardindex'])->name('dashboard');
+Route::get('admin/dashboard',[AdminController::class,'dashboardindex'])->name('admin.dashboard');
 
 Route::get('roomdetails/{id}',[PublicViewController::class,'roomdetails'])->name('room.details');
 
@@ -73,7 +73,7 @@ Route::get('halls/delete/{id}',[HallController::class,'delete'])->name('halls.de
 Route::get('halls/softdelete',[HallController::class,'SoftDelete'])->name('halls.softdelete');
 Route::get('halls/restore/{id}',[HallController::class,'restore'])->name('halls.restore');
 Route::get('halls/forcedelete/{id}',[HallController::class,'forcedelete'])->name('halls.forcedelete');
-// Route::resource('halls', HallController::class);
+Route::resource('halls', HallController::class);
 
 
 Route::get('services/delete/{id}',[ServiceController::class,'delete'])->name('services.delete');

@@ -1,5 +1,5 @@
-@extends('dashboard.dashboard')
-@section('dashboard-content')
+@extends('layouts.main_layout_dashboard')
+     @section('dashboaed-content')
 
     <div class="container pt-5 pe-5">
         <h2 class="pb-4"> قائمة الخدمات </h2>

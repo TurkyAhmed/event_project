@@ -32,10 +32,45 @@ class AdminController extends Controller
             $reservationStatusCounts[ 'تأخير الحجز'] ?? 0,
         ];
 
+        $hallsCount = DB::table('halls')->count();
+        $servicesCount =DB::table('services')->count();
+        $reservationsWaitingCount = DB::table('reservations')
+                                ->where('status','في الانتظار')
+                                ->where('deleted_at', null)
+                                ->count();
 
+        $reservationsCancelled = DB::table('reservations')
+                                ->where('status','تم الغاء الحجز')
+                                ->where('deleted_at', null)
+                                ->count();
+
+        $reservationsweekly = DB::table('reservations')
+                                ->where('status', 'تمت الموافقة')
+                                ->where('date_from', '>', today())
+                                ->where('date_from', '<', today()->addDays(7))
+                                ->count();
+
+        $usersCount = DB::table('users')
+                    ->leftJoin('employees','users.id','employees.user_id')
+                    ->where('employees.user_id',Null)
+                    ->count();
+
+        $reservationsWaiting = DB::table('reservations')
+                    ->where('status','في الانتظار')
+                    ->where('deleted_at', null)
+                    ->paginate(5);
+
+
+        // on view call as this [as array] that mean => $viewData['hallsCount'],$viewData['servicesCount']
+        $viewData['hallsCount'] = $hallsCount;
+        $viewData['servicesCount'] = $servicesCount;
+        $viewData['reservationsWaitingCount'] = $reservationsWaitingCount;
+        $viewData['reservationsCancelled'] = $reservationsCancelled;
+        $viewData['reservationsweekly'] = $reservationsweekly;
+        $viewData['usersCount'] = $usersCount;
 
         // return $data;
-        return view('dashboard.dashboard',compact('labels','data'));
+        return view('dashboard.dashboard',compact('labels','data','viewData','reservationsWaiting','hallsCount'));
 
     }
 

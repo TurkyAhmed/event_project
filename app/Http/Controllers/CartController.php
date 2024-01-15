@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+        private static $total = 0;
 
     public function addToCart(Request $request){
         $hall_id = $request->hall_id;
@@ -27,18 +28,33 @@ class CartController extends Controller
         } else {
             // Add the service to the cart with the specified quantity
             $cart[$hall_id] = [
+                'title'=>$request->title,
+                'interval'=>$request->interval,
+                'type_of_event'=>$request->type_of_event,
+                'note'=>$request->note,
                 'date_from'=>$request->date_from,
                 'date_to'=>$request->date_to,
                 'services_ids' => $request->service_id,
                 'price' => $request->price,
                 'quantity'=>$request->quantity
             ];
+
+            $totalPrice = $hall->price;
+
+            if(isset($cart[$hall_id]['services_ids'])){
+                for($i=0 ; $i<count($cart[$hall_id]['services_ids']); $i++) {
+                    $totalPrice +=$cart[$hall_id]['quantity'][$i]*$cart[$hall_id]['price'][$i];
+                }
+            }
+            
+            $cart[$hall_id] +=['totalPrice'=>$totalPrice];
         }
+
 
         session()->put('cart',$cart);
 
         $_cart= session()->get('cart', []);
-        // return $_cart;
+
 
         return redirect()->route('cart.index');
     }
@@ -84,6 +100,7 @@ class CartController extends Controller
         $allsevices = DB::table('services')
                         ->where('is_avaliable',1)
                         ->where('is_main_service',0)
+                        ->where('deleted_at', null)
                         ->get();
 
         $cartItem = $cart[$id];
@@ -99,23 +116,38 @@ class CartController extends Controller
 
         // return $request;
         $hallId = $request->hall_id;
+        $hall = Hall::findOrFail($hallId );
         $cart = session()->get('cart', []);
 
 
         if (isset($cart[$hallId])) {
             // Update the relevant values in the cart item
+            $cart[$hallId]['title'] = $request->title;
+            $cart[$hallId]['interval'] = $request->interval;
+            $cart[$hallId]['type_of_event'] = $request->type_of_event;
+            $cart[$hallId]['note'] = $request->note;
             $cart[$hallId]['date_from'] = $request->date_from;
             $cart[$hallId]['date_to'] = $request->date_to;
             $cart[$hallId]['price'] = $request->price;
             $cart[$hallId]['quantity'] = $request->quantity;
-            $cart[$hallId]['totalOfService'] = $request->totalOfService;
+            // $cart[$hallId]['totalOfService'] = $request->totalOfService;
             $cart[$hallId]['services_ids'] = $request->services_ids;
-            session()->put('cart', $cart);
+
+            $totalPrice = $hall->price;
+
+            if(isset($cart[$hallId]['services_ids'])){
+                for($i=0 ; $i<count($cart[$hallId]['services_ids']); $i++) {
+                    $totalPrice +=$cart[$hallId]['quantity'][$i]*$cart[$hallId]['price'][$i];
+                }
+            }
+
+            $cart[$hallId]['totalPrice']= $totalPrice;
+            // session()->put('cart', $cart);
         } else {
             //TODO error if not found throw exciption
+
         }
 
-        $_cart = session()->get('cart', []);
 
         return redirect()->route('cart.index') ;
     }

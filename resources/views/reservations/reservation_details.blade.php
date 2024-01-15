@@ -32,7 +32,7 @@
         <section class="reservation_details_services my-3">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-lg-5 bg-light">
+                    <div class="col-12 col-lg-4 bg-light ">
                         <div class="container">
                             <h3 class="text-center"> الخدمات المتوفره </h3>
                             <table class="table">
@@ -65,30 +65,63 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-7 mt-3">
+                    <div class="col-12 col-lg-7 mt-3 mx-5">
                         <form action="{{route('cart.addToCart')}}" method="Post">
                             @csrf
 
-                            <h4>فترة الحجز</h4>
-                            <div class="row">
-                                <div class="col-10 col-md-6 col-lg-4">
-                                    <div class="mb-3">
-                                        <label for="date_from" class="form-label">  من تاريخ </label>
-                                        <input type="date" name="date_from" class="form-control" value="{{ old('date_from', date('Y-m-d'))}}" id="date_from" >
-                                        @error('date_from')
-                                            <div class="text-danger fs-6">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                            <h4> بيانات الحجز </h4>
+                            <div class="row reservation_main_details bg-light pt-3 px-3">
+
+                                <div class="col-10 col-md-6 col-lg-4 mb-3">
+                                    <label for="title" class="form-label"> عنوان الحجز </label>
+                                    <input type="text" name="title" class="form-control" value="{{old('title')}}" id="title" placeholder=" عنوان الحجز ">
+                                    @error('title')
+                                        <div class="text-danger fs-6">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-10 col-md-6 col-lg-4 mb-3">
+                                    <label for="interval">الفترة</label>
+                                    <select class="form-control" id="interval" name="interval">
+                                        <option selected disabled >--اختار الفترة--</option>
+                                        <option value="صباح">صباح</option>
+                                        <option value="مساء">مساء</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-10 col-md-6 col-lg-4 mb-3">
+                                    <label for="type_of_event">نوع الحجز</label>
+                                    <select class="form-control" id="type_of_event" name="type_of_event">
+                                        <option selected disabled >--اختار نوع الحدث--</option>
+                                        <option value="مؤتمر">مؤتمر</option>
+                                        <option value="ندوة"> ندوة </option>
+                                        <option value="ورشة عمل">ورشة عمل</option>
+                                        <option value="تدريب"> تدريب </option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                                    <label for="date_from" class="form-label">  من تاريخ </label>
+                                    <input type="date" name="date_from" class="form-control" value="{{ old('date_from', date('Y-m-d'))}}" id="date_from" >
+                                    @error('date_from')
+                                        <div class="text-danger fs-6">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                                            <label for="date_to" class="form-label">  الى تاريخ </label>
+                                            <input type="date" name="date_to" class="form-control" value="{{ old('date_to', date('Y-m-d'))}}"  id="date_to" >
+                                            @error('date_to')
+                                                <div class="text-danger fs-6">{{ $message }}</div>
+                                            @enderror
                                     </div>
 
-                                    <div class="col-10 col-md-6 col-lg-4">
-                                    <div class="mb-3">
-                                        <label for="date_to" class="form-label">  الى تاريخ </label>
-                                        <input type="date" name="date_to" class="form-control" value="{{ old('date_to', date('Y-m-d'))}}"  id="date_to" >
-                                        @error('date_to')
-                                            <div class="text-danger fs-6">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                                    <div class="col-10 col-md-6 col-lg-4 mb-3">
+                                            <label for="note" class="form-label">  تفاصيل اخرى </label>
+                                            <input type="text" name="note" class="form-control" value="{{old('note')}}" id="note" placeholder="  تفاصيل اخرى ">
+                                            @error('note')
+                                                <div class="text-danger fs-6">{{ $message }}</div>
+                                            @enderror
                                     </div>
                             </div>
 
@@ -111,9 +144,9 @@
                                             {{$hall->name}}
                                             <input type="hidden" name="hall_id" value="{{$hall->id}}">
                                         </td>
-                                        <td >{{$hall->price}}</td>
+                                        <td >{{$hall->price - $hall->discount}}</td>
                                         <td >1</td>
-                                        <td >{{$hall->price}}</td>
+                                        <td >{{$hall->price - $hall->discount}}</td>
                                         <td ></td>
                                     </tr>
                                 </tbody>

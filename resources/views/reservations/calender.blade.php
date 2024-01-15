@@ -1,6 +1,5 @@
-@extends('dashboard.dashboard')
-
-@section('dashboard-content')
+@extends('layouts.main_layout_dashboard')
+     @section('dashboaed-content')
 
     <style>
         #calendar{

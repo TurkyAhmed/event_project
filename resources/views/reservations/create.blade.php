@@ -4,7 +4,21 @@
         <div class="container " style="margin-top: 12rem;">
             <div class="halls">
                         <div class="container-fluid">
-                            <div class="row">
+                            <div class="row justify-content-center">
+
+                                @foreach ($halls as $hall )
+                                    <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                                        <div class="reservation__hall__item set-bg" data-setbg="hr-1.jpg">
+                                            <div class="reservation__hall__title">
+                                                <h4> {{$hall->name}}</h4>
+                                                <h2><sup>$</sup>{{$hall->price - $hall->discount}}<span>/للحجز الواحد</span></h2>
+                                            </div>
+                                            <a href="{{route('reservations.reservation_details',$hall->id)}}"> احجز الان </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+{{--
                                 <div class="col-lg-3 col-md-6 col-sm-6 p-0">
                                     <div class="reservation__hall__item set-bg" data-setbg="hr-1.jpg">
                                         <div class="reservation__hall__title">
@@ -83,7 +97,8 @@
                                         </div>
                                          <a href="{{route('reservations.reservation_details',4)}}">Booking Now</a>
                                     </div>
-                                </div>
+                                </div> --}}
+
                             </div>
                         </div>
             </div>
