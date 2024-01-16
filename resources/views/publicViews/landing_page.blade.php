@@ -16,9 +16,22 @@
     <section class="hero">
         <div class="header">
 
+            <div class="col-md-6 px-0 text_hero ">
+                <h1 class="display-4 fst-italic"> حدث تايم <span class="display-6">حيث تبدأ</span></h1>
+                <div class="d-flex">
+                    <p class="lead my-3 display-6">   كل الفعاليات  </p>
+
+                    <p class="lead my-3 display-6 typing"></p>
+                </div>
+
+
+                <h1 id="typed-text"></h1>
+                <h1 id="typed-text"></h1>
+            </div>
+
             {{-- <img src="{{asset('assets/imgs/hero.png')}}" alt=""> --}}
             <!--Waves Container-->
-            <div>
+            <div class="svg">
                 <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                   viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
                   <defs>
@@ -375,5 +388,27 @@
 
     </section>
 
+
+    @push('scripts')
+    {{-- <script>
+        const typed = new typed('.typing', {
+            strings: ['Desinger','Developer'],
+            typeSpeed: 100,
+            // backSpeed: 50,
+            loop: true
+        });
+    </script> --}}
+
+    <script>
+        const typed = new Typed('.typing', {
+          strings: ['المؤتمرات', 'الندوات','الدورات','ورش العمل'],
+          typeSpeed: 100,
+          backSpeed: 50,
+          loop: true,
+          showCursor: false,
+        });
+      </script>
+
+    @endpush
 @endsection
 

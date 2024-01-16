@@ -14,7 +14,7 @@ class HallController extends Controller
     {
         $halls = Hall::paginate(10);
 
-        return view('halls.index',['halls'=>$halls]);
+        return view('halls.index',['halls'=>$halls, 'link_active'=>'halls']);
     }
 
 

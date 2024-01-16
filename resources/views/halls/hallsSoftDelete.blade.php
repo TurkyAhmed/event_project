@@ -5,8 +5,11 @@
 @extends('layouts.main_layout_dashboard')
      @section('dashboaed-content')
 
-    <div class="container pt-5 pe-5">
+     <div class="dashboard-top h_7rem">
+        <h3 class=" pt-5 pe-5 text-white">  القاعات  </h3>
+    </div>
 
+    <div class="form-fram mt-5">
         <h1> كل القاعات المحذوفة </h1>
 
         <table class="table table-dark table-striped mt-2">

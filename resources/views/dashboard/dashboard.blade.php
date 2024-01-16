@@ -121,7 +121,7 @@
                               <tr>
                                 <th scope="col">#</th>
                                 <th scope="col"> عنوان الحجز  </th>
-                                <th scope="col">  الجهةالحاجزة </th>
+                                <th scope="col">  الجهة الحاجزة </th>
                                 <th scope="col">  الحالة </th>
                                 <th scope="col">  من تاريخ </th>
                                 <th scope="col">  إلى تاريخ </th>
@@ -137,7 +137,7 @@
                                   <tr>
                                     <th scope="row">{{$counter}}</th>
                                     <td>{{$reservaion->title}} </td>
-                                    <td>{{$reservaion->user_id}}</td>
+                                    <td>{{$reservaion->name}}</td>
                                     <td>{{$reservaion->status}}</td>
                                     <td>{{$reservaion->date_from}}</td>
                                     <td>{{$reservaion->date_to}}</td>
@@ -213,6 +213,8 @@
                   datasets: [{
                     label: '# of Votes',            // title when hover
                     data: chartDate.data,
+                    // backgroundColor: ['#2c9bc5','#164e64','#0f3645','#4db1d7'],
+                    backgroundColor: ['#f00','#000','#0f0','#00f','#7fb9cf'],
                   }]
                 },
                 options: {

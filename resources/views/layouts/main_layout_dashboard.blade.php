@@ -2,6 +2,11 @@
 
 @section('content')
 
+@php
+    if(!isset($link_active)){
+        $link_active = 'main';
+    }
+@endphp
 
     <div class="container-fluid">
         <div class="row">
@@ -14,37 +19,37 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                       <li class="nav-item">
-                        <a href="{{route('admin.dashboard')}}" class="nav-link active" aria-current="page">
+                        <a href="{{route('admin.dashboard')}}" class="nav-link {{$link_active == 'main'? 'active' : '' }}" aria-current="page">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                           الرئيسية
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('halls.index')}}" class="nav-link link-dark">
+                        <a href="{{route('halls.index')}}" class="nav-link link-dark {{$link_active == 'halls'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                           القاعات
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('services.index')}}" class="nav-link link-dark">
+                        <a href="{{route('services.index')}}" class="nav-link link-dark {{$link_active == 'services'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                           الخدمات
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('employees.index')}}" class="nav-link link-dark">
+                        <a href="{{route('employees.index')}}" class="nav-link link-dark {{$link_active == 'employees'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
                           الموظفين
                         </a>
                       </li>
-                      <li>
-                        <a href="{{route('users.index')}}" class="nav-link link-dark">
+                      {{-- <li>
+                        <a href="{{route('users.index')}}" class="nav-link link-dark {{$link_active == 'users'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                           المستخدمين
                         </a>
-                      </li>
+                      </li> --}}
                       <li>
-                        <a href="{{route('reservations.index')}}" class="nav-link link-dark">
+                        <a href="{{route('reservations.index')}}" class="nav-link link-dark {{$link_active == 'reservations'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                           الحجوزات
                         </a>
@@ -56,13 +61,13 @@
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('reservations.getCalender')}}" class="nav-link link-dark">
+                        <a href="{{route('reservations.getCalender')}}" class="nav-link link-dark {{$link_active == 'calender'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                            التقويم
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('reservations.report')}}" class="nav-link link-dark">
+                        <a href="{{route('reservations.report')}}" class="nav-link link-dark reports">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                             التقارير
                         </a>
@@ -114,7 +119,7 @@
 
             </div>
 
-            <div id="dashboaed-content " class="col-10 ">
+            <div id="dashboaed-content " class="col-10 pe_2rem">
 
                 @yield('dashboaed-content')
 

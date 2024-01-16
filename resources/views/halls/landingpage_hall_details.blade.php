@@ -29,10 +29,18 @@
         <div class="row">
             <h1 class="mb-5"> {{$hall->name}}</h1>
 
+            <h4> سعر القاعة :</h4>
+            <p class="pe-4 fs-5">سعر القاعة للحجز الواحد  <strong>{{$hall->price}}<span target="dolar">$</span></strong> </p>
+            @if($hall->discount != 0)
+                <h5 class="mt-3">خصم القاعة :</h5>
+                <p class="pe-4 fs-5"> الخصم <strong>{{$hall->discount}}<span target="dolar">$</span></strong> </p>
+                <p class="pe-4 fs-5"> السعر السابق <del>{{$hall->price}}</del><span target="dolar">$</span> السعر الحالي <ins>{{$hall->price - $hall->discount}}</ins><span target="dolar">$</span> </p>
+            @endif
+
             @php
                 $descriptions = explode('|',$hall->description);
             @endphp
-            <h4 class=""> سعة القاعة : </h4>
+            <h4 class="mt-3"> سعة القاعة : </h4>
             @if($descriptions[0] != null)
                 <p class="fs-5 pe-5"> تتسع القاعة للـ {{$hall->capacity}} شخص , ولكن قد تختلف سعتها على حسب نظام ترتيب الطاولات وسيكون سعتها موضحا بالشكل التالي :</p>
                 <div class="row mb-5">
@@ -111,13 +119,7 @@
                 @endforeach
             </div>
 
-            <h4> سعر القاعة :</h4>
-            <p class="pe-4 fs-5">سعر القاعة للحجز الواحد  <strong>{{$hall->price}}<span target="dolar">$</span></strong> </p>
-            @if($hall->discount != 0)
-                <h5 class="mt-3">خصم القاعة :</h5>
-                <p class="pe-4 fs-5"> الخصم <strong>{{$hall->discount}}<span target="dolar">$</span></strong> </p>
-                <p class="pe-4 fs-5"> السعر السابق <del>{{$hall->price}}</del><span target="dolar">$</span> السعر الحالي <ins>{{$hall->price - $hall->discount}}</ins><span target="dolar">$</span> </p>
-            @endif
+
 
 
             {{-- @php

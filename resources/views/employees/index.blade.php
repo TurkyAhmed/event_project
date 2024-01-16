@@ -6,9 +6,12 @@
      @section('dashboaed-content')
 
 
-    <div class="container pt-5 pe-5">
-        <h2 class="pb-4"> قائمة الموظفين </h2>
-        <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('employees.create')}}"> إضافة موظف  </a>        <table class="table table-striped">
+    <div class="container my-bg-img ">
+        <div class="dashboard-top nb-5 h_7rem">
+            <h3 class=" pt-5 pe-5 text-white"> قائمة الموظفين  </h3>
+        </div>
+
+        <a class="btn btn-outline-primary my-bg-grad mb-3 mt-5" href="{{route('employees.create')}}"> إضافة موظف  </a>        <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>

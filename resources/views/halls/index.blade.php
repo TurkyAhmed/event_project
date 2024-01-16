@@ -2,8 +2,11 @@
 @extends('layouts.main_layout_dashboard')
      @section('dashboaed-content')
 
+    <div class="dashboard-top h_7rem">
+        <h3 class=" pt-5 pe-5 text-white"> قائمة القاعات  </h3>
+    </div>
+
     <div class="container pt-5 pe-5">
-        <h2 class="pb-4"> قائمة القاعات </h2>
 
         @if(session('successMsg'))
             <div class="alert alert-success">
@@ -27,11 +30,11 @@
                   <tr>
                     <th scope="row">1</th>
                     <td>{{$hall->name}} </td>
-                    <td>{{$hall->price}}</td>
+                    <td><strong>{{$hall->price}} $</strong></td>
                     <td>
-                        <a class="  " href="{{route('halls.show',$hall->id)}}"> <i class="fa-solid fa-circle-info"></i> |</a>
-                        <a class=" " href="{{route('halls.edit',$hall->id)}}"> <i class="fa-solid fa-pen-to-square"></i> |</a>
-                        <a class=" " href="{{route('halls.delete',$hall->id)}}"> <i class="fa-solid fa-trash"></i> </a>
+                        <a class="ps-3 fs-5 " href="{{route('halls.show',$hall->id)}}"> <i class="fa-solid fa-circle-info"></i> </a>
+                        <a class="ps-3 fs-5" href="{{route('halls.edit',$hall->id)}}"> <i class="fa-solid fa-pen-to-square"></i> </a>
+                        <a class="fs-5 " href="{{route('halls.delete',$hall->id)}}"> <i class="fa-solid fa-trash"></i> </a>
                     </td>
                   </tr>
 

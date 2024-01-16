@@ -1,6 +1,9 @@
 :root{
     --_primary_grad : linear-gradient(60deg, rgba(126,160,183,1) 0%, rgba(9, 87, 121, 0.704) 38%, rgba(89, 130, 142, 0.808) 100%);
     --_primary: #1b617d;
+    --_primary_hover:#2992bc;
+    --_primary_bg:#2482a7;
+    --_primary_light:#ddf0f7;
 }
 
 @font-face {
@@ -30,6 +33,14 @@ body{
 
 .fs_4rem{
     font-size: 4rem;
+}
+
+.pe_2rem{
+    padding-right: 2rem;
+}
+
+.bg_primary_light{
+    background-color: var(--_primary_light);
 }
 
 .h_100vh{
@@ -197,6 +208,7 @@ body{
   /*Shrinking for mobile*/
   @media (max-width: 768px) {
     .waves {
+      /* height:6.5rem; */
       height:3.5rem;
       min-height:40px;
     }
@@ -210,6 +222,21 @@ body{
         height: 90vh;
     }
   }
+
+  .header>div.svg{
+    position: relative;
+    /* top: 59vh; */
+    top: 84vh;
+  }
+
+  .text_hero{
+    position: absolute;
+    top: 10rem;
+    right: 8rem;
+    text-align: right;
+  }
+
+
 
   /*halls_reservation_create*/
 
@@ -300,11 +327,40 @@ body{
   }
 
   .halls .set-bg[data-setbg="hr-1.jpg"] {
+    background-image: url("../imgs/sada1.jpg");
+    background-size: cover;
+  }
+
+  .halls .set-bg[data-setbg="hr-2.jpg"] {
     background-image: url("../imgs/istdama.jpg");
     background-size: cover;
   }
 
-  .halls .set-bg[data-setbg="family.jpg"] {
+  .halls .set-bg[data-setbg="hr-3.jpg"] {
+    background-image: url("../imgs/shabam.jpg");
+    background-size: cover;
+  }
+
+  .halls .set-bg[data-setbg="hr-4.jpg"] {
+    background-image: url("../imgs/istdama.jpg");
+    background-size: cover;
+  }
+
+  .halls .set-bg[data-setbg="hr-5.jpg"] {
+    background-image: url("../imgs/istdama.jpg");
+    background-size: cover;
+  }
+
+  .halls .set-bg[data-setbg="hr-6.jpg"] {
+    background-image: url("../imgs/Luxury.jpg");
+    background-size: cover;
+  }
+  .halls .set-bg[data-setbg="hr-7.jpg"] {
+    background-image: url("../imgs/istdama.jpg");
+    background-size: cover;
+  }
+
+  /* .halls .set-bg[data-setbg="family.jpg"] {
     background-image: url("../imgs/istdama.jpg");
     background-size: cover;
   }
@@ -317,7 +373,7 @@ body{
   .halls .set-bg[data-setbg="suite.png"]  {
     background-image: url("../imgs/istdama.jpg");
     background-size: cover;
-  }
+  } */
 
   /**/
 
@@ -331,10 +387,6 @@ body{
       background-position: 13%;
   }
 
-  .header>div{
-    position: relative;
-    top: 85vh;
-  }
 
   /*** End Hero ***/
 
@@ -616,9 +668,11 @@ nav{
     backdrop-filter: blur(5px);
     width: 40rem;
     margin: auto;
-    border: 5px solid;
-    border-color: #bcd2df;
-    padding: 1.5rem
+    /* border: 5px solid; */
+    /* border-color: #bcd2df; */
+    padding: 1.5rem;
+    box-shadow:0 2px 12px -2px #bcd2df;
+    border-radius: 10px;
 }
 
 .myservices i{
@@ -863,4 +917,42 @@ img[targer="l_hall2"]{
     box-shadow: -1px 1px 10px 0px rgba(0,0,0,0.3);
     border-radius: 10px;
 }
+
+.h_7rem{
+    height: 7rem;
+}
+
+.mt-7rem{
+    margin-top: 7rem;
+}
+
+table.table thead{
+    background-color: var(--_primary_bg);
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    color: var(--bs-table-striped-color);
+    background-color: var(--_primary_light);
+}
+
+table.table tr{
+    font-size: 1.15rem;
+    height: 3rem;
+}
+
+table.table tr td{
+    padding-top: 0.8rem;
+}
+
+.nav-item a{
+    color: #000;
+}
+
+.nav-item a:visited{
+    color: #000;
+}
+
+
 

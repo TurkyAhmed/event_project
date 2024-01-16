@@ -1,8 +1,12 @@
 @extends('layouts.main_layout_dashboard')
      @section('dashboaed-content')
 
-    <div class="container pt-5 pe-5">
-        <h2 class="pb-4"> قائمة الخدمات </h2>
+     <div class="container my-bg-img">
+        <div class="dashboard-top nb-5 h_7rem">
+            <h3 class=" pt-5 pe-5 text-white"> قائمة الخدمات  </h3>
+        </div>
+
+        <h2 class="pb-4"> </h2>
         <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('services.create')}}"> إضافة خدمة  </a>
                 <table class="table table-striped">
             <thead>

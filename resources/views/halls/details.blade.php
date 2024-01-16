@@ -6,9 +6,12 @@
 @extends('layouts.main_layout_dashboard')
      @section('dashboaed-content')
 
-<div class="container py-5 pe-5 my-bg-img">
+<div class="container my-bg-img">
+    <div class="dashboard-top nb-5 h_7rem">
+        <h3 class=" pt-5 pe-5 text-white">  القاعات  </h3>
+    </div>
 
-    <div class="form-fram">
+    <div class="form-fram mt-5">
         <div class="sub-header-page mb-3">
             <h3 class="text-center">  القاعات </h3>
         </div>

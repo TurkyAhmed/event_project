@@ -19,7 +19,10 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::all();
+        $reservations = DB::table('reservations')
+                        ->join('users','reservations.user_id','users.id')
+                        ->select('reservations.*','users.name as username')
+                        ->get();
 
         return view('reservations.index',compact('reservations'));
     }
@@ -38,6 +41,7 @@ class ReservationController extends Controller
     // Approved a waiting resrvating
     public function reservationApproved($id){
         $reservation = Reservation::findorfail($id);
+        return $reservation;
 
         $user = User::find($reservation->user_id);
 
@@ -157,7 +161,7 @@ class ReservationController extends Controller
     public function show( $id)
     {
         $reservationDetails = DB::select("
-        select reservations.*, reservation__details.*,halls.name as hall_name, halls.price as hall_price , services.name as service_name, users.name
+        select reservations.*, reservation__details.*,halls.name as hall_name, halls.price as hall_price , services.name as service_name, users.name as username
         from reservations inner join reservation__details
         on reservations.id = reservation__details.reservation_id
         inner join services on services.id = reservation__details.service_id
@@ -166,7 +170,7 @@ class ReservationController extends Controller
         where reservations.id = $id && reservation__details.deleted_at is null;
         ");
 
-        return $reservationDetails;
+        // return $reservationDetails;
 
         return view('reservations.details',compact('reservationDetails')) ;
         // return $reservation_details ;

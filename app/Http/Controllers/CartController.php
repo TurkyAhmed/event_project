@@ -46,7 +46,7 @@ class CartController extends Controller
                     $totalPrice +=$cart[$hall_id]['quantity'][$i]*$cart[$hall_id]['price'][$i];
                 }
             }
-            
+
             $cart[$hall_id] +=['totalPrice'=>$totalPrice];
         }
 
@@ -84,6 +84,8 @@ class CartController extends Controller
 
         $services_ids = $cartItem['services_ids'];
         $services = Service::whereIn('id',$services_ids)->get();
+
+        // return $cartItem;
 
         return view('cart.details',compact('hall','cartItem','services'));
     }

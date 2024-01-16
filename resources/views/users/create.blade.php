@@ -2,7 +2,11 @@
      @section('dashboaed-content')
 
 
-<div class="container pt-5 pe-5">
+ <div class="container my-bg-img">
+    <div class="dashboard-top nb-5 h_7rem">
+        <h3 class=" pt-5 pe-5 text-white">  الموظفين  </h3>
+    </div>
+
 
     <form action="{{route('users.store')}}" method="post">
         @csrf

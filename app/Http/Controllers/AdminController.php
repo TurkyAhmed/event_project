@@ -56,6 +56,7 @@ class AdminController extends Controller
                     ->count();
 
         $reservationsWaiting = DB::table('reservations')
+                    ->join('users','users.id','user_id')
                     ->where('status','في الانتظار')
                     ->where('deleted_at', null)
                     ->paginate(5);
