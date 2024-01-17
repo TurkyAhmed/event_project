@@ -2,9 +2,19 @@
      @section('dashboaed-content')
 
 
-<div class="container pt-5 pe-5">
-    <h2 class="pb-4"> قائمة الحجوزات </h2>
-    <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('reservations.create')}}"> إضافة حجز  </a>
+     <div class="dashboard-top h_7rem">
+        <h3 class=" pt-5 pe-5 text-white"> قائمة الحجوزات  المنتظرة</h3>
+    </div>
+
+    <div class="container pt-5 pe-5">
+
+        @if(session('successMsg'))
+            <div class="alert alert-success">
+                {{ session('successMsg') }}
+            </div>
+        @endif
+
+    {{-- <a class="btn btn-outline-primary my-bg-grad mb-3" href="{{route('reservations.create')}}"> إضافة حجز  </a> --}}
     <table class="table table-striped">
         <thead>
           <tr>
@@ -26,10 +36,10 @@
               <tr>
                 <th scope="row">{{$counter}}</th>
                 <td>{{$reservaion->title}} </td>
-                <td>{{$reservaion->user_id}}</td>
+                <td>{{$reservaion->username}}</td>
                 <td>{{$reservaion->status}}</td>
-                <td>{{$reservaion->date_from}}</td>
-                <td>{{$reservaion->date_to}}</td>
+                <td>{{ date('Y-m-d', strtotime($reservaion->date_from)) }}</td>
+                <td>{{date('Y-m-d', strtotime($reservaion->date_to))}}</td>
                 <td>
                     <a class=" btn btn-primary " href="{{route('reservations.reservationApproved',$reservaion->id)}}"> تأكيد الحجز </a>
                     <a class=" btn btn-secondary " href="{{route('reservations.reservationcancelled',$reservaion->id)}}"> الغاء الحجز </a>
@@ -44,6 +54,40 @@
 
         </tbody>
     </table>
+
+    <div class="pagination justify-content-between">
+        <ul class="pagination justify-content-center">
+            @if ($reservations->onFirstPage())
+                <li class="page-item disabled">
+                    <span class="page-link">&laquo;</span>
+                </li>
+            @else
+                <li class="page-item">
+                    <a class="page-link" href="{{ $reservations->previousPageUrl() }}" rel="prev">&laquo;</a>
+                </li>
+            @endif
+            @foreach ($reservations->getUrlRange(1, $reservations->lastPage()) as $page => $url)
+                <li class="page-item {{ $page == $reservations->currentPage() ? 'active' : '' }}">
+                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                </li>
+            @endforeach
+            @if ($reservations->hasMorePages())
+                <li class="page-item">
+                    <a class="page-link" href="{{ $reservations->nextPageUrl() }}" rel="next">&raquo;</a>
+                </li>
+            @else
+                <li class="page-item disabled">
+                    <span class="page-link">&raquo;</span>
+                </li>
+            @endif
+        </ul>
+
+        <!-- Pagination label -->
+        <div class="pagination-label">
+            صفحة {{ $reservations->currentPage() }} من {{ $reservations->lastPage() }}
+        </div>
+    </div>
+
 </div>
 
 @endsection

@@ -43,7 +43,8 @@
         <p class="fs-5"> التاريخ : من {{$cartItem['date_from']}} الى  {{$cartItem['date_to']}}</p>
         <p class="fs-5"> الملاحظات : {{$cartItem['note'] ? $cartItem['note'] : "لا توجد ملاحظات"}}</p>
 
-        <table class="table table-striped">
+        @if (isset($services))
+            <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -54,6 +55,9 @@
               </tr>
             </thead>
             <tbody>
+
+
+
             @php
                 $i=1;
             @endphp
@@ -70,8 +74,10 @@
                 @endphp
             @endforeach
 
+
             </tbody>
-        </table>
+            </table>
+        @endif
 
         <p class="fs-5 mt-4 mb-5"> اجمالي الحجز : <strong>{{$cartItem['totalPrice']}}$</strong> </p>
 

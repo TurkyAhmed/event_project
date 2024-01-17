@@ -101,7 +101,7 @@
                                 <div class="col-10 col-md-6 col-lg-4">
                                     <div class="mb-3">
                                         <label for="date_from" class="form-label">  من تاريخ </label>
-                                        <input type="date" name="date_from" class="form-control" value="{{ old('date_from', $cartItem['date_from'])}}" id="date_from" >
+                                        <input type="date" name="date_from" class="form-control" value="{{ old('date_from', $cartItem['date_from'])}}" min={{date('Y-m-d')}} id="date_from" >
                                         @error('date_from')
                                             <div class="text-danger fs-6">{{ $message }}</div>
                                         @enderror
@@ -154,22 +154,24 @@
                                     @php
                                         $total = $hall->price;
                                     @endphp
-                                    @foreach ($cartItem['services_ids'] as $index => $serviceId)
-                                    <tr>
-                                        <td scope="col">1</td>
-                                        <td >
-                                            {{$services[$index]->name}}
-                                            <input type="hidden" name="services_ids[]" value="{{$services[$index]->id}}">
-                                        </td>
-                                        <td ><input type="text" class="border-0 w_6rem" name="price[]" value="{{$cartItem['price'][$index]}}" /></td>
-                                        <td ><input type="number" class="w_6rem" name="quantity[]" value="{{$cartItem['quantity'][$index]}}" min="1" /></td>
-                                        <td ><input type="text" class="border-0 w_6rem" name="totalOfService[]" value="{{$cartItem['price'][$index] * $cartItem['quantity'][$index]}}" /></td>
-                                        <td> <p class=" btn_cancel" style="cursor: pointer;"> الغاء </p> </td>
-                                    </tr>
-                                    @php
-                                        $total += $cartItem['price'][$index] * $cartItem['quantity'][$index];
-                                    @endphp
-                                    @endforeach
+                                    @if (isset($services))
+                                        @foreach ($cartItem['services_ids'] as $index => $serviceId)
+                                        <tr>
+                                            <td scope="col">1</td>
+                                            <td >
+                                                {{$services[$index]->name}}
+                                                <input type="hidden" name="services_ids[]" value="{{$services[$index]->id}}">
+                                            </td>
+                                            <td ><input type="text" class="border-0 w_6rem" name="price[]" value="{{$cartItem['price'][$index]}}" /></td>
+                                            <td ><input type="number" class="w_6rem" name="quantity[]" value="{{$cartItem['quantity'][$index]}}" min="1" /></td>
+                                            <td ><input type="text" class="border-0 w_6rem" name="totalOfService[]" value="{{$cartItem['price'][$index] * $cartItem['quantity'][$index]}}" /></td>
+                                            <td> <p class=" btn_cancel" style="cursor: pointer;"> الغاء </p> </td>
+                                        </tr>
+                                        @php
+                                            $total += $cartItem['price'][$index] * $cartItem['quantity'][$index];
+                                        @endphp
+                                        @endforeach
+                                    @endif
                                 </tbody>
                                 <tfoot>
                                     <tr>

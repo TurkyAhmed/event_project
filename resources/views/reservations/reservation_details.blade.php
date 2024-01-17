@@ -1,33 +1,31 @@
 @extends('layouts.main_layout')
 @section('content')
 
-    <div class="reservation_details h_100vh">
-        <div id="reservation_details" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#reservation_details" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#reservation_details" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#reservation_details" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
+    <section class="landindpage_halls_hero h_100vh">
+        <div id="carousellandindpage_halls_hero" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner ">
               <div class="carousel-item active">
-                <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
+                <img src='{{asset("assets/imgs/".$imgs[0])}}' class="d-block w-100" alt="...">
               </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
-              </div>
+              @for ($i=1; $i < count($imgs); $i++)
+                <div class="carousel-item">
+                  <img src='{{asset("assets/imgs/".$imgs[$i])}}' class="d-block w-100" alt="...">
+                </div>
+              @endfor
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#reservation_details" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#reservation_details" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carousellandindpage_halls_hero" data-bs-slide-to="0" class="active thumbail" aria-current="true" aria-label="Slide 1">
+                    <img src='{{asset("assets/imgs/".$imgs[0])}}' class="d-block w-100" alt="...">
+                </button>
+                @for ($i=1; $i < count($imgs); $i++)
+                    <button type="button" data-bs-target="#carousellandindpage_halls_hero" data-bs-slide-to="{{$i}}" class=" thumbail" aria-current="true" aria-label="Slide {{$i+1}}">
+                        <img src='{{asset("assets/imgs/".$imgs[$i])}}' class="d-block w-100" alt="...">
+                    </button>
+                @endfor
+            </div>
         </div>
+    </section>
 
         <section class="reservation_details_services my-3">
             <div class="container-fluid">
@@ -47,19 +45,19 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($services as $service)
+                                    @for($i=0; $i < count($services); $i++)
                                     <tr >
-                                        <th  scope="row">1</th>
-                                        <td >{{$service->name}}<input type="hidden" name="service_id[]" value="{{$service->id}}"></td>
+                                        <th  scope="row">{{$i+1}}</th>
+                                        <td >{{$services[$i]->name}}<input type="hidden" name="service_id[]" value="{{$services[$i]->id}}"></td>
                                         <td >1 </td>
-                                        <td > {{$service->price}}</td>
+                                        <td > {{$services[$i]->price}}</td>
                                         {{-- <td class="text-center total_service_price"></td> --}}
                                         <td >
                                             <button class="btn btn-primary btn_add"> اضافة </button>
                                             {{-- <button class="btn btn-secondary btn_cancel"> الغاء </button> --}}
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    @endfor
                                 </tbody>
                             </table>
                         </div>
@@ -102,7 +100,7 @@
 
                                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                                     <label for="date_from" class="form-label">  من تاريخ </label>
-                                    <input type="date" name="date_from" class="form-control" value="{{ old('date_from', date('Y-m-d'))}}" id="date_from" >
+                                    <input type="date" name="date_from" class="form-control" value="{{ old('date_from', date('Y-m-d'))}}" min={{date('Y-m-d')}} id="date_from" >
                                     @error('date_from')
                                         <div class="text-danger fs-6">{{ $message }}</div>
                                     @enderror
@@ -110,7 +108,7 @@
 
                                     <div class="col-12 col-md-6 col-lg-4 mb-3">
                                             <label for="date_to" class="form-label">  الى تاريخ </label>
-                                            <input type="date" name="date_to" class="form-control" value="{{ old('date_to', date('Y-m-d'))}}"  id="date_to" >
+                                            <input type="date" name="date_to" class="form-control" value="{{ old('date_to', date('Y-m-d'))}}" min={{date('Y-m-d')}}  id="date_to" >
                                             @error('date_to')
                                                 <div class="text-danger fs-6">{{ $message }}</div>
                                             @enderror
@@ -158,7 +156,7 @@
                                 </tfoot>
                             </table>
                             <div>
-                                <button type="submit" class="btn btn-success">إضافة إلى العربة</button>
+                                <button type="submit" class="btn btn-primary">إضافة إلى العربة</button>
                             </div>
                         </form>
                     </div>
@@ -219,7 +217,7 @@
                 let totalOfService =document.createElement('input');
                 totalOfService.name="totalOfService[]";
                 totalOfService.classList ="w_6rem border-0";
-                totalOfService.type='number';
+                totalOfService.type='text';
                 totalOfService.value=_total;
 
 
@@ -243,7 +241,6 @@
                 i++;
 
                 total.text(parseInt(total.text())+_total);
-                // console.log(+total.text());
 
                 btn_cancel = $('.btn_cancel');
 
@@ -259,27 +256,14 @@
 
               let serviceName = row.find('input[name="service_name[]"]').val();
               let quantity = parseInt(row.find('input[name="quantity[]"]').val());
-            //   let quantity = parseInt(row.find('td:nth-child(3)').text());
               let price = parseFloat(row.find('input[name="price[]"]').val());
               let _total = price * quantity;
 
-              console.log('==========');
-              console.log(quantity);
-              console.log(price);
-              console.log(_total);
-              console.log('==========');
-
-            //   let pillTable = $('#hall_with_services');
-            //   console.log(pillTable);
-            //   let pillTableRow = pillTable.find('td:contains("' + serviceName + '")').closest('tr');
-            //   pillTableRow.remove();
-
-            row.remove();
+              row.remove();
 
               i--;
 
               total.text(parseInt(total.text()) - _total);
-              console.log(+total.text());
             });
 
 

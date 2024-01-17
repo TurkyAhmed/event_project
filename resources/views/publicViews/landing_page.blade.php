@@ -209,7 +209,7 @@
 
                 <div class="col-10 col-md-6 col-lg-3 mb-3 gap-2">
                     <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
-                        <img src="./assets/imgs/slam.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
+                        <img src="./assets/imgs/sada1.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
                           <h5 class="card-title"> قاعة السعادة </h5>
                           <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
@@ -239,7 +239,7 @@
 
                  <div class="col-10 col-md-6 col-lg-3 mb-3 gap-2">
                     <div class="card card_shadow p-0 gap-0 rounded-3" style="width: 19rem;">
-                        <img src="./assets/imgs/istdama.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
+                        <img src="./assets/imgs/istdama1.jpg" style="height:13.5rem" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
                           <h5 class="card-title"> قاعة الاستدامة  </h5>
                           <p class="card-text">توفر إمكانية عقد دورات وورش عمل. كما تحتوي القاعة على نظام تكييف وشبكة إنترنت واي فاي.</p>
@@ -269,7 +269,7 @@
 
             </div>
             <div class="col-4 w-100 text-center mt-3 btn_more_halls">
-                <p><a class="btn btn-primary bg-grad" href="{{route('halls.landingpageHalls')}}"> المزيد </a></p>
+                <p><a class="btn btn-primary bg-grad btn_halls_more" href="{{route('halls.landingpageHalls')}}"> المزيد </a></p>
             </div>
         </div>
     </section>
@@ -399,15 +399,7 @@
         });
     </script> --}}
 
-    <script>
-        const typed = new Typed('.typing', {
-          strings: ['المؤتمرات', 'الندوات','الدورات','ورش العمل'],
-          typeSpeed: 100,
-          backSpeed: 50,
-          loop: true,
-          showCursor: false,
-        });
-      </script>
+
 
     @endpush
 @endsection

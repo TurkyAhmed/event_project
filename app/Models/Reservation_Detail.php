@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ReservationStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,4 +33,8 @@ class Reservation_Detail extends Model
     public function service(){
         return $this->hasOne(Service::class);
     }
+
+    protected $casts = [
+        'status'=>ReservationStatus::class,
+    ];
 }

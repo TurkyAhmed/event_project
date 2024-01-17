@@ -25,25 +25,24 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($halls as $hall)
-
+                @for ($i=0; $i < count($halls); $i++)
                   <tr>
-                    <th scope="row">1</th>
-                    <td>{{$hall->name}} </td>
-                    <td><strong>{{$hall->price}} $</strong></td>
+                    <th scope="row">{{$i +1}}</th>
+                    <td>{{$halls[$i]->name}} </td>
+                    <td><strong>{{$halls[$i]->price}} $</strong></td>
                     <td>
-                        <a class="ps-3 fs-5 " href="{{route('halls.show',$hall->id)}}"> <i class="fa-solid fa-circle-info"></i> </a>
-                        <a class="ps-3 fs-5" href="{{route('halls.edit',$hall->id)}}"> <i class="fa-solid fa-pen-to-square"></i> </a>
-                        <a class="fs-5 " href="{{route('halls.delete',$hall->id)}}"> <i class="fa-solid fa-trash"></i> </a>
+                        <a class="ps-3 fs-5 " href="{{route('halls.show',$halls[$i]->id)}}"> <i class="fa-solid fa-circle-info"></i> </a>
+                        <a class="ps-3 fs-5" href="{{route('halls.edit',$halls[$i]->id)}}"> <i class="fa-solid fa-pen-to-square"></i> </a>
+                        <a class="fs-5 " href="{{route('halls.delete',$halls[$i]->id)}}"> <i class="fa-solid fa-trash"></i> </a>
                     </td>
                   </tr>
 
-                @endforeach
+                  @endfor
 
             </tbody>
         </table>
 
-        <div class="pagination">
+        <div class="pagination justify-content-between">
             <ul class="pagination justify-content-center">
                 @if ($halls->onFirstPage())
                     <li class="page-item disabled">
@@ -69,12 +68,14 @@
                     </li>
                 @endif
             </ul>
+
+            <!-- Pagination label -->
+            <div class="pagination-label">
+                صفحة {{ $halls->currentPage() }} من {{ $halls->lastPage() }}
+            </div>
         </div>
 
-        <!-- Pagination label -->
-        <div class="pagination-label">
-            Page {{ $halls->currentPage() }} of {{ $halls->lastPage() }}
-        </div>
+
 
     </div>
 

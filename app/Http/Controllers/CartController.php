@@ -83,15 +83,17 @@ class CartController extends Controller
         $cartItem = $cart[$id];
 
         $services_ids = $cartItem['services_ids'];
-        $services = Service::whereIn('id',$services_ids)->get();
+
+        if(isset($services_ids)){
+            $services = Service::whereIn('id',$services_ids)->get();
+        }else{
+            $services = null;
+        }
 
         // return $cartItem;
 
         return view('cart.details',compact('hall','cartItem','services'));
     }
-
-
-
 
     public function edit($id){
         $cart = session()->get('cart', []);
@@ -108,7 +110,11 @@ class CartController extends Controller
         $cartItem = $cart[$id];
 
         $services_ids = $cartItem['services_ids'];
-        $services = Service::whereIn('id',$services_ids)->get();
+        if(isset($services_ids)){
+            $services = Service::whereIn('id',$services_ids)->get();
+        }else{
+            $services = null;
+        }
 
         return view('cart.edit',compact('hall','cartItem','services','allsevices'));
     }
@@ -116,11 +122,10 @@ class CartController extends Controller
 
     public function update(Request $request ,$id){
 
-        // return $request;
+        return $request;
         $hallId = $request->hall_id;
         $hall = Hall::findOrFail($hallId );
         $cart = session()->get('cart', []);
-
 
         if (isset($cart[$hallId])) {
             // Update the relevant values in the cart item
@@ -144,12 +149,11 @@ class CartController extends Controller
             }
 
             $cart[$hallId]['totalPrice']= $totalPrice;
-            // session()->put('cart', $cart);
+            session()->put('cart', $cart);
         } else {
             //TODO error if not found throw exciption
 
         }
-
 
         return redirect()->route('cart.index') ;
     }

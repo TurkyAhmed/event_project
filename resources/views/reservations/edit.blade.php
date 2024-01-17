@@ -72,7 +72,7 @@
                                 <div class="col-10 col-md-6 col-lg-4">
                                     <div class="mb-3">
                                         <label for="date_from" class="form-label">  من تاريخ </label>
-                                        <input type="date" name="date_from" class="form-control" value="{{date('Y-m-d'), $reservationDetails[0]->date_from}}" id="date_from" >
+                                        <input type="date" name="date_from" class="form-control" value="{{date('Y-m-d'), $reservationDetails[0]->date_from}}" min={{date('Y-m-d')}} id="date_from" >
                                         @error('date_from')
                                             <div class="text-danger fs-6">{{ $message }}</div>
                                         @enderror
@@ -82,7 +82,7 @@
                                     <div class="col-10 col-md-6 col-lg-4">
                                     <div class="mb-3">
                                         <label for="date_to" class="form-label">  الى تاريخ </label>
-                                        <input type="date" name="date_to" class="form-control" value="{{ date('Y-m-d'), $reservationDetails[0]->date_to}}"  id="date_to" >
+                                        <input type="date" name="date_to" class="form-control" value="{{ date('Y-m-d'), $reservationDetails[0]->date_to}}" min={{date('Y-m-d')}} id="date_to" >
                                         @error('date_to')
                                             <div class="text-danger fs-6">{{ $message }}</div>
                                         @enderror

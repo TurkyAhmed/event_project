@@ -5,7 +5,7 @@
      @section('dashboaed-content')
 
 
-     <div class="container my-bg-img">
+     <div class="container px-0 my-bg-img">
         <div class="dashboard-top nb-5 h_7rem">
             <h3 class=" pt-5 pe-5 text-white">  الموظفين  </h3>
         </div>
@@ -26,22 +26,22 @@
             </div>
             <div class="card-body">
                 <div class="mb-3">
-                    <label for="name" class="form-label"> اسم الموظف :</label>
+                    <label for="name" class="form-label"> اسم الموظف ::</label>
                     <p class="d-inline-block">{{$user_with_employee->name}}</p>
                   </div>
 
                 <div class="mb-3">
-                    <label for="phone" class="form-label">  رقم جوال الموظف </label>
+                    <label for="phone" class="form-label">  رقم جوال الموظف :</label>
                     <p class="d-inline-block">{{$user_with_employee->phone}}</p>
                 </div>
 
                 <div class="mb-3">
-                    <label for="address" class="form-label"> عنوان الموظف</label>
+                    <label for="address" class="form-label"> عنوان الموظف:</label>
                     <p class="d-inline-block">{{$user_with_employee->employee->address}}</p>
                 </div>
 
                 <div class="mb-3">
-                    <label for="email" class="form-label"> البريد الالكتروني </label>
+                    <label for="email" class="form-label"> البريد الالكتروني :</label>
                     <p class="d-inline-block">{{$user_with_employee->email}}</p>
                 </div>
 

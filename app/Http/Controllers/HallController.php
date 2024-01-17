@@ -9,6 +9,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class HallController extends Controller
 {
+    private $imgs =[
+                    '1'=>['sada1.jpg','sada2.jpg','sada3.jpg','sada4.jpg'], //2 hagrain 6shabam
+                    '2'=>['istdama1.jpg','istdama2.jpg','istdama3.jpg'],
+                    '3'=>['istdama1.jpg','istdama2.jpg','istdama3.jpg'],
+                    '4'=>['con1.jpg','con2.jpg','con3.jpg'],
+                    '5'=>['salam1.jpg','salam2.jpg','salam3.jpg','salam4.jpg'],
+                    '6'=>['aon1.jpg','aon2.jpg','aon3.jpg',],
+                    '7'=>['aon1.jpg','aon2.jpg','aon3.jpg',],
+                    '8'=>['aon1.jpg','aon2.jpg','aon3.jpg',],
+    ];
+
+
 
     public function index()
     {
@@ -35,7 +47,6 @@ class HallController extends Controller
     {
         $hall = Hall::find($id);
         return view('halls.details',compact('hall'));
-        // return $hall;
     }
 
 
@@ -88,14 +99,17 @@ class HallController extends Controller
 
 
     public function landingpageHalls(){
-        $halls = Hall::all();
-        return view('halls.landingpage_halls',compact('halls'));
+        $halls = Hall::all()->where('is_avaliable',1);
+        $imgs = $this->imgs;
+        // return $imgs;
+        return view('halls.landingpage_halls',compact('halls','imgs'));
     }
 
 
     public function landingpageHallDetails($id){
         $hall = Hall::find($id);
+        $imgs =$this->imgs[$id];
 
-        return view('halls.landingpage_hall_details',compact('hall'));
+        return view('halls.landingpage_hall_details',compact('hall','imgs'));
     }
 }

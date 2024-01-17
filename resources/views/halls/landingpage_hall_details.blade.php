@@ -1,29 +1,31 @@
 @extends('layouts.main_layout')
 @section('content')
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<section class="landindpage_halls_hero h_100vh">
+    <div id="carousellandindpage_halls_hero" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner ">
+          <div class="carousel-item active">
+            <img src='{{asset("assets/imgs/".$imgs[0])}}' class="d-block w-100" alt="...">
+          </div>
+          @for ($i=1; $i < count($imgs); $i++)
+            <div class="carousel-item">
+              <img src='{{asset("assets/imgs/".$imgs[$i])}}' class="d-block w-100" alt="...">
+            </div>
+          @endfor
+        </div>
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carousellandindpage_halls_hero" data-bs-slide-to="0" class="active thumbail" aria-current="true" aria-label="Slide 1">
+                <img src='{{asset("assets/imgs/".$imgs[0])}}' class="d-block w-100" alt="...">
+            </button>
+            @for ($i=1; $i < count($imgs); $i++)
+                <button type="button" data-bs-target="#carousellandindpage_halls_hero" data-bs-slide-to="{{$i}}" class=" thumbail" aria-current="true" aria-label="Slide {{$i+1}}">
+                    <img src='{{asset("assets/imgs/".$imgs[$i])}}' class="d-block w-100" alt="...">
+                </button>
+            @endfor
+        </div>
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="{{asset('assets/imgs/slam.jpg')}}" class="d-block w-100" alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-    </div>
+</section>
 
     <div class="container pt-5 mt-5">
         <div class="row">
@@ -56,7 +58,6 @@
             <p class="fs-5 pe-5 mb-5"> تتسع القاعة للـ {{$hall->capacity}} شخص. </p>
             @endif
 
-
             @php
                 $features = explode('|',$hall->feature);
             @endphp
@@ -68,7 +69,7 @@
                           @if(str_contains($feature,'مساحة'))
                               <div class="col-12 col-md-4 ">
                                   <div class="card_shadow card_hover d-flex mb-3">
-                                      <i class="fa-solid fa-ruler-combined "></i>
+                                      {{-- <i class="fa-solid fa-ruler-combined "></i> --}}
                                       <p class="pe-4 fs-5"> {{$feature}}</p>
                                   </div>
                                 </div>
@@ -81,34 +82,35 @@
                           @elseif (str_contains($feature,'مكيفة'))
                               <div class="col-12 col-md-4 ">
                                   <div class="card_shadow card_hover d-flex mb-3">
-                                      <i class="fa-regular fa-snowflake"></i>
+                                      {{-- <i class="fa-regular fa-snowflake"></i> --}}
                                       <p class="pe-4 fs-5"> {{$feature}} </p>
                                   </div>
                               </div>
                           @elseif (str_contains($feature,'إنترنت'))
                               <div class="col-12 col-md-4 ">
                                   <div class="card_shadow card_hover d-flex mb-3">
-                                      <p class="pe-4 fs-5"><i class="fa-solid fa-wifi"></i> {{$feature}} </p>
+                                        {{-- <i class="fa-solid fa-wifi"></i> --}}
+                                      <p class="pe-4 fs-5"> {{$feature}} </p>
                                   </div>
                               </div>
                           @elseif (str_contains($feature,'شاشة '))
                               <div class="col-12 col-md-4 ">
                                   <div class="card_shadow card_hover d-flex mb-3">
-                                      <i class="fa-solid fa-tv"></i>
+                                      {{-- <i class="fa-solid fa-tv"></i> --}}
                                       <p class="pe-4 fs-5"> {{$feature}} </p>
                                   </div>
                               </div>
                           @elseif (str_contains($feature,'ستاند'))
                               <div class="col-12 col-md-4 ">
                                   <div class="card_shadow card_hover d-flex mb-3">
-                                      <img src="{{asset('assets/imgs/stand.svg')}}" target="icon_size" alt="">
+                                      {{-- <img src="{{asset('assets/imgs/stand.svg')}}" target="icon_size" alt=""> --}}
                                       <p class="pe-4 fs-5">{{$feature}} </p>
                                   </div>
                                 </div>
                           @elseif (str_contains($feature,'الياف'))
                               <div class="col-12 col-md-4 ">
                                   <div class="card_shadow card_hover d-flex mb-3">
-                                      <img src="{{asset('assets/imgs/sticky_notes_icon.svg')}}" target="icon_size" alt="">
+                                      {{-- <img src="{{asset('assets/imgs/sticky_notes_icon.svg')}}" target="icon_size" alt=""> --}}
                                       <p class="pe-4 fs-5">{{$feature}} </p>
                                   </div>
                               </div>
@@ -118,20 +120,6 @@
 
                 @endforeach
             </div>
-
-
-
-
-            {{-- @php
-                $descriptions = explode('|',$hall->description);
-            @endphp
-            @if($descriptions[0] != null)
-                <h4 class="mt-5">وصف القاعة</h4>
-                @foreach ($descriptions as $description)
-                    <p class="pe-4"> {{$description}} </p>
-                @endforeach
-            @endif --}}
-
         </div>
     </div>
 

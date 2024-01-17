@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-4">
                             {{-- <p class="fs-1">{{$viewData['hallsCount']}}</p> --}}
-                            <p class="fs-1">5</p>
+                            <p class="fs-1">{{$hallsCount}}</p>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-4">
                             {{-- <p class="fs-1">{{$viewData['servicesCount']}}</p> --}}
-                            <p class="fs-1">7</p>
+                            <p class="fs-1">{{$viewData['servicesCount']}}</p>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-4">
                             {{-- <p class="fs-1">{{$viewData['reservationsWaitingCount']}}</p> --}}
-                            <p class="fs-1">5</p>
+                            <p class="fs-1">{{$viewData['reservationsWaitingCount']}}</p>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-4">
                             {{-- <p class="fs-1">{{$viewData['reservationsweekly']}}</p> --}}
-                            <p class="fs-1">9</p>
+                            <p class="fs-1">{{$viewData['reservationsweekly']}}</p>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-4">
                             {{-- <p class="fs-1">{{$viewData['reservationsCancelled']}}</p> --}}
-                            <p class="fs-1">10</p>
+                            <p class="fs-1">{{$viewData['reservationsCancelled']}}</p>
                         </div>
                     </div>
                 </div>
@@ -86,12 +86,13 @@
                         </div>
                         <div class="col-4">
                             {{-- <p class="fs-1">{{$viewData['usersCount']}}</p> --}}
-                            <p class="fs-1">12</p>
+                            <p class="fs-1">{{$viewData['usersCount']}}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         {{-- Chart js --}}
         <div class="container ">
                         <div class="row chart_js">
@@ -101,10 +102,27 @@
                                     <div class="reservation_status me-3">
 
                                         <div class="chart_container">
-                                            <canvas class="myChart"></canvas>
+                                            <canvas class="reservations"></canvas>
                                         </div>
 
-                                        <div class="details">
+                                        <div class="details_reservations_chart">
+                                            <ul class="list-unstyled">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="container">
+                                    <h3 class="d-block me-5 mb-3"> حالات القاعات </h3>
+                                    <div class="reservation_status me-3">
+
+                                        <div class="chart_container">
+                                            <canvas class="halls"></canvas>
+                                        </div>
+
+                                        <div class="details_halls_chart">
                                             <ul class="list-unstyled">
                                             </ul>
                                         </div>
@@ -113,6 +131,7 @@
                             </div>
                         </div>
         </div>
+
         {{-- Reservation waiting --}}
         <div class="container">
                         <h2 class="pb-4"> قائمة الحجوزات المنتظرة</h2>
@@ -137,7 +156,7 @@
                                   <tr>
                                     <th scope="row">{{$counter}}</th>
                                     <td>{{$reservaion->title}} </td>
-                                    <td>{{$reservaion->name}}</td>
+                                    <td>{{$reservaion->username}}</td>
                                     <td>{{$reservaion->status}}</td>
                                     <td>{{$reservaion->date_from}}</td>
                                     <td>{{$reservaion->date_to}}</td>
@@ -198,23 +217,21 @@
         {{-- javaScript --}}
         @push('javascript')
         <script>
-            const chartDate = {
+            // Reservations Chart
+            const ReservationsData = {
                 labels: @json($labels),
                 data: @json($data),
-                //labels : ['في الانتظار','تمت الموافقة','تم الغاء الحجز','تأخير الحجز'],
-                //data :[1,1,1,1],
             }
-            const myChart = document.querySelector('.myChart');
-            const ul = document.querySelector('.details ul')
-            new Chart(myChart, {
+            const reservations = document.querySelector('.reservations');
+            const ul = document.querySelector('.details_reservations_chart ul')
+            new Chart(reservations, {
                 type: 'doughnut',
                 data: {
-                  labels: chartDate.labels,
+                  labels: ReservationsData.labels,
                   datasets: [{
                     label: '# of Votes',            // title when hover
-                    data: chartDate.data,
-                    // backgroundColor: ['#2c9bc5','#164e64','#0f3645','#4db1d7'],
-                    backgroundColor: ['#f00','#000','#0f0','#00f','#7fb9cf'],
+                    data: ReservationsData.data,
+                    backgroundColor: ['#2c9bc5','#164e64','#0f3645','#4db1d7'],
                   }]
                 },
                 options: {
@@ -229,14 +246,55 @@
                 }
             })
             const reservation_statusUl = () =>{
-                chartDate.labels.forEach((item,i) => {
+                ReservationsData.labels.forEach((item,i) => {
                     console.log('print ok');
                     let li = document.createElement('li');
-                    li.innerHTML = `${item}: <span class="percentage">${chartDate.data[i]}</span>`;
+                    li.innerHTML = `${item}: <span class="percentage">${ReservationsData.data[i]}</span>`;
                     ul.appendChild(li);
                 });
             }
             reservation_statusUl()
+
+
+            // Halls Charts
+            const hallDate = {
+                labels: @json($hallStatus['labels']),
+                data: @json($hallStatus['data']),
+            }
+            const halls = document.querySelector('.halls');
+            const ul_hall = document.querySelector('.details_halls_chart ul')
+            new Chart(halls, {
+                type: 'doughnut',
+                data: {
+                  labels: hallDate.labels,
+                  datasets: [{
+                    label: '# of Votes',            // title when hover
+                    data: hallDate.data,
+                    backgroundColor: ['#2c9bc5','#164e64','#0f3645','#4db1d7'],
+                    // backgroundColor: ['#f00','#000','#0f0','#00f','#7fb9cf'],
+                  }]
+                },
+                options: {
+                    borderWidth: 10,
+                    borderRadius: 2,
+                    hoverBorderWidth: 0,
+                    plugins:{
+                        legend:{
+                            display: false,
+                        }
+                    }
+                }
+            })
+            const halls_statusUl = () =>{
+                hallDate.labels.forEach((item,i) => {
+                    console.log('print ok');
+                    let li = document.createElement('li');
+                    li.innerHTML = `${item}: <span class="percentage">${hallDate.data[i]}</span>`;
+                    ul_hall.appendChild(li);
+                });
+            }
+            halls_statusUl()
+
         </script>
         @endpush
     @endsection

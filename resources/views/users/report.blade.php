@@ -55,11 +55,8 @@
 
     <script>
         $(document).ready(function() {
-            console.log('page loaded');
 
             function updateReservations() {
-
-                console.log('in function')
 
                 let hallId = $('#hall').val();
                 let dateFrom = $('#date_from').val();

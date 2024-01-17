@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Enums\ReservationStatus;
 use App\Mail\Mail as sendMail;
+use App\Models\Employee;
 use App\Models\Hall;
 use App\Models\Reservation_Detail;
 use App\Models\Service;
@@ -14,15 +15,24 @@ use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    private $imgs =[
+        '1'=>['sada1.jpg','sada2.jpg','sada3.jpg','sada4.jpg'], //2 hagrain 6shabam
+        '3'=>['istdama1.jpg','istdama2.jpg','istdama3.jpg'],
+        '4'=>['istdama1.jpg','istdama2.jpg','istdama3.jpg'],
+        '4'=>['con1.jpg','con2.jpg','con3.jpg'],
+        '5'=>['salam1.jpg','salam2.jpg','salam3.jpg','salam4.jpg'],
+        '6'=>['aon1.jpg','aon2.jpg','aon3.jpg',],
+        '7'=>['aon1.jpg','aon2.jpg','aon3.jpg',],
+    ];
+
+
     public function index()
     {
         $reservations = DB::table('reservations')
                         ->join('users','reservations.user_id','users.id')
                         ->select('reservations.*','users.name as username')
-                        ->get();
+                        ->paginate(10);
 
         return view('reservations.index',compact('reservations'));
     }
@@ -30,9 +40,11 @@ class ReservationController extends Controller
     // All Waiting Reservation Order
     public function reservation_waiting(){
         $reservations = DB::table('reservations')
+                        ->join('users','users.id','reservations.user_id')
                         ->where('status','في الانتظار')
                         ->where('deleted_at', null)
-                        ->get();
+                        ->select('reservations.*','users.name as username')
+                        ->paginate(10);
 
         return view('reservations.reservation_waiting',compact('reservations'));
     }
@@ -41,9 +53,9 @@ class ReservationController extends Controller
     // Approved a waiting resrvating
     public function reservationApproved($id){
         $reservation = Reservation::findorfail($id);
-        return $reservation;
 
         $user = User::find($reservation->user_id);
+        // $employee = Employee::findOrFail(auth()->user()->id);
 
         ////////////////////////////////////////////////////////////
         // send email for organizer to accept reservation and waiting for pay half balance
@@ -59,23 +71,29 @@ class ReservationController extends Controller
         ///////////////////////////////////////////////
         $reservation->update([
             'status'=> ReservationStatus::Approved->value,
+            // 'employee_id'=> $employee->id,
             'employee_id'=> 1,
         ]);
         $reservation->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('successMsg',' تم تأكيد الحجز بنجاح');
     }
 
     // cancelled a waiting resrvating
     public function reservationcancelled($id){
+
+        $employee_id = auth()->user()->id;
+        // $employee = Employee::findOrFail($employee_id);
+
         $reservation = Reservation::findorfail($id);
         $reservation->update([
             'status'=> ReservationStatus::Cancel->value,
+            // 'employee_id'=> $employee->id,
             'employee_id'=> 1,
         ]);
         $reservation->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('successMsg','تم الغاء الحجز بنجاح');
     }
 
     public function create()
@@ -96,7 +114,9 @@ class ReservationController extends Controller
                     ->where('deleted_at', null)
                     ->get();
 
-        return view("reservations.reservation_details",compact('hall','services')) ;
+        $imgs = $this->imgs[$hall->id];
+
+        return view("reservations.reservation_details",compact('hall','services','imgs')) ;
     }
 
 
@@ -104,7 +124,6 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $cart = session()->get('cart', []);
-
 
 
         // Iterate over the cart items
@@ -155,19 +174,26 @@ class ReservationController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     */
     public function show( $id)
     {
         $reservationDetails = DB::select("
-        select reservations.*, reservation__details.*,halls.name as hall_name, halls.price as hall_price , services.name as service_name, users.name as username
-        from reservations inner join reservation__details
-        on reservations.id = reservation__details.reservation_id
-        inner join services on services.id = reservation__details.service_id
-        inner join halls on halls.id = reservation__details.hall_id
-        inner join users on users.id = reservations.user_id
-        where reservations.id = $id && reservation__details.deleted_at is null;
+            select reservations.*, reservation__details.*,halls.name as hall_name, halls.price as hall_price , services.name as service_name
+            from reservations inner join reservation__details
+            on reservations.id = reservation__details.reservation_id
+            inner join services on services.id = reservation__details.service_id
+            inner join halls on halls.id = reservation__details.hall_id
+            inner join users on users.id = reservations.user_id
+            where reservations.id = $id && reservation__details.deleted_at is null;
+        ");
+
+        $reservationPrice = DB::select("
+            select (subquery.total_price + h.price) as total_price
+                from (
+                    select sum(rd.service_price * rd.service_count) as total_price
+                    from reservation__details rd
+                    where rd.reservation_id = $id
+                ) as subquery
+            join halls h on h.id = (select hall_id from reservation__details where reservation_id = $id limit 1);
         ");
 
         // return $reservationDetails;
@@ -176,9 +202,7 @@ class ReservationController extends Controller
         // return $reservation_details ;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit( $id)
     {
         $reservationDetails = DB::select("
@@ -200,9 +224,7 @@ class ReservationController extends Controller
         return view('reservations.edit', compact('reservationDetails','allServices'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         $reservation = Reservation::findorfail($id);
@@ -348,7 +370,8 @@ public function getCalender(){
 
     ];
 
-    $booking = Reservation::all();
+    $booking = Reservation::all()
+            ->where('deleted_at',null);
 
     $reservations = array();
 
@@ -357,7 +380,7 @@ public function getCalender(){
             'title'=> $book->title,
             'start'=> $book->date_from,
             'end'=> $book->date_to,
-            'className'=> 'bg-gradient-danger'
+            'className'=> $book->status->background(),
         ];
     }
 
@@ -392,6 +415,8 @@ public function filterReservations(Request $request){
 
 
 
+
+
     // $filteredReservations = DB::select('
     //     SELECT * FROM reservations
     //     inner join reservation__details on reservations.id = reservation_id
@@ -404,6 +429,16 @@ public function filterReservations(Request $request){
 
 
     return response()->json(['filteredReservations'=>$filteredReservations]);
+}
+
+
+public function myReservations(){
+    $halls = Hall::all()->where('is_avaliable', 1);
+    return view('reservations.myreservaions', compact('halls'));
+}
+
+public function myreservationsfiltered(Request $request){
+    return $request ;
 }
 
 

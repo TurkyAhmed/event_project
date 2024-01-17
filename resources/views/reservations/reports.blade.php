@@ -3,7 +3,12 @@
      @section('dashboaed-content')
 
 
-    <div class="container py-5 pe-5">
+     <div class="dashboard-top h_7rem">
+        <h3 class=" pt-5 pe-5 text-white"> التقارير  </h3>
+    </div>
+
+    <div class="container pt-5 pe-5">
+
         <div class="reservation_filter bg-light px-4 py-3">
         <div class="row">
             <div class="col-10 col-md-4">

@@ -65,6 +65,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // end sidebar
 
+    // typing
+    const typed = new Typed('.typing', {
+      strings: ['المؤتمرات', 'الندوات','الدورات','ورش العمل'],
+      typeSpeed: 100,
+      backSpeed: 50,
+      loop: true,
+      showCursor: false,
+    });
+
 
     // add new hall with its services in reservation
     let btn_add_hall = document.getElementById('add_hall');

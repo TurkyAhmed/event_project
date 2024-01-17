@@ -10,8 +10,8 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div id="dashboaed-sidebar" class="col-2 position-fiexd ">
-                <div  class=" d-flex flex-column flex-shrink-0 p-3 bg-light h_100vh" style="width: 280px;">
+            <div id="dashboaed-sidebar" class="col-2  ">
+                <div  class=" d-flex flex-column flex-shrink-0 p-3 bg-light position-fixed h_100vh" style="width: 280px;">
                     <a href="/" class="my-bg-grad d-flex align-items-center mb-3 mb-md-0  link-dark text-decoration-none">
                       <img src="{{asset('assets/imgs/event-logo.png')}}" style="width: 90px" alt="">
                       <span class="fs-4 text-white"> حدث تايم </span>
@@ -31,13 +31,13 @@
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('services.index')}}" class="nav-link link-dark {{$link_active == 'services'? 'active' : '' }}">
+                        <a href="{{route('services.index')}}" class="nav-link link-dark ">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                           الخدمات
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('employees.index')}}" class="nav-link link-dark {{$link_active == 'employees'? 'active' : '' }}">
+                        <a href="{{route('employees.index')}}" class="nav-link link-dark ">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
                           الموظفين
                         </a>
@@ -49,7 +49,7 @@
                         </a>
                       </li> --}}
                       <li>
-                        <a href="{{route('reservations.index')}}" class="nav-link link-dark {{$link_active == 'reservations'? 'active' : '' }}">
+                        <a href="{{route('reservations.index')}}" class="nav-link link-dark ">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                           الحجوزات
                         </a>
@@ -61,7 +61,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('reservations.getCalender')}}" class="nav-link link-dark {{$link_active == 'calender'? 'active' : '' }}">
+                        <a href="{{route('reservations.getCalender')}}" class="nav-link link-dark ">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                            التقويم
                         </a>

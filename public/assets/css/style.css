@@ -47,6 +47,14 @@ body{
     min-height: 100vh;
 }
 
+.h_90vh{
+    height: 90vh;
+}
+
+.h_80{
+    height: 80vh;
+}
+
 .h_70vh{
     min-height: 70vh;
 }
@@ -67,6 +75,7 @@ body{
 .ff_alnaskh{
     font-family: myFont1;
 }
+
 
 /* End my_classes */
 
@@ -332,22 +341,22 @@ body{
   }
 
   .halls .set-bg[data-setbg="hr-2.jpg"] {
-    background-image: url("../imgs/istdama.jpg");
+    background-image: url("../imgs/salam1.jpg");
     background-size: cover;
   }
 
   .halls .set-bg[data-setbg="hr-3.jpg"] {
-    background-image: url("../imgs/shabam.jpg");
+    background-image: url("../imgs/istdama1.jpg");
     background-size: cover;
   }
 
   .halls .set-bg[data-setbg="hr-4.jpg"] {
-    background-image: url("../imgs/istdama.jpg");
+    background-image: url("../imgs/aon1.jpg");
     background-size: cover;
   }
 
   .halls .set-bg[data-setbg="hr-5.jpg"] {
-    background-image: url("../imgs/istdama.jpg");
+    background-image: url("../imgs/salam3.jpg");
     background-size: cover;
   }
 
@@ -356,7 +365,7 @@ body{
     background-size: cover;
   }
   .halls .set-bg[data-setbg="hr-7.jpg"] {
-    background-image: url("../imgs/istdama.jpg");
+    background-image: url("../imgs/con1.jpg");
     background-size: cover;
   }
 
@@ -819,12 +828,37 @@ input[target="ltr"]{
 }
 
 .auth_form{
-    box-shadow: 0 4px 12px -2px rgba(0,0,0,0.3);
+    /* box-shadow: 0 4px 12px -2px rgba(0,0,0,0.3); */
     border-radius: 15px;
     padding: 1rem 15px;
     max-width: 30rem;
     min-width: 23rem;
+    /* position: relative; */
+
+    /**/
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    background-color: #fff;
+    box-shadow: 0px -2px 14px -2px #69b0ca;
 }
+
+/* .auth_form::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 2rem;
+    width: 100%;
+    height: 100%;
+    background-image: url('../imgs/simi_wive_empty.png');
+    background-size:contain ;
+    background-repeat: no-repeat;
+    transform: rotate(90deg);
+} */
+
+
 
 .auth_form input[target="ltr"]{
     /* max-width: 100%; */
@@ -868,17 +902,17 @@ img[alt="icon"]{
     margin-left: 4px;
 }
 
-img[targer="r_hall1"]{
+img[target="r_hall1"]{
     position: relative;
-    margin-top: 3rem;
-    height: 30rem;
+    margin-top: 2rem;
+    height: 20rem;
     /* margin-left: -3rem; */
-    right: -5rem;
-    width: 30rem;
+    right: -7rem;
+    width: 38rem;
     order: 1;
-  }
+}
 
-  img[targer="r_hall2"]{
+  img[target="r_hall2"]{
     position: relative;
         margin-top: -230px;
         height: 20rem;
@@ -890,17 +924,16 @@ img[targer="r_hall1"]{
         order: 2;
   }
 
-img[targer="l_hall1"]{
+  img[target="l_hall1"] {
     position: relative;
     margin-top: 3rem;
-    height: 30rem;
+    height: 23rem;
     /* margin-left: 7rem; */
     left: -5rem;
-
     width: 37rem;
 }
 
-img[targer="l_hall2"]{
+img[target="l_hall2"]{
     position: relative;
     margin-top: -230px;
     height: 20rem;
@@ -954,5 +987,76 @@ table.table tr td{
     color: #000;
 }
 
+a i.fa-solid.fa-circle-info,
+a i.fa-solid.fa-pen-to-square,
+a i.fa-solid.fa-trash{
+    font-size: 1.3rem;
+}
 
 
+.gray_scal{
+    filter: grayscale(0.2);
+    filter: brightness(0.8);
+}
+
+.gray_scal:hover{
+    filter: grayscale(0);
+    color: #fff;;
+}
+
+.text_primary{
+    color: var(--_primary) !important;
+}
+
+/*carousel*/
+.carousel-inner{
+    height: 88vh;
+}
+
+.carousel-inner img{
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-indicators button.thumbail{
+    width: 6.4rem;
+}
+
+.carousel-indicators button.thumbail img{
+    height: 5rem;
+    width: 6.5rem;
+}
+
+.carousel-indicators button.thumbail:not(.active){
+    opacity: 0.7;
+}
+
+.carousel-indicators{
+    /* position: relative;
+    top: -3rem; */
+    position: static;
+}
+
+.btn_halls_more{
+    width: 9rem;
+    font-size: 1.3rem;
+}
+
+.btn_halls_details{
+    text-decoration: none;
+    padding: 0.3rem 2rem 0.4rem;
+    font-size: 1.3rem;
+    background-color: var(--_primary_bg);
+    color: #fff;
+    border-radius: 10px;
+    margin-right: 7rem;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.btn_halls_details:hover{
+    background-image: var(--_primary_grad);
+    color: #fff;
+    transform: scale(2);
+    transition: all 0.5s;
+}

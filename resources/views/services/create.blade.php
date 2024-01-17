@@ -6,7 +6,7 @@
      @section('dashboaed-content')
 
 
-     <div class="container my-bg-img">
+     <div class="container px-0 my-bg-img">
         <div class="dashboard-top h_7rem">
             <h3 class=" pt-5 pe-5 text-white">  الخدمات  </h3>
         </div>

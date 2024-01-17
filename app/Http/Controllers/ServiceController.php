@@ -28,7 +28,7 @@ class ServiceController extends Controller
     {
         return $request ;
         $sdrvice = Service::create($request->all());
-        return redirect('services');
+        return redirect('services')->with('successMsg', 'تم الاضافة بنجاح');
 
     }
 
@@ -48,16 +48,16 @@ class ServiceController extends Controller
 
     public function update(ServicesRequest $request, $id)
     {
-        return $request ;
-        
         $service = Service::find($id);
         $service->update($request->all());
-        return redirect('services');
+
+        return redirect()->route('services.index')->with('successMsg', 'تم التعديل بنجاح');
     }
 
 
     public function delete($id){
         $service = Service::find($id);
+
         return view('services.delete',compact('service'));
     }
 
@@ -65,7 +65,7 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         Service::findorfail($id)->delete();
-        return redirect('services');
+        return redirect()->route('services.index')->with('successMsg', 'تم الحذف بنجاح');
     }
 
        // Soft Delete

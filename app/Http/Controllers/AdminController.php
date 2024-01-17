@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hall;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,11 +12,20 @@ class AdminController extends Controller
 
     public function dashboardindex(){
 
-        $reservationStatusCounts = Reservation::select('status', DB::raw('COUNT(*) as count'))
+        $reservationStatusCounts = Reservation::select('status', DB::raw('count(*) as count'))
         ->groupBy('status')
         ->pluck('count', 'status')
         ->mapWithKeys(function ($count, $status) {
             return [strval($status) => $count];
+        })
+        ->toArray();
+
+        $hallStatusCounts = Hall::select('is_avaliable', DB::raw('count(*) as count'))
+        ->groupBy('is_avaliable')
+        ->where('deleted_at',null)
+        ->pluck('count', 'is_avaliable')
+        ->mapWithKeys(function ($count_of_halls, $is_avaliable) {
+            return [strval($is_avaliable) => $count_of_halls];
         })
         ->toArray();
 
@@ -32,12 +42,28 @@ class AdminController extends Controller
             $reservationStatusCounts[ 'تأخير الحجز'] ?? 0,
         ];
 
-        $hallsCount = DB::table('halls')->count();
-        $servicesCount =DB::table('services')->count();
+        $hallStatus['labels'] = ['نشط','غير نشط'];
+        $hallStatus['data'] = [
+            $hallStatusCounts['1'] ?? 0,
+            $hallStatusCounts['0'] ?? 0,
+        ];
+
+        // return $hallStatus;
+        // return $hallStatusCounts;
+
+        $hallsCount = DB::table('halls')
+                        ->where('deleted_at',null)
+                        ->count();
+
+        $servicesCount =DB::table('services')
+                         ->where('deleted_at',null)
+                         ->count();
+
         $reservationsWaitingCount = DB::table('reservations')
                                 ->where('status','في الانتظار')
                                 ->where('deleted_at', null)
                                 ->count();
+
 
         $reservationsCancelled = DB::table('reservations')
                                 ->where('status','تم الغاء الحجز')
@@ -59,7 +85,9 @@ class AdminController extends Controller
                     ->join('users','users.id','user_id')
                     ->where('status','في الانتظار')
                     ->where('deleted_at', null)
+                    ->select('reservations.*','users.name as username')
                     ->paginate(5);
+                    // ->get();
 
 
         // on view call as this [as array] that mean => $viewData['hallsCount'],$viewData['servicesCount']
@@ -71,7 +99,7 @@ class AdminController extends Controller
         $viewData['usersCount'] = $usersCount;
 
         // return $data;
-        return view('dashboard.dashboard',compact('labels','data','viewData','reservationsWaiting','hallsCount'));
+        return view('dashboard.dashboard',compact('labels','data','viewData','reservationsWaiting','hallsCount','hallStatus'));
 
     }
 

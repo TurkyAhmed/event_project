@@ -25,25 +25,25 @@
                             <h3>{{$hall->name}}</h3>
                             <div class="d-flex justify-content-between">
                                 <p>{{$cart[$hall->id]['title']}}</p>
-                                <p>تكلفتها {{$cart[$hall->id]['totalPrice']}}$ </p>
+                                <p>تكلفتها <strong>{{$cart[$hall->id]['totalPrice']}}$</strong> </p>
 
                                 @php
                                     $total += $cart[$hall->id]['totalPrice']
                                 @endphp
                             </div>
 
-                            <div class="d-flex">
-                                <p class="w-50"><a href="{{route('cart.show',$hall->id)}}" class="" >تفاصيل</a></p>
-                                <p class="w-50"><a href="{{route('cart.cancelSpecificreservation',$hall->id)}}" class="" > الغاء </a></p>
+                            <div class="btn-group d-flex gap-4 ">
+                                <p class="btn btn-primary  w-50 rounded-3"><a class="text-decoration-none text-white" href="{{route('cart.show',$hall->id)}}" >تفاصيل</a></p>
+                                <p class="btn btn-outline-primary my-bg-transparent bg-tr w-50 rounded-3"><a class="text-decoration-none" href="{{route('cart.cancelSpecificreservation',$hall->id)}}"  > الغاء </a></p>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-            <h5 class="mt-5 pe-3">اجمالي الحجز {{$total}}$</h5>
-            <div class="mt-5">
-                <p class="btn btn-primary "><a class="text-decoration-none text-white" href="{{route('reservations.store_reservation')}}">تأكيد الحجز</a></p>
-                <p class="btn btn-secondary"><a class="text-decoration-none text-white" href="{{route('cart.cancelAllReservation')}}">الغاء الحجز</a></p>
+            <h5 class="mt-5 pe-3">اجمالي الحجز <strong>{{$total}}$</strong></h5>
+            <div class="mt-4">
+                <p class="btn btn-primary py-2 px-4"><a class="text-decoration-none text-white fs-6" href="{{route('reservations.store_reservation')}}">تأكيد الحجز</a></p>
+                <p class="btn btn-secondary py-2 px-4"><a class="text-decoration-none text-white fs-6" href="{{route('cart.cancelAllReservation')}}">الغاء الحجز</a></p>
             </div>
         @else
             <div class="d-flex justify-content-center align-items-center" style="height: 60vh">

@@ -10,10 +10,10 @@
                                 @endphp
                                 @foreach ($halls as $hall )
                                     <div class="col-lg-3 col-md-6 col-sm-6 p-0">
-                                        <div class="reservation__hall__item set-bg" data-setbg="hr-{{$i}}.jpg">
+                                        <div class="reservation__hall__item set-bg gray_scal" data-setbg="hr-{{$i}}.jpg">
                                             <div class="reservation__hall__title">
                                                 <h4> {{$hall->name}}</h4>
-                                                <h2><sup>$</sup>{{$hall->price - $hall->discount}}<span>/للحجز الواحد</span></h2>
+                                                <h2 class="text_primary"><sup>$</sup>{{$hall->price - $hall->discount}}<span class="text-white">/للحجز الواحد</span></h2>
                                             </div>
                                             <a href="{{route('reservations.reservation_details',$hall->id)}}"> احجز الان </a>
                                         </div>

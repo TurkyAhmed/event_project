@@ -18,9 +18,7 @@ class EmployeeController extends Controller
         $employees = DB::table('users')
                         ->join('employees','users.id','=','employees.user_id')
                         ->select('users.*','employees.address')
-                        ->get();
-
-
+                        ->paginate(10);
 
         //SQL query
         // $employees = DB::select('
@@ -57,7 +55,7 @@ class EmployeeController extends Controller
         //employee method that what i define it in Usermodel
         $user->employee()->save($employee);
 
-        return redirect()->route('employees.index');
+        return redirect()->route('employees.index')->with('successMsg', 'تم الاضافة بنجاح');
     }
 
 
@@ -146,15 +144,12 @@ class EmployeeController extends Controller
 
         $employee_ = User::with('employee')->findOrFail($id);
 
-        return redirect()->route('employees.index');
-        // return $employee_;
+        return redirect()->route('employees.index')->with('successMsg', 'تم التعديل بنجاح');
     }
 
 
     public function delete($id){
         $user_with_employee = User::with('employee')->findOrFail($id);
-
-        // return $user_with_employee;
 
         return view('employees.delete',compact('user_with_employee')) ;
     }
@@ -164,8 +159,7 @@ class EmployeeController extends Controller
     {
         User::findorfail($id)->delete();
 
-        return redirect()->route('employees.index');
-
+        return redirect()->route('employees.index')->with('successMsg', 'تم الحذف بنجاح');
     }
 
        // Soft Delete
