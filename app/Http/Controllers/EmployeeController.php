@@ -29,7 +29,7 @@ class EmployeeController extends Controller
 
 
         // return $employees;
-        return view('employees.index',compact('employees'));
+        return view('employees.index',['employees'=>$employees, 'link_active'=>'employees']);
     }
 
 
@@ -77,7 +77,7 @@ class EmployeeController extends Controller
         // select * from users as u inner join employees as e on u.id = e.user_id where u.id = $id
         // ");
 
-        return view('employees.details',compact('employee')) ;
+        return view('employees.details',['employee'=>$employee , 'link_active'=>'employees']);
         // return $employee ;
     }
 
@@ -86,7 +86,7 @@ class EmployeeController extends Controller
     {
         $user_with_employee = User::with('employee')->findOrFail($id);
 
-        return view('employees.edit',compact('user_with_employee')) ;
+        return view('employees.edit',['user_with_employee'=>$user_with_employee , 'link_active'=>'employees']);
         // return $employee ;
     }
 
@@ -151,7 +151,7 @@ class EmployeeController extends Controller
     public function delete($id){
         $user_with_employee = User::with('employee')->findOrFail($id);
 
-        return view('employees.delete',compact('user_with_employee')) ;
+        return view('employees.delete',['user_with_employee'=>$user_with_employee , 'link_active'=>'employees']);
     }
 
 

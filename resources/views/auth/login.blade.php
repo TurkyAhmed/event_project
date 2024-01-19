@@ -64,13 +64,25 @@
                     <span class="input-group-text rounded-0 rounded-end text_primary" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
                     <input type="password" id="password" name="password" class="form-control rounded-0 rounded-start my-input-text" target="ltr" placeholder="password ">
                 </div>
-                <p><a href="#" class="decoration-none" > نسيت كلمة المرور </a></p>
+
+                @if (Route::has('password.request'))
+                    <p><a href="{{ route('password.request') }}" class="decoration-none" > نسيت كلمة المرور؟ </a></p>
+                @endif
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary mx-auto mb-5"> تسجيل الدخول </button>
                 </div>
 
                 <p class="text-center mb-0"><a href="{{route('register')}}" class="decoration-none " >  ليس لي حساب؟ اشتراك </a></p>
+
+
+
+
+                        {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                            {{ __('هل نسيت كلمة المرور؟') }}
+                        </a> --}}
+
+
 
             </form>
 

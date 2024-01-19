@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('employee_id')->nullable()->constrained('employees')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->enum('interval',['صباح','مساء']);
             $table->enum('status', ['في الانتظار', 'تمت الموافقة', 'تم الغاء الحجز', 'تأخير الحجز'])->default('في الانتظار');
             $table->timestamp('date_from');
             $table->timestamp('date_to')->nullable();
-            $table->string('type_of_event');
+            $table->string('type_of_event')->nullable();
             $table->text('note')->nullable();
             $table->softDeletes();
             $table->timestamps();

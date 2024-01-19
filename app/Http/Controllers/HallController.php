@@ -38,6 +38,7 @@ class HallController extends Controller
 
     public function store(HallRequest $request)
     {
+        return $request ;
         Hall::create($request->all());
         return redirect()->route('halls.index')->with('successMsg', 'تم الاضافة بنجاح');
     }
@@ -46,14 +47,14 @@ class HallController extends Controller
     public function show( $id)
     {
         $hall = Hall::find($id);
-        return view('halls.details',compact('hall'));
+        return view('halls.details',['hall'=>$hall , 'link_active'=>'halls']);
     }
 
 
     public function edit($id)
     {
         $hall = Hall::find($id);
-        return view('halls.edit',compact('hall'));
+        return view('halls.edit',['hall'=>$hall , 'link_active'=>'halls']);
     }
 
 
@@ -68,7 +69,8 @@ class HallController extends Controller
 
     public function delete($id){
         $hall = Hall::find($id);
-        return view('halls.delete',compact('hall'));
+        return view('halls.delete',['hall'=>$hall , 'link_active'=>'halls']);
+    
     }
 
     public function destroy( $id)

@@ -269,7 +269,7 @@
 
             </div>
             <div class="col-4 w-100 text-center mt-3 btn_more_halls">
-                <p><a class="btn btn-primary bg-grad btn_halls_more" href="{{route('halls.landingpageHalls')}}"> المزيد </a></p>
+                <p><a class="btn bg_primary btn_halls_more" href="{{route('halls.landingpageHalls')}}"> المزيد </a></p>
             </div>
         </div>
     </section>
@@ -377,7 +377,7 @@
                                 <textarea class="form-control" name="content" id="content" cols="30" rows="7" placeholder="  الرسالة "></textarea>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-primary w-100"> ارسال </button>
+                                <button type="submit" class="btn bg_primary w-100"> ارسال </button>
                             </div>
                         </div>
                     </form>

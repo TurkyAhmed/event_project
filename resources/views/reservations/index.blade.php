@@ -39,8 +39,8 @@
                 <td>{{$reservaion->title}} </td>
                 <td>{{$reservaion->username}}</td>
                 <td>{{$reservaion->status}}</td>
-                <td>{{$reservaion->date_from}}</td>
-                <td>{{$reservaion->date_to}}</td>
+                <td>{{date("Y-m-d" , strtotime($reservaion->date_from))}}</td>
+                <td>{{date("Y-m-d" , strtotime($reservaion->date_to))}}</td>
                 <td>
                     <a class="  " href="{{route('reservations.show',$reservaion->id)}}"> <i class="fa-solid fa-circle-info ms-3"></i></a>
                     <a class=" " href="{{route('reservations.edit',$reservaion->id)}}"> <i class="fa-solid fa-pen-to-square ms-3"></i></a>

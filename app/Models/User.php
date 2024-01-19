@@ -21,6 +21,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    // auth()->user()->unreadNotifications->count();
     /**
      * The attributes that are mass assignable.
      *
@@ -75,4 +76,8 @@ class User extends Authenticatable
     public function hasRole($roleName){
         return $this->role->name === $roleName;
     }
+
+    // public function roles(){
+    //     return $this->hasMany(Role::class,'id');
+    // }
 }

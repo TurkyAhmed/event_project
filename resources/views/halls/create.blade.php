@@ -6,7 +6,7 @@
 @extends('layouts.main_layout_dashboard')
      @section('dashboaed-content')
 
-    <div class="container my-bg-img">
+    <div class="container px-0 my-bg-img">
         <div class="dashboard-top  h_7rem">
             <h3 class=" pt-5 pe-5 text-white">  القاعات  </h3>
         </div>
@@ -37,7 +37,9 @@
             </div>
 
               <div class="mb-3">
-                <label for="feature" class="form-label"> مميزات القاعة</label>
+                <label for="feature" class="form-label mb-0"> مميزات القاعة :</label>
+                <p class="mt-0"><sub class="text-secondary">يرجى فصل كل ميزة عن الاخرى بالعلامه </sub></p>
+                {{-- <textarea name="feature" id="feature" cols="30" rows="5" class="form-control my-input-text" value="{{old('feature')}}" placeholder=" مميزات القاعة "></textarea> --}}
                 <input type="text" name="feature" class="form-control my-input-text" value="{{old('feature')}}" id="feature" placeholder=" مميزات القاعة ">
               </div>
 

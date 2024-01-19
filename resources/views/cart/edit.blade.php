@@ -1,35 +1,33 @@
 @extends('layouts.main_layout')
 @section('content')
 
-    <div class="reservation_details h_100vh">
-        <div id="reservation_details" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#reservation_details" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#reservation_details" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#reservation_details" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <section class="landindpage_halls_hero h_100vh">
+    <div id="carousellandindpage_halls_hero" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner ">
+          <div class="carousel-item active">
+            <img src='{{asset("assets/imgs/".$imgs[0])}}' class="d-block w-100" alt="...">
+          </div>
+          @for ($i=1; $i < count($imgs); $i++)
+            <div class="carousel-item">
+              <img src='{{asset("assets/imgs/".$imgs[$i])}}' class="d-block w-100" alt="...">
             </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#reservation_details" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#reservation_details" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+          @endfor
         </div>
 
-        <section class="reservation_details_services my-3">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carousellandindpage_halls_hero" data-bs-slide-to="0" class="active thumbail" aria-current="true" aria-label="Slide 1">
+                <img src='{{asset("assets/imgs/".$imgs[0])}}' class="d-block w-100" alt="...">
+            </button>
+            @for ($i=1; $i < count($imgs); $i++)
+                <button type="button" data-bs-target="#carousellandindpage_halls_hero" data-bs-slide-to="{{$i}}" class=" thumbail" aria-current="true" aria-label="Slide {{$i+1}}">
+                    <img src='{{asset("assets/imgs/".$imgs[$i])}}' class="d-block w-100" alt="...">
+                </button>
+            @endfor
+        </div>
+    </div>
+    </section>
+
+    <section class="reservation_details_services my-3">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-lg-4 bg-light">
@@ -187,8 +185,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+    </section>
 
 
 @push('scripts')

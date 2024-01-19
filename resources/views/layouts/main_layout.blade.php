@@ -60,7 +60,7 @@
         <div class="collapse navbar-collapse " id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 pe-4">
                 <a href="#" class="nav-item nav-link fs-5 active">الرئيسية</a>
-                <a href="#" class="nav-item nav-link fs-5">القاعات</a>
+                <a href="{{route('halls.landingpageHalls')}}" class="nav-item nav-link fs-5">القاعات</a>
                 <a href="#" class="nav-item nav-link fs-5">الخدمات</a>
                 <a href="#" class="nav-item nav-link fs-5">تواصل معنا</a>
                 @if(Auth::check())

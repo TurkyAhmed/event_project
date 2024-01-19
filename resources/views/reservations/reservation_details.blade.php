@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 bg-light ">
                         <div class="container">
-                            <h3 class="text-center"> الخدمات المتوفره </h3>
+                            <h3 class="text-center pt-3"> الخدمات المتوفره </h3>
                             <table class="table">
                                 <thead>
                                   <tr>
@@ -74,7 +74,7 @@
                                     <label for="title" class="form-label"> عنوان الحجز </label>
                                     <input type="text" name="title" class="form-control" value="{{old('title')}}" id="title" placeholder=" عنوان الحجز ">
                                     @error('title')
-                                        <div class="text-danger fs-6">{{ $message }}</div>
+                                        <div class="text-danger ">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -85,6 +85,9 @@
                                         <option value="صباح">صباح</option>
                                         <option value="مساء">مساء</option>
                                     </select>
+                                    @error('interval')
+                                        <div class="text-danger ">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-10 col-md-6 col-lg-4 mb-3">
@@ -96,30 +99,30 @@
                                         <option value="ورشة عمل">ورشة عمل</option>
                                         <option value="تدريب"> تدريب </option>
                                     </select>
+                                    @error('type_of_event')
+                                        <div class="text-danger ">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                                     <label for="date_from" class="form-label">  من تاريخ </label>
                                     <input type="date" name="date_from" class="form-control" value="{{ old('date_from', date('Y-m-d'))}}" min={{date('Y-m-d')}} id="date_from" >
                                     @error('date_from')
-                                        <div class="text-danger fs-6">{{ $message }}</div>
+                                        <div class="text-danger ">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                     <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                            <label for="date_to" class="form-label">  الى تاريخ </label>
-                                            <input type="date" name="date_to" class="form-control" value="{{ old('date_to', date('Y-m-d'))}}" min={{date('Y-m-d')}}  id="date_to" >
-                                            @error('date_to')
-                                                <div class="text-danger fs-6">{{ $message }}</div>
-                                            @enderror
+                                        <label for="date_to" class="form-label">  الى تاريخ </label>
+                                        <input type="date" name="date_to" class="form-control" value="{{ old('date_to', date('Y-m-d'))}}" min={{date('Y-m-d')}}  id="date_to" >
+                                        @error('date_to')
+                                            <div class="text-danger ">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-10 col-md-6 col-lg-4 mb-3">
                                             <label for="note" class="form-label">  تفاصيل اخرى </label>
                                             <input type="text" name="note" class="form-control" value="{{old('note')}}" id="note" placeholder="  تفاصيل اخرى ">
-                                            @error('note')
-                                                <div class="text-danger fs-6">{{ $message }}</div>
-                                            @enderror
                                     </div>
                             </div>
 

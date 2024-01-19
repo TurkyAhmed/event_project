@@ -11,7 +11,7 @@
                 <div class=" card card_shadow w-100 px-4" >
                     <div class="row d-flex align-items-center ">
                         <div class="card-body col-8 pe-5">
-                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" target="dashbord-icon" alt=""></h5>
                             <h6 class="card-subtitle mb-2 ">  القاعات </h6>
                         </div>
                         <div class="col-4">
@@ -25,7 +25,7 @@
                 <div class=" card card_shadow w-100 px-4" >
                     <div class="row d-flex align-items-center ">
                         <div class="card-body col-8 pe-5">
-                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/headphones.png')}}" target="dashbord-icon" alt=""></h5>
                             <h6 class="card-subtitle mb-2 ">  الخدمات </h6>
                         </div>
                         <div class="col-4">
@@ -39,7 +39,7 @@
                 <div class=" card card_shadow w-100 px-4" >
                     <div class="row d-flex align-items-center ">
                         <div class="card-body col-8 pe-5 ">
-                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/waiting-list.png')}}" target="dashbord-icon" alt=""></h5>
                             <h6 class="card-subtitle mb-2 "> الحجوزرات المنتظرة </h6>
                         </div>
                         <div class="col-4">
@@ -53,7 +53,7 @@
                 <div class=" card card_shadow w-100 px-4" >
                     <div class="row d-flex align-items-center ">
                         <div class="card-body col-8 pe-5 ">
-                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/booking.png')}}" target="dashbord-icon" alt=""></h5>
                             <h6 class="card-subtitle mb-2 "> حجوزرات الاسبوع </h6>
                         </div>
                         <div class="col-4">
@@ -67,7 +67,7 @@
                 <div class=" card card_shadow w-100 px-4" >
                     <div class="row d-flex align-items-center ">
                         <div class="card-body col-8 pe-5 ">
-                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/cancel.png')}}" target="dashbord-icon" alt=""></h5>
                             <h6 class="card-subtitle mb-2 "> الحجوزرات الملغية </h6>
                         </div>
                         <div class="col-4">
@@ -81,7 +81,7 @@
                 <div class=" card card_shadow w-100 px-4" >
                     <div class="row d-flex align-items-center ">
                         <div class="card-body col-8 pe-5 ">
-                            <h5 class="card-title"><img src="{{asset('assets/imgs/conference.png')}}" alt=""></h5>
+                            <h5 class="card-title"><img src="{{asset('assets/imgs/people.png')}}" target="dashbord-icon" alt=""></h5>
                             <h6 class="card-subtitle mb-2 "> العملاء  </h6>
                         </div>
                         <div class="col-4">
@@ -213,6 +213,7 @@
 
 
         </div>
+
 
         {{-- javaScript --}}
         @push('javascript')

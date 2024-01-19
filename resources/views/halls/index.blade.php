@@ -74,9 +74,7 @@
                 صفحة {{ $halls->currentPage() }} من {{ $halls->lastPage() }}
             </div>
         </div>
-
-
-
+        
     </div>
 
 @endsection

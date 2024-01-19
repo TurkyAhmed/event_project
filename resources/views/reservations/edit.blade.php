@@ -1,38 +1,36 @@
 @extends('layouts.main_layout')
 @section('content')
 
-    <div class="reservation_details h_100vh">
-        <div id="reservation_details" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#reservation_details" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#reservation_details" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#reservation_details" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<section class="landindpage_halls_hero h_100vh">
+    <div id="carousellandindpage_halls_hero" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner ">
+          <div class="carousel-item active">
+            <img src='{{asset("assets/imgs/".$imgs[0])}}' class="d-block w-100" alt="...">
+          </div>
+          @for ($i=1; $i < count($imgs); $i++)
+            <div class="carousel-item">
+              <img src='{{asset("assets/imgs/".$imgs[$i])}}' class="d-block w-100" alt="...">
             </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/imgs/istdama.jpg')}}" class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#reservation_details" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#reservation_details" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+          @endfor
         </div>
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carousellandindpage_halls_hero" data-bs-slide-to="0" class="active thumbail" aria-current="true" aria-label="Slide 1">
+                <img src='{{asset("assets/imgs/".$imgs[0])}}' class="d-block w-100" alt="...">
+            </button>
+            @for ($i=1; $i < count($imgs); $i++)
+                <button type="button" data-bs-target="#carousellandindpage_halls_hero" data-bs-slide-to="{{$i}}" class=" thumbail" aria-current="true" aria-label="Slide {{$i+1}}">
+                    <img src='{{asset("assets/imgs/".$imgs[$i])}}' class="d-block w-100" alt="...">
+                </button>
+            @endfor
+        </div>
+    </div>
+</section>
 
         <section class="reservation_details_services my-3">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-lg-5 bg-light">
+                    <div class="col-12 col-lg-4 pt-3 bg-light">
                         <div class="container">
                             <h3 class="text-center"> الخدمات المتوفره </h3>
                             <table class="table">
@@ -62,11 +60,72 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-7 mt-3">
+                    <div class="col-12 col-lg-7 mt-3 mx-auto">
                         <form action="{{route('reservations.update',$reservationDetails[0]->reservation_id)}}" method="Post">
                             @csrf
                             @method('PUT')
 
+
+                            <h4> بيانات الحجز </h4>
+                            <div class="row reservation_main_details bg-light pt-3 px-3">
+
+                                <div class="col-10 col-md-6 col-lg-4 mb-3">
+                                    <label for="title" class="form-label"> عنوان الحجز </label>
+                                    <input type="text" name="title" class="form-control" value="{{$reservationDetails[0]->title}}" id="title" placeholder=" عنوان الحجز ">
+                                    @error('title')
+                                        <div class="text-danger fs-6">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-10 col-md-6 col-lg-4 mb-3">
+                                    <label for="interval">الفترة</label>
+                                    <select class="form-control" id="interval" name="interval">
+                                        <option selected disabled >--اختار الفترة--</option>
+                                        <option value="صباح" {{$reservationDetails[0]->interval == 'صباح' ? 'selected' : ''}}>صباح</option>
+                                        <option value="مساء" {{$reservationDetails[0]->interval == 'مساء' ? 'selected' : ''}}>مساء</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-10 col-md-6 col-lg-4 mb-3">
+                                    <label for="type_of_event">نوع الحجز</label>
+                                    <select class="form-control" id="type_of_event" name="type_of_event">
+                                        <option disabled>--اختار نوع الحدث--</option>
+                                        <option value="مؤتمر" {{ $reservationDetails[0]->type_of_event == 'مؤتمر' ? 'selected' : '' }}>مؤتمر</option>
+                                        <option value="ندوة" {{ $reservationDetails[0]->type_of_event == 'ندوة' ? 'selected' : '' }}>ندوة</option>
+                                        <option value="ورشة عمل" {{ $reservationDetails[0]->type_of_event == 'ورشة عمل' ? 'selected' : '' }}>ورشة عمل</option>
+                                        <option value="تدريب" {{ $reservationDetails[0]->type_of_event == 'تدريب' ? 'selected' : '' }}>تدريب</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-10 col-md-6 col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="date_from" class="form-label">  من تاريخ </label>
+                                        <input type="date" name="date_from" class="form-control" value="{{date('Y-m-d'), $reservationDetails[0]->date_from}}" min={{date('Y-m-d')}} id="date_from" >
+                                        @error('date_from')
+                                            <div class="text-danger fs-6">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    </div>
+
+                                    <div class="col-10 col-md-6 col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="date_to" class="form-label">  الى تاريخ </label>
+                                        <input type="date" name="date_to" class="form-control" value="{{ date('Y-m-d'), $reservationDetails[0]->date_to}}" min={{date('Y-m-d')}} id="date_to" >
+                                        @error('date_to')
+                                            <div class="text-danger fs-6">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    </div>
+
+                                    <div class="col-10 col-md-6 col-lg-4 mb-3">
+                                        <label for="note" class="form-label">  تفاصيل اخرى </label>
+                                        <input type="text" name="note" class="form-control" value="{{old('note')}}" id="note" value="{{$reservationDetails[0]->note}}" placeholder="  تفاصيل اخرى ">
+                                        @error('note')
+                                            <div class="text-danger fs-6">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                            </div>
+{{--
                             <h4>فترة الحجز</h4>
                             <div class="row">
                                 <div class="col-10 col-md-6 col-lg-4">
@@ -88,7 +147,7 @@
                                         @enderror
                                     </div>
                                     </div>
-                            </div>
+                            </div> --}}
                             <h4 class="text-center mt-5"> الخدمات المضافة للقاعة </h4>
 
                             <table class="table" id="table_pill">
@@ -142,7 +201,7 @@
                                 </tfoot>
                             </table>
                             <div>
-                                <button type="submit" class="btn btn-success"> حفظ التغيير </button>
+                                <button type="submit" class="btn bg_primary"> حفظ التغيير </button>
                             </div>
                         </form>
                     </div>

@@ -31,13 +31,13 @@
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('services.index')}}" class="nav-link link-dark ">
+                        <a href="{{route('services.index')}}" class="nav-link link-dark  {{$link_active == 'services'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                           الخدمات
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('employees.index')}}" class="nav-link link-dark ">
+                        <a href="{{route('employees.index')}}" class="nav-link link-dark  {{$link_active == 'employees'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
                           الموظفين
                         </a>
@@ -49,7 +49,7 @@
                         </a>
                       </li> --}}
                       <li>
-                        <a href="{{route('reservations.index')}}" class="nav-link link-dark ">
+                        <a href="{{route('reservations.index')}}" class="nav-link link-dark  {{$link_active == 'reservations'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                           الحجوزات
                         </a>
@@ -61,13 +61,13 @@
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('reservations.getCalender')}}" class="nav-link link-dark ">
+                        <a href="{{route('reservations.getCalender')}}" class="nav-link link-dark  {{$link_active == 'calender'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                            التقويم
                         </a>
                       </li>
                       <li>
-                        <a href="{{route('reservations.report')}}" class="nav-link link-dark reports">
+                        <a href="{{route('reservations.report')}}" class="nav-link link-dark reports {{$link_active == 'reports'? 'active' : '' }}">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                             التقارير
                         </a>
@@ -88,7 +88,7 @@
                         </div>
                       </li>
 
-
+                      
 
                     </ul>
 

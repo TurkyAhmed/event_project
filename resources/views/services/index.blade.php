@@ -6,7 +6,7 @@
             <h3 class=" pt-5 pe-5 text-white"> قائمة الخدمات  </h3>
         </div>
     </div>
-    
+
     <div class="container pt-5 pe-5">
         @if(session('successMsg'))
             <div class="alert alert-success">
@@ -41,6 +41,40 @@
 
             </tbody>
         </table>
+
+        <div class="pagination justify-content-between">
+            <ul class="pagination justify-content-center">
+                @if ($services->onFirstPage())
+                    <li class="page-item disabled">
+                        <span class="page-link">&laquo;</span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $services->previousPageUrl() }}" rel="prev">&laquo;</a>
+                    </li>
+                @endif
+                @foreach ($services->getUrlRange(1, $services->lastPage()) as $page => $url)
+                    <li class="page-item {{ $page == $services->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+                @if ($services->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $services->nextPageUrl() }}" rel="next">&raquo;</a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <span class="page-link">&raquo;</span>
+                    </li>
+                @endif
+            </ul>
+
+            <!-- Pagination label -->
+            <div class="pagination-label">
+                صفحة {{ $services->currentPage() }} من {{ $services->lastPage() }}
+            </div>
+        </div>
+
     </div>
 
 @endsection

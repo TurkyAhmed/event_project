@@ -13,4 +13,7 @@ class PublicViewController extends Controller
 
         return view('publicViews.roomdetials',compact('hall'));
     }
+
+
+
 }

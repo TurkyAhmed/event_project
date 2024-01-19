@@ -1,4 +1,4 @@
-{{-- @extends('layouts.main_layout')
+@extends('layouts.main_layout')
 @section('content')
 @push('style')
 <style>
@@ -29,7 +29,7 @@
 
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                         <label for="date_from" class="form-label">  من تاريخ </label>
-                        <input type="date" name="date_from" class="form-control" value="{{ date('Y-m-d') }}" id="date_from" min="{{date('Y-m-d')}}">
+                        <input type="date" name="date_from" class="form-control" value="{{ date('Y-m-d') }}" id="date_from">
                         @error('date_from')
                             <div class="text-danger fs-6">{{ $message }}</div>
                         @enderror
@@ -76,7 +76,7 @@
 
             $.ajax({
                 type: 'GET',
-                url: 'reservations/myreservationsfiltered',
+                url: '/reservations/filter',
                 data: {
                     hall_id: hallId,
                     date_from: dateFrom,
@@ -111,4 +111,4 @@
     });
 </script>
 @endpush
-@endsection --}}
+@endsection

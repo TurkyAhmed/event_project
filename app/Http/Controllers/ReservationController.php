@@ -9,7 +9,9 @@ use App\Models\Hall;
 use App\Models\Reservation_Detail;
 use App\Models\Service;
 use App\Models\User;
+use App\Notifications\reservations_notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -18,8 +20,8 @@ class ReservationController extends Controller
 
     private $imgs =[
         '1'=>['sada1.jpg','sada2.jpg','sada3.jpg','sada4.jpg'], //2 hagrain 6shabam
+        '2'=>['istdama1.jpg','istdama2.jpg','istdama3.jpg'],
         '3'=>['istdama1.jpg','istdama2.jpg','istdama3.jpg'],
-        '4'=>['istdama1.jpg','istdama2.jpg','istdama3.jpg'],
         '4'=>['con1.jpg','con2.jpg','con3.jpg'],
         '5'=>['salam1.jpg','salam2.jpg','salam3.jpg','salam4.jpg'],
         '6'=>['aon1.jpg','aon2.jpg','aon3.jpg',],
@@ -31,11 +33,14 @@ class ReservationController extends Controller
     {
         $reservations = DB::table('reservations')
                         ->join('users','reservations.user_id','users.id')
+                        ->where('reservations.deleted_at',null)
                         ->select('reservations.*','users.name as username')
                         ->paginate(10);
 
-        return view('reservations.index',compact('reservations'));
+        return view('reservations.index',['reservations'=>$reservations ,'link_active'=>'reservations']);
+
     }
+
 
     // All Waiting Reservation Order
     public function reservation_waiting(){
@@ -46,7 +51,7 @@ class ReservationController extends Controller
                         ->select('reservations.*','users.name as username')
                         ->paginate(10);
 
-        return view('reservations.reservation_waiting',compact('reservations'));
+        return view('reservations.reservation_waiting',['reservations'=>$reservations ,'link_active'=>'reservations']);
     }
 
 
@@ -75,6 +80,9 @@ class ReservationController extends Controller
             'employee_id'=> 1,
         ]);
         $reservation->save();
+
+        $admin=User::all()->where('role_id', 1);
+        Notification::send($admin,new reservations_notification('jj'));
 
         return redirect()->back()->with('successMsg',' تم تأكيد الحجز بنجاح');
     }
@@ -116,7 +124,7 @@ class ReservationController extends Controller
 
         $imgs = $this->imgs[$hall->id];
 
-        return view("reservations.reservation_details",compact('hall','services','imgs')) ;
+        return view("reservations.reservation_details",['hall'=>$hall,'services'=>$services,'imgs'=>$imgs,'link_active'=>'reservations']);
     }
 
 
@@ -124,12 +132,11 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $cart = session()->get('cart', []);
+        // return $cart;
 
 
         // Iterate over the cart items
         foreach ($cart as $hall_id => $item) {
-            // $date_from = $item['date_from'];
-            // $date_to = $item['date_to'];
 
             $reservation = Reservation::create([
                 // 'employee_id' => $employee_id,
@@ -176,15 +183,18 @@ class ReservationController extends Controller
 
     public function show( $id)
     {
+
         $reservationDetails = DB::select("
-            select reservations.*, reservation__details.*,halls.name as hall_name, halls.price as hall_price , services.name as service_name
+            select reservations.*, reservation__details.*,halls.name as hall_name, halls.price as hall_price , services.name as service_name, users.name as username
             from reservations inner join reservation__details
             on reservations.id = reservation__details.reservation_id
             inner join services on services.id = reservation__details.service_id
             inner join halls on halls.id = reservation__details.hall_id
             inner join users on users.id = reservations.user_id
-            where reservations.id = $id && reservation__details.deleted_at is null;
+            where reservations.id = $id && reservations.deleted_at is null;
         ");
+
+        // return $reservationDetails ;
 
         $reservationPrice = DB::select("
             select (subquery.total_price + h.price) as total_price
@@ -206,7 +216,7 @@ class ReservationController extends Controller
     public function edit( $id)
     {
         $reservationDetails = DB::select("
-        select reservations.*, reservation__details.*,halls.name as hall_name,  halls.price as hall_price , services.name as service_name
+        select reservations.*, reservation__details.*,halls.id as hall_id,halls.name as hall_name,  halls.price as hall_price , services.name as service_name
         from reservations inner join reservation__details
         on reservations.id = reservation__details.reservation_id
         inner join services on services.id = reservation__details.service_id
@@ -219,9 +229,11 @@ class ReservationController extends Controller
                         ->where('is_main_service',false)
                         ->where('deleted_at', null);
 
+        $imgs = $this->imgs[$reservationDetails[0]->hall_id];
+
         // return $reservationDetails;
 
-        return view('reservations.edit', compact('reservationDetails','allServices'));
+        return view('reservations.edit', compact('reservationDetails','allServices','imgs'));
     }
 
 
@@ -290,8 +302,8 @@ class ReservationController extends Controller
     }
 
 
-public function getCalender(){
-    $reservations_ =  [
+    public function getCalender(){
+        $reservations_ =  [
         [
         'title'=> 'Call with Dave',
         'start'=> '2020-11-18',
@@ -368,25 +380,25 @@ public function getCalender(){
         'className'=> 'bg-gradient-danger'
       ],
 
-    ];
-
-    $booking = Reservation::all()
-            ->where('deleted_at',null);
-
-    $reservations = array();
-
-    foreach($booking as $book){
-        $reservations[]= [
-            'title'=> $book->title,
-            'start'=> $book->date_from,
-            'end'=> $book->date_to,
-            'className'=> $book->status->background(),
         ];
-    }
+
+        $booking = Reservation::all()
+                ->where('deleted_at',null);
+
+        $reservations = array();
+
+        foreach($booking as $book){
+            $reservations[]= [
+                'title'=> $book->title,
+                'start'=> $book->date_from,
+                'end'=> $book->date_to,
+                'className'=> $book->status->background(),
+            ];
+         }
 
 
     // return $reservations;
-    return view('reservations.calender',compact('reservations'));
+    return view('reservations.calender',['reservations'=>$reservations,'link_active'=>'calender']);
 }
 
 

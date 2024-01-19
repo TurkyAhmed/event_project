@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ServicesRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ServiceController extends Controller
 {
@@ -13,20 +14,19 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
+        $services = DB::table('services')->where('deleted_at', null)->paginate(10);
         // dd($services);
-        return view ('services.index',compact('services'));
+        return view ('services.index',['services'=>$services, 'link_active'=>'services']);
     }
 
 
     public function create()
     {
-        return view('services.create');
+        return view('services.create', ['link_active'=>'services']);
     }
 
     public function store(ServicesRequest $request)
     {
-        return $request ;
         $sdrvice = Service::create($request->all());
         return redirect('services')->with('successMsg', 'تم الاضافة بنجاح');
 
@@ -36,14 +36,14 @@ class ServiceController extends Controller
     public function show($id)
     {
         $service = Service::find($id);
-        return view('services.details',compact('service'));
+        return view('services.details',['service'=>$service,'link_active'=>'services']);
     }
 
 
     public function edit($id)
     {
         $service = Service::find($id);
-        return view('services.edit',compact('service'));
+        return view('services.edit',['service'=>$service,'link_active'=>'services']);
     }
 
     public function update(ServicesRequest $request, $id)
@@ -58,7 +58,7 @@ class ServiceController extends Controller
     public function delete($id){
         $service = Service::find($id);
 
-        return view('services.delete',compact('service'));
+        return view('services.delete',['service'=>$service,'link_active'=>'services']);
     }
 
 

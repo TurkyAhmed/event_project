@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReservationRequest;
 use App\Models\Hall;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -10,9 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
-        private static $total = 0;
-
-    public function addToCart(Request $request){
+    public function addToCart(ReservationRequest $request){
         $hall_id = $request->hall_id;
         // return $request;
 
@@ -75,7 +74,6 @@ class CartController extends Controller
     }
 
 
-
     public function show($id){
         $cart = session()->get('cart', []);
         $hall = Hall::find($id);
@@ -120,9 +118,9 @@ class CartController extends Controller
     }
 
 
-    public function update(Request $request ,$id){
+    public function update(ReservationRequest $request ,$id){
 
-        return $request;
+        // return $request;
         $hallId = $request->hall_id;
         $hall = Hall::findOrFail($hallId );
         $cart = session()->get('cart', []);
@@ -155,7 +153,7 @@ class CartController extends Controller
 
         }
 
-        return redirect()->route('cart.index') ;
+        return redirect()->route('cart.index')->with('successMsg','تم تعديل الحجز بنجاح') ;
     }
 
 
@@ -169,13 +167,13 @@ class CartController extends Controller
            //TODO error if not found throw exciption
         }
 
-        return redirect()->route('cart.index');
+        return redirect()->route('cart.index')->with('successMsg','تم الغاء الحجز المحدد بنجاح');
     }
 
 
     public function cancelAllReservation(){
         session()->flush();
-        return redirect()->route('cart.index');
+        return redirect()->route('cart.index')->with('successMsg','تم الغاء جميع الحجوزات الموجودة في السلة بنجاح');
     }
 
     public function destroy($id){

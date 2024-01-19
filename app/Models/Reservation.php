@@ -38,3 +38,4 @@ class Reservation extends Model
     //     return $this->hasMany(Reservation_Detail::class);
     // }
 }
+ 
