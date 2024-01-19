@@ -53,7 +53,7 @@
                                         <td > {{$services[$i]->price}}</td>
                                         {{-- <td class="text-center total_service_price"></td> --}}
                                         <td >
-                                            <button class="btn btn-primary btn_add"> اضافة </button>
+                                            <button class="btn bg_primary btn_add"> اضافة </button>
                                             {{-- <button class="btn btn-secondary btn_cancel"> الغاء </button> --}}
                                         </td>
                                     </tr>
@@ -147,7 +147,7 @@
                                         </td>
                                         <td >{{$hall->price - $hall->discount}}</td>
                                         <td >1</td>
-                                        <td >{{$hall->price - $hall->discount}}</td>
+                                        <td id="price_of_hall">{{$hall->price - $hall->discount}}</td>
                                         <td ></td>
                                     </tr>
                                 </tbody>
@@ -159,7 +159,7 @@
                                 </tfoot>
                             </table>
                             <div>
-                                <button type="submit" class="btn btn-primary">إضافة إلى العربة</button>
+                                <button type="submit" class="btn bg_primary">إضافة إلى العربة</button>
                             </div>
                         </form>
                     </div>
@@ -173,6 +173,10 @@
     <script>
         $( document ).ready(function() {
 
+
+            function gettotal(){
+                let _t = document.q
+            }
 
 
             let btn_add = $('.btn_add');
@@ -212,14 +216,14 @@
                 _input.addEventListener('input',()=>{
                     totalOfService.value=_input.value * price ;
 
-                    total.text(parseInt(total.text()) + parseInt(totalOfService.value) -price);
+                    updateTotalPrice();
                 });
 
 
 
                 let totalOfService =document.createElement('input');
                 totalOfService.name="totalOfService[]";
-                totalOfService.classList ="w_6rem border-0";
+                totalOfService.classList ="w_6rem border-0 _totalService";
                 totalOfService.type='text';
                 totalOfService.value=_total;
 
@@ -243,7 +247,7 @@
 
                 i++;
 
-                total.text(parseInt(total.text())+_total);
+                updateTotalPrice();
 
                 btn_cancel = $('.btn_cancel');
 
@@ -266,9 +270,19 @@
 
               i--;
 
-              total.text(parseInt(total.text()) - _total);
+            //   total.text(parseInt(total.text()) - _total);
+                updateTotalPrice()
             });
 
+
+            function updateTotalPrice() {
+                let totalPrice = parseFloat($('#price_of_hall').text());
+                $('._totalService').each(function() {
+                    console.log($(this).val());
+                    totalPrice += parseFloat($(this).val());
+                });
+                total.text(totalPrice.toFixed(2));
+            }
 
         });
 

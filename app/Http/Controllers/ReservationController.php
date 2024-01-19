@@ -247,7 +247,7 @@ class ReservationController extends Controller
 
         $reservation->title = $request->input('title');
         $reservation->interval = $request->input('interval');
-        // $reservation->status = $request->input('status');
+        $reservation->status = $request->input('status');
         $reservation->date_from = $request->input('date_from');
         $reservation->date_to = $request->input('date_to');
         $reservation->type_of_event = $request->input('type_of_event');
@@ -277,6 +277,9 @@ class ReservationController extends Controller
             ]);
         }
 
+        if(Auth()->user()->role['name'] == 'admin'){
+            return  redirect()->route('reservations.index')->with('successMsg','تم التعديل بنجاح');
+        }
 
         return redirect()->route('cart.index')->with('successMsg','تم التعديل بنجاح') ;
 

@@ -51,7 +51,7 @@
                                         <td >1 </td>
                                         <td > {{$service->price}}</td>
                                         <td >
-                                            <button class="btn btn-primary btn_add"> اضافة </button>
+                                            <button class="btn bg_primary btn_add"> اضافة </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -124,30 +124,18 @@
                                             <div class="text-danger fs-6">{{ $message }}</div>
                                         @enderror
                                     </div>
-                            </div>
-{{--
-                            <h4>فترة الحجز</h4>
-                            <div class="row">
-                                <div class="col-10 col-md-6 col-lg-4">
-                                    <div class="mb-3">
-                                        <label for="date_from" class="form-label">  من تاريخ </label>
-                                        <input type="date" name="date_from" class="form-control" value="{{date('Y-m-d'), $reservationDetails[0]->date_from}}" min={{date('Y-m-d')}} id="date_from" >
-                                        @error('date_from')
-                                            <div class="text-danger fs-6">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    </div>
 
-                                    <div class="col-10 col-md-6 col-lg-4">
-                                    <div class="mb-3">
-                                        <label for="date_to" class="form-label">  الى تاريخ </label>
-                                        <input type="date" name="date_to" class="form-control" value="{{ date('Y-m-d'), $reservationDetails[0]->date_to}}" min={{date('Y-m-d')}} id="date_to" >
-                                        @error('date_to')
-                                            <div class="text-danger fs-6">{{ $message }}</div>
-                                        @enderror
+                                    <div class="col-12 pb-3">
+                                        <label for="status">حالة الحجز</label>
+                                        <select class="form-control" id="status" name="status">
+                                            <option disabled>--اختار حالة الحدث--</option>
+                                            <option value="في الانتظار" {{ $reservationDetails[0]->status == "في الانتظار" ? 'selected' : '' }}>في الانتظار</option>
+                                            <option value="تمت الموافقة" {{ $reservationDetails[0]->status == 'تمت الموافقة' ? 'selected' : '' }}>تمت الموافقة</option>
+                                            <option value="تم الغاء الحجز" {{ $reservationDetails[0]->status == 'تم الغاء الحجز' ? 'selected' : '' }}>تم الغاء الحجز </option>
+                                        </select>
                                     </div>
-                                    </div>
-                            </div> --}}
+                            </div>
+
                             <h4 class="text-center mt-5"> الخدمات المضافة للقاعة </h4>
 
                             <table class="table" id="table_pill">
@@ -170,7 +158,7 @@
                                         </td>
                                         <td >{{$reservationDetails[0]->hall_price}}</td>
                                         <td >1</td>
-                                        <td >{{$reservationDetails[0]->hall_price}}</td>
+                                        <td id="price_of_hall">{{$reservationDetails[0]->hall_price}}</td>
                                         <td ></td>
                                     </tr>
                                     @php
@@ -183,9 +171,9 @@
                                             {{$value->service_name}}
                                             <input type="hidden" name="services_ids[]" value="{{$value->service_id}}">
                                         </td>
-                                        <td ><input type="text" class="border-0 w_6rem" name="price[]" value="{{$value->service_price}}" /></td>
-                                        <td ><input type="number" class="w_6rem" name="quantity[]" value="{{$value->service_count}}" min="1" /></td>
-                                        <td ><input type="text" class="border-0 w_6rem" name="totalOfService[]" value="{{$value->service_price * $value->service_count}}" /></td>
+                                        <td ><input type="text" class="border-0 w_6rem price" name="price[]" value="{{$value->service_price}}" /></td>
+                                        <td ><input type="number" class="w_6rem quantity" name="quantity[]" value="{{$value->service_count}}" min="1" /></td>
+                                        <td ><input type="text" class="border-0 w_6rem _totalService" name="totalOfService[]" value="{{$value->service_price * $value->service_count}}" /></td>
                                         <td> <p class=" btn_cancel" style="cursor: pointer;"> الغاء </p> </td>
                                     </tr>
                                     @php
@@ -212,73 +200,133 @@
 
 
 @push('scripts')
-    <script>
-        $( document ).ready(function() {
-            console.log( "document loaded" );
-
-            let btn_add = $('.btn_add');
-            let btn_cancel = $('.btn_cancel');
-            let total = $('#total_of_services');
-            let i = 2;
+<script>
+    $( document ).ready(function() {
 
 
-            btn_add.click(function() {
-                // Get the clicked row
-                let row = $(this).closest('tr');
+        $('.quantity').on('input', function() {
+            var row = $(this).closest('tr');
+            var price = parseFloat(row.find('.price').val());
+            var quantity = parseFloat($(this).val());
+            var total = price * quantity;
+            row.find('.border-0._totalService').val(total);
 
-                // Retrieve the required data from the row
-                let serviceName = row.find('td:nth-child(2)').text();
-                let serviceId = parseInt(row.find('input[name="service_id[]"]').val());
-                let quantity = row.find('td:nth-child(3)').text();
-                let price = row.find('td:nth-child(4)').text();
-                // let total = row.find('.total_service_price').text();
-                let _total = parseInt(quantity * price);
+            updateTotalPrice();
+        });
 
-                // Create a new row in the #hall_with_services table
-                let newRow = $('<tr></tr>');
-                newRow.append('<th scope="row">'+ i +'</th>');
-                newRow.append(`<td >${serviceName}<input type="hidden" name="services_ids[]" value="${serviceId}"></td>`);
-                newRow.append(`<td > <input type="text" class="border-0 w_6rem" name="price[]" value="${price}" /> </td>`);
-                newRow.append(`<td > <input type="number" class="w_6rem" name="quantity[]" value="1" min="1" /> </td>`);
-                newRow.append(`<td> <input type="text" class="border-0 w_6rem" name="totalOfService[]" value="${_total}" /> </td>`);
-                newRow.append('<td> <p class=" btn_cancel" style="cursor: pointer;"> الغاء </p> </td>');
 
-                // Appand the new row to the #hall_with_services table
-                $('#hall_with_services').append(newRow);
+        let btn_add = $('.btn_add');
+        let btn_cancel = $('.btn_cancel');
+        let total = $('#total_of_services');
+        let i = 2;
 
-                i++;
 
-                total.text(parseInt(total.text())+_total);
-                console.log(+total.text());
+        btn_add.click(function() {
+            // Get the clicked row
+            let row = $(this).closest('tr');
 
-                btn_cancel = $('.btn_cancel');
+            // Retrieve the required data from the row
+            let serviceName = row.find('td:nth-child(2)').text();
+            let serviceId = parseInt(row.find('input[name="service_id[]"]').val());
+            let quantity = row.find('td:nth-child(3)').text();
+            let price = row.find('td:nth-child(4)').text();
+            // let total = row.find('.total_service_price').text();
+            let _total = parseInt(quantity * price);
 
+            // Create a new row in the #hall_with_services table
+            let newRow = $('<tr></tr>');
+            newRow.append('<th scope="row">'+ i +'</th>');
+            newRow.append(`<td >${serviceName}<input type="hidden" name="service_id[]" value="${serviceId}"></td>`);
+            newRow.append(`<td > <input type="text" class="border-0 w_6rem" name="price[]" value="${price}" /> </td>`);
+
+
+            let td =document.createElement('td');
+
+
+            let _input =document.createElement('input');
+            _input.name="quantity[]";
+            _input.classList ="w_6rem";
+            _input.type='number';
+            _input.value='1';
+
+            _input.addEventListener('input',()=>{
+                totalOfService.value=_input.value * price ;
+
+                updateTotalPrice();
             });
 
 
-             // Delegate the event handler to the dynamically added .btn_cancel buttons
-            $('#hall_with_services').on('click', '.btn_cancel', function() {
 
-                // Get the clicked row
-              console.log('in cancel function');
-              let row = $(this).closest('tr');
+            let totalOfService =document.createElement('input');
+            totalOfService.name="totalOfService[]";
+            totalOfService.classList ="w_6rem border-0 _totalService";
+            totalOfService.type='text';
+            totalOfService.value=_total;
 
-              let serviceName = row.find('input[name="services_ids[]"]').val();
-              let quantity = parseInt(row.find('input[name="quantity[]"]').val());
-              let price = parseFloat(row.find('input[name="price[]"]').val());
-              let _total = price * quantity;
 
-              row.remove();
 
-              i--;
+            td.appendChild(_input);
+            newRow.append(td);
 
-              total.text(parseInt(total.text()) - _total);
-              console.log(+total.text());
-            });
 
+            td =document.createElement('td');
+            td.appendChild(totalOfService);
+            newRow.append(td);
+
+            console.log(typeof(parseInt(total.text())));
+            console.log(typeof(+totalOfService.value));
+
+            newRow.append('<td> <p class=" btn_cancel" style="cursor: pointer;"> الغاء </p> </td>');
+
+            // Append the new row to the #hall_with_services table
+            $('#hall_with_services').append(newRow);
+
+            i++;
+
+            updateTotalPrice();
+
+            btn_cancel = $('.btn_cancel');
 
         });
 
-    </script>
+
+         // Delegate the event handler to the dynamically added .btn_cancel buttons
+        $('#hall_with_services').on('click', '.btn_cancel', function() {
+
+            // Get the clicked row
+          console.log('in cancel function');
+          let row = $(this).closest('tr');
+
+          let serviceName = row.find('input[name="service_name[]"]').val();
+          let quantity = parseInt(row.find('input[name="quantity[]"]').val());
+          let price = parseFloat(row.find('input[name="price[]"]').val());
+          let _total = price * quantity;
+
+          row.remove();
+
+          i--;
+
+        //   total.text(parseInt(total.text()) - _total);
+            updateTotalPrice()
+        });
+
+
+        function updateTotalPrice() {
+            let totalPrice = parseFloat($('#price_of_hall').text());
+            $('._totalService').each(function() {
+                console.log($(this).val());
+                totalPrice += parseFloat($(this).val());
+            });
+            total.text(totalPrice.toFixed(2));
+        }
+
+    });
+
+
+
+    $( window ).on( "load", function() {
+        console.log( "window loaded" );
+    });
+</script>
 @endpush
 @endsection
