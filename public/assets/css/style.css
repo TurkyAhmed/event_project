@@ -206,14 +206,7 @@ body{
     animation-delay: -5s;
     animation-duration: 20s;
   }
-  /* @keyframes move-forever {
-    0% {
-     transform: translate3d(-90px,0,0);
-    }
-    100% {
-      transform: translate3d(85px,0,0);
-    }
-  } */
+
   /*Shrinking for mobile*/
   @media (max-width: 768px) {
     .waves {
@@ -262,14 +255,18 @@ body{
   }
 
   .reservation__hall__item:hover .reservation__hall__title {
-    top: 0;
+    /* top: 0;
     margin-top: 0;
-    padding: 32px 25px 0;
+    padding: 32px 25px 0; */
+    bottom: 0;
+    padding-top: 0.3rem;
+    background-image: linear-gradient(60deg, rgba(184, 183, 187, 0.721) 0%, rgba(140, 140, 140, 0.616) 60%);
   }
 
   .reservation__hall__item:hover a {
-    bottom: 32px;
-    opacity: 1;
+      /* bottom: 32px; */
+      bottom: 2rem;
+      opacity: 1;
     visibility: visible;
   }
 
