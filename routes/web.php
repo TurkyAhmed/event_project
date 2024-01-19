@@ -148,11 +148,6 @@ Route::get('halls/landingpageHallDetails/{id}',[HallController::class,'landingpa
 // Route::resource('halls', HallController::class);
 
 
-// Route::get('services/delete/{id}',[ServiceController::class,'delete'])->name('services.delete');
-// Route::get('services/softdelete',[ServiceController::class,'SoftDelete'])->name('services.softdelete');
-// Route::get('services/restore/{id}',[ServiceController::class,'restore'])->name('services.restore');
-// Route::get('services/forcedelete/{id}',[ServiceController::class,'forcedelete'])->name('services.forcedelete');
-// Route::resource('services', ServiceController::class);
 
 
 Route::get('users/report',[UserController::class,'report'])->name('users.report');
@@ -165,26 +160,19 @@ Route::resource('users', UserController::class);
 
 
 
-// Route::get('employees/delete/{id}',[employeeController::class,'delete'])->name('employees.delete');
-// Route::get('employees/softdelete',[ServiceController::class,'SoftDelete'])->name('employees.softdelete');
-// Route::get('employees/restore/{id}',[ServiceController::class,'restore'])->name('employees.restore');
-// Route::get('employees/forcedelete/{id}',[ServiceController::class,'forcedelete'])->name('employees.forcedelete');
-// Route::resource('employees', employeeController::class);
-
-
    //==Reservations======
-        Route::get('reservations/myreservationsfiltered', [ReservationController::class,'myreservationsfiltered'])->name('reservations.myreservationsfiltered');
-        Route::get('reservations/myreservations', [ReservationController::class,'myReservations'])->name('reservations.myReservations');
-        Route::get('reservations/store', [ReservationController::class,'store'])->name('reservations.store_reservation');
-        Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details');
-        Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
-        Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
-        Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
-        Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
-        Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
-        Route::get('reservations/report', [ReservationController::class,'report'])->name('reservations.report');
-        Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations');
-        Route::resource('reservations', ReservationController::class);
+        // Route::get('reservations/myreservationsfiltered', [ReservationController::class,'myreservationsfiltered'])->name('reservations.myreservationsfiltered');
+        // Route::get('reservations/myreservations', [ReservationController::class,'myReservations'])->name('reservations.myReservations');
+        // Route::get('reservations/store', [ReservationController::class,'store'])->name('reservations.store_reservation');
+        // Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details');
+        // Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
+        // Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
+        // Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
+        // Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
+        // Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
+        // Route::get('reservations/report', [ReservationController::class,'report'])->name('reservations.report');
+        // Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations');
+        // Route::resource('reservations', ReservationController::class);
 
 
 
@@ -210,54 +198,54 @@ Route::middleware([
 
 
 
+Route::get('reservations/create', [ReservationController::class,'create'])->name('reservations.create');
+
+Route::get('cart/cancelSpecificreservation/{id}', [CartController::class,'cancelSpecificreservation'])->name('cart.cancelSpecificreservation');
+Route::get('cart/cancelAllReservation', [CartController::class,'cancelAllReservation'])->name('cart.cancelAllReservation');
+Route::POST('cart/add', [CartController::class,'addToCart'])->name('cart.addToCart');
+Route::resource('cart', CartController::class);
 
 //================================new ===========
 
     Route::middleware('RoleAuth')->group(function () {
 
-        Route::get('reservations/create', [ReservationController::class,'create'])->name('reservations.create');
-        Route::resource('halls', HallController::class);
 
-
-        Route::get('cart/cancelSpecificreservation/{id}', [CartController::class,'cancelSpecificreservation'])->name('cart.cancelSpecificreservation');
-        Route::get('cart/cancelAllReservation', [CartController::class,'cancelAllReservation'])->name('cart.cancelAllReservation');
-        Route::POST('cart/add', [CartController::class,'addToCart'])->name('cart.addToCart');
-        Route::resource('cart', CartController::class);
-
-
-        Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details');
+        Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details'); //*
         Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
         Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
         Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
         Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
         Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
         Route::get('reservations/report', [ReservationController::class,'report'])->name('reservations.report');
-        Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations');
+        Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations'); //*
         Route::resource('reservations', ReservationController::class);
 
 
-        Route::get('admin/dashboard',[AdminController::class,'dashboardindex'])->name('admin.dashboard');
+        Route::get('admin/dashboard',[AdminController::class,'dashboardindex'])->name('admin.dashboard');   //*
 
-        Route::get('services/delete/{id}',[ServiceController::class,'delete'])->name('services.delete');
-        Route::get('services/softdelete',[ServiceController::class,'SoftDelete'])->name('services.softdelete');
-        Route::get('services/restore/{id}',[ServiceController::class,'restore'])->name('services.restore');
-        Route::get('services/forcedelete/{id}',[ServiceController::class,'forcedelete'])->name('services.forcedelete');
-        Route::resource('services', ServiceController::class);
+        Route::get('services/delete/{id}',[ServiceController::class,'delete'])->name('services.delete');    //*
+        Route::get('services/softdelete',[ServiceController::class,'SoftDelete'])->name('services.softdelete'); //*
+        Route::get('services/restore/{id}',[ServiceController::class,'restore'])->name('services.restore'); //*
+        Route::get('services/forcedelete/{id}',[ServiceController::class,'forcedelete'])->name('services.forcedelete'); //
+        Route::resource('services', ServiceController::class); //*
 
 
-        Route::get('halls/delete/{id}',[HallController::class,'delete'])->name('halls.delete');
+        Route::get('halls/delete/{id}',[HallController::class,'delete'])->name('halls.delete'); //*
         Route::get('halls/softdelete',[HallController::class,'SoftDelete'])->name('halls.softdelete');
         Route::get('halls/restore/{id}',[HallController::class,'restore'])->name('halls.restore');
         Route::get('halls/forcedelete/{id}',[HallController::class,'forcedelete'])->name('halls.forcedelete');
-        Route::resource('halls', HallController::class);
+        Route::resource('halls', HallController::class);   //*
 
 
 
-        Route::get('employees/delete/{id}',[employeeController::class,'delete'])->name('employees.delete');
+        Route::get('employees/delete/{id}',[employeeController::class,'delete'])->name('employees.delete');     //*
         Route::get('employees/softdelete',[ServiceController::class,'SoftDelete'])->name('employees.softdelete');
         Route::get('employees/restore/{id}',[ServiceController::class,'restore'])->name('employees.restore');
         Route::get('employees/forcedelete/{id}',[ServiceController::class,'forcedelete'])->name('employees.forcedelete');
-        Route::resource('employees', employeeController::class);
+        Route::resource('employees', employeeController::class);    //*
+
+
+
         //****************************************** */
         // Route::get('reservations/myreservationsfiltered', [ReservationController::class,'myreservationsfiltered'])->name('reservations.myreservationsfiltered');
         // Route::get('reservations/myreservations', [ReservationController::class,'myReservations'])->name('reservations.myReservations');

@@ -60,7 +60,7 @@ class ReservationController extends Controller
         $reservation = Reservation::findorfail($id);
 
         $user = User::find($reservation->user_id);
-        // $employee = Employee::findOrFail(auth()->user()->id);
+        $employee = Employee::where('user_id',auth()->user()->id)->first();
 
         ////////////////////////////////////////////////////////////
         // send email for organizer to accept reservation and waiting for pay half balance
@@ -71,17 +71,16 @@ class ReservationController extends Controller
             'flag'=>'aprroved',
         ];
 
-        // Mail::to($user->email)->send(new sendMail($mailData));
-        Mail::to('tasg1818@gmail.com')->send(new sendMail($mailData));
+        Mail::to($user->email)->send(new sendMail($mailData));
         ///////////////////////////////////////////////
         $reservation->update([
             'status'=> ReservationStatus::Approved->value,
-            // 'employee_id'=> $employee->id,
-            'employee_id'=> 1,
+            'employee_id'=> $employee->id,
+            // 'employee_id'=> 1,
         ]);
         $reservation->save();
 
-        $admin=User::all()->where('role_id', 1);
+        $admin = User::all()->where('role_id', 1);
         Notification::send($admin,new reservations_notification('jj'));
 
         return redirect()->back()->with('successMsg',' تم تأكيد الحجز بنجاح');
