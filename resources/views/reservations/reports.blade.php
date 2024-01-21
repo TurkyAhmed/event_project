@@ -89,7 +89,7 @@
                               $('#reservations_filtered').append(`
                             <tr>
                                 <td> ${filteredReservation.title }</td>
-                                <td> ${filteredReservation.interval == "morning"? "صباح" : "مساء"}</td>
+                                <td> ${filteredReservation.interval }</td>
                                 <td> ${filteredReservation.status }</td>
                             </tr>`
                             );

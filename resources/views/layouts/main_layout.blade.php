@@ -61,10 +61,10 @@
             <div class="navbar-nav ms-auto py-0 pe-4">
                 <a href="#" class="nav-item nav-link fs-5 active">الرئيسية</a>
                 <a href="{{route('halls.landingpageHalls')}}" class="nav-item nav-link fs-5">القاعات</a>
-                <a href="#" class="nav-item nav-link fs-5">الخدمات</a>
+                <a href="#services" class="nav-item nav-link fs-5">الخدمات</a>
                 <a href="#" class="nav-item nav-link fs-5">تواصل معنا</a>
                 @if(Auth::check())
-                    <a href="{{route('reservations.create')}}" class="nav-item nav-link fs-5"> الحجز </a>
+                    <a href="{{route('reservations.TypeOfReservation')}}" class="nav-item nav-link fs-5"> الحجز </a>
                 @endif
             </div>
             <div class="login-bar d-flex justify-content-between">
@@ -101,7 +101,7 @@
 
     <footer>
         <div class="container-fluid bg-liner-black px-5 py-2 mt-3">
-            <div class="row  text-white">
+            <div class="row  text-white pt-3">
 
                 <div class="col-12 col-md-6 col-lg-3">
                     <p class="d-flex align-items-center">
@@ -123,17 +123,16 @@
                     <p class="fs-5">  تواصل معنا : </p>
                     <ul class="list-unstyled d-flex gap-2 flex-column">
                          {{-- <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-facebook"></i> </a></li> --}}
-                         <li class="pe-3"><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-twitter"></i> </a></li>
+                         <li class="pe-3"><a class="text-decoration-none text-white fs-6" href="#"> <i class="fa fa-envelope  fs-5"></i> tasg1818@gmail.com</a></li>
                          {{-- <li><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-telegram"></i> </a></li> --}}
-                         <li class="pe-3"><a class="text-decoration-none text-white fs-4" href="#"> <i class="fab fa-whatsapp"></i> </a></li>
+                         <li class="pe-3"><a class="text-decoration-none text-white fs-6" href="#"> <i class="fab fa-whatsapp  fs-5"></i>  739531388 967+</a></li>
                     </ul>
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-3">
                     <p class="fs-5">   موقعنا : </p>
-                    {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6448.710933152055!2d49.11199782322345!3d14.529847326651062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3de8e69793c145e7%3A0x55d32bd799340eb6!2z2KPYqNix2KfYrCDYqNmGINmF2K3ZgdmI2Lg!5e0!3m2!1sar!2s!4v1704592186565!5m2!1sar!2s"
-                    width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-                </div>
+                    <p>حضرموت - المكلا - اربعين شقة</p>
+                 </div>
 
             </div>
 

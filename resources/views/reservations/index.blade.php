@@ -15,7 +15,7 @@
             </div>
         @endif
 
-    <a class="btn btn-outline-primary my-bg-grad my-3" href="{{route('reservations.create')}}"> إضافة حجز  </a>
+    <a class="btn btn-outline-primary my-bg-grad my-3" href="{{route('reservations.TypeOfReservation')}}"> إضافة حجز  </a>
     <table class="table table-striped">
         <thead>
           <tr>

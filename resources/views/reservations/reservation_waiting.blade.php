@@ -21,6 +21,7 @@
             <th scope="col">#</th>
             <th scope="col"> عنوان الحجز  </th>
             <th scope="col">  الجهةالحاجزة </th>
+            <th scope="col">  الجوال </th>
             <th scope="col">  الحالة </th>
             <th scope="col">  من تاريخ </th>
             <th scope="col">  إلى تاريخ </th>
@@ -37,6 +38,7 @@
                 <th scope="row">{{$counter}}</th>
                 <td>{{$reservaion->title}} </td>
                 <td>{{$reservaion->username}}</td>
+                <td>{{$reservaion->phone}}</td>
                 <td>{{$reservaion->status}}</td>
                 <td>{{ date('Y-m-d', strtotime($reservaion->date_from)) }}</td>
                 <td>{{date('Y-m-d', strtotime($reservaion->date_to))}}</td>

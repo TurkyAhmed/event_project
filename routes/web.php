@@ -205,20 +205,31 @@ Route::get('cart/cancelAllReservation', [CartController::class,'cancelAllReserva
 Route::POST('cart/add', [CartController::class,'addToCart'])->name('cart.addToCart');
 Route::resource('cart', CartController::class);
 
+
+// Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details'); //*
+// Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
+// Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
+// Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
+// Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
+// Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
+// Route::get('reservations/report', [ReservationController::class,'report'])->name('reservations.report');
+// Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations'); //*
+// Route::resource('reservations', ReservationController::class);
+
 //================================new ===========
 
-    Route::middleware('RoleAuth')->group(function () {
+    // Route::middleware('RoleAuth')->group(function () {
 
 
-        Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details'); //*
-        Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
-        Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
-        Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
-        Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
-        Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
-        Route::get('reservations/report', [ReservationController::class,'report'])->name('reservations.report');
-        Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations'); //*
-        Route::resource('reservations', ReservationController::class);
+        // Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details'); //*
+        // Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
+        // Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
+        // Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
+        // Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
+        // Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
+        // Route::get('reservations/report', [ReservationController::class,'report'])->name('reservations.report');
+        // Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations'); //*
+        // Route::resource('reservations', ReservationController::class);
 
 
         Route::get('admin/dashboard',[AdminController::class,'dashboardindex'])->name('admin.dashboard');   //*
@@ -247,18 +258,21 @@ Route::resource('cart', CartController::class);
 
 
         //****************************************** */
-        // Route::get('reservations/myreservationsfiltered', [ReservationController::class,'myreservationsfiltered'])->name('reservations.myreservationsfiltered');
-        // Route::get('reservations/myreservations', [ReservationController::class,'myReservations'])->name('reservations.myReservations');
-        // Route::get('reservations/store', [ReservationController::class,'store'])->name('reservations.store_reservation');
-        // Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details');
-        // Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
-        // Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
-        // Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
-        // Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
-        // Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
-        // Route::get('reservations/report', [ReservationController::class,'report'])->name('reservations.report');
-        // Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations');
-        // Route::resource('reservations', ReservationController::class);
+        Route::get('reservations/typeofreservation', [ReservationController::class,'TypeOfReservation'])->name('reservations.TypeOfReservation');
+        Route::get('reservations/hallsavaliablebydate', [ReservationController::class,'hallsAvaliableByDateFiltered'])->name('reservations.hallsAvaliableByDateFiltered');
+        Route::get('reservations/filterbydate', [ReservationController::class,'filterByDate'])->name('reservations.filterByDate');
+        Route::get('reservations/myreservationsfiltered', [ReservationController::class,'myreservationsfiltered'])->name('reservations.myreservationsfiltered');
+        Route::get('reservations/myreservations', [ReservationController::class,'myReservations'])->name('reservations.myReservations');
+        Route::get('reservations/store', [ReservationController::class,'store'])->name('reservations.store_reservation');
+        Route::get('reservations/reservation_details/{id}', [ReservationController::class,'reservation_details'])->name('reservations.reservation_details');
+        Route::get('reservations/delete/{id}', [ReservationController::class,'delete'])->name('reservations.delete');
+        Route::get('reservations/calender', [ReservationController::class,'getCalender'])->name('reservations.getCalender');
+        Route::get('reservations/reservation_waiting', [ReservationController::class,'reservation_waiting'])->name('reservations.reservation_waiting');
+        Route::get('reservations/reservation_waiting/{id}', [ReservationController::class,'reservationApproved'])->name('reservations.reservationApproved');
+        Route::get('reservations/reservationcancelled/{id}', [ReservationController::class,'reservationcancelled'])->name('reservations.reservationcancelled');
+        Route::get('reservations/report', [ReservationController::class,'report'])->name('reservations.report');
+        Route::get('reservations/filter', [ReservationController::class,'filterReservations'])->name('reservations.filterReservations');
+        Route::resource('reservations', ReservationController::class);
 
 
 
@@ -275,4 +289,4 @@ Route::resource('cart', CartController::class);
 
 
 
-    });
+    // });

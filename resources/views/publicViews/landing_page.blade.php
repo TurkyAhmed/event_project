@@ -59,7 +59,7 @@
 
 
     {{-- services --}}
-    <section class="myservices pt-7rem   ">
+    <section id="services" class="myservices pt-7rem   ">
       <h1 class="pb-5 text-center"> الخدمات </h1>
       <div class="container">
           <div class="row  d-flex justify-content-center">
@@ -134,7 +134,6 @@
                     <div class="card border-0" >
                         <div class="row align-items-center">
                             <div class="col-2 ">
-                                {{-- <p class="fs_4rem"><img src="{{asset('assets/imgs/tea-cup.png')}}"   alt="..."></p> --}}
                                 <p class="fs_4rem"><img src="{{asset('assets/imgs/mug-tea.svg')}}" style="width: 60px"  alt=""></p>
                             </div>
                             <div class="col-10 ">
@@ -198,11 +197,8 @@
       </div>
   </section>
 
-  {{-- halls --}}
-  {{-- @if (auth()->user()->role_id != 2) --}}
 
-
-    <section class="halls pt-7rem   ">
+    <section  class="halls pt-7rem   ">
         <h1 class=" pb-5 text-center">القاعات</h1>
         <div class="container">
             <div class="row halls-card d-flex justify-content-center">
@@ -274,7 +270,6 @@
         </div>
     </section>
 
-    {{-- @endif --}}
     <section class="question pt-7rem text-center  pb-5" >
         <h1 class="pb-5"> الاسئلة الشائعة </h1>
         <div class="container">
@@ -339,12 +334,12 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-6 d-md-block">
+                <div class="col-12 col-lg-6 mt-5 mb-5 d-md-block">
                     <div class="row text-center">
                         <div class="col-6 m-auto">
                             <p class="fs-3 mb-2"><i class="fa fa-envelope"></i></p>
                             <h3>راسلنا عبر</h3>
-                            <p class="fs-5">tasg@gmail.com</p>
+                            <p class="fs-5">tasg1818@gmail.com</p>
                         </div>
                         <div class="col-6 m-auto">
                             {{-- <p class="fs-3 mb-2"><i class="bi bi-telephone-plus"></i></p> --}}
@@ -389,18 +384,5 @@
     </section>
 
 
-    @push('scripts')
-    {{-- <script>
-        const typed = new typed('.typing', {
-            strings: ['Desinger','Developer'],
-            typeSpeed: 100,
-            // backSpeed: 50,
-            loop: true
-        });
-    </script> --}}
-
-
-
-    @endpush
 @endsection
 

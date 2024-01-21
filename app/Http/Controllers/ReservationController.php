@@ -48,7 +48,7 @@ class ReservationController extends Controller
                         ->join('users','users.id','reservations.user_id')
                         ->where('status','في الانتظار')
                         ->where('deleted_at', null)
-                        ->select('reservations.*','users.name as username')
+                        ->select('reservations.*','users.name as username','users.phone as phone')
                         ->paginate(10);
 
         return view('reservations.reservation_waiting',['reservations'=>$reservations ,'link_active'=>'reservations']);
@@ -423,6 +423,7 @@ public function filterReservations(Request $request){
                             ->where('hall_id', $hallId)
                             ->where('date_from', '>=', $dateFrom)
                             ->where('date_to', '<=', $dateTo)
+                            ->where('reservations.deleted_at', null)
                             ->select('reservations.*')
                             ->distinct()
                             ->get();
@@ -456,6 +457,40 @@ public function myreservationsfiltered(Request $request){
 }
 
 
+
+public function filterByDate(){
+    return view ('reservations.create_by_date');
+}
+
+
+
+
+public function hallsAvaliableByDateFiltered(Request $request){
+    $interval = $request->input('_interval');
+    $dateFrom = $request->input('date_from');
+    $dateTo = $request->input('date_to');
+
+    $hallsFiltered = DB::select("
+    select * from halls where is_avaliable = 1
+        and deleted_at is null
+        and id not in (
+            select distinct  hall_id from reservation__details rd
+            inner join reservations r
+            on r.id = rd.reservation_id
+            where r.date_from  between  '$dateFrom' and '$dateTo'
+            and r.date_to  between '$dateFrom' and '$dateTo'
+            and r.deleted_at is null
+            );
+    ");
+
+    // return $hallsFiltered ;
+
+    return response()->json(['hallsFiltered'=>$hallsFiltered]);
+}
+
+public function TypeOfReservation(){
+    return view('reservations.type_of_reservation');
+}
 
 
 

@@ -4,7 +4,7 @@
         <div class="container " style="margin-top: 12rem;">
             <div class="halls">
                         <div class="container-fluid">
-                            <div class="row justify-content-center">
+                            <div class="row ">
                                 @php
                                     $i=1
                                 @endphp

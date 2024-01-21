@@ -39,7 +39,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">اسم الخدمة</th>
                                     <th scope="col">الكمية</th>
-                                    <th scope="col">سعر الواحد</th>
+                                    <th scope="col"> السعر </th>
                                     {{-- <th scope="col"> الاجمالي </th> --}}
                                     <th scope="col"> الاجراءات </th>
                                   </tr>
@@ -72,7 +72,8 @@
 
                                 <div class="col-10 col-md-6 col-lg-4 mb-3">
                                     <label for="title" class="form-label"> عنوان الحجز </label>
-                                    <input type="text" name="title" class="form-control" value="{{old('title')}}" id="title" placeholder=" عنوان الحجز ">
+                                    {{-- <input type="text" name="title" class="form-control" value="{{old('title')}}" id="title" placeholder=" عنوان الحجز "> --}}
+                                    <input type="text" name="title" class="form-control" value="ندوة ui/ux" id="title" placeholder=" عنوان الحجز ">
                                     @error('title')
                                         <div class="text-danger ">{{ $message }}</div>
                                     @enderror
@@ -82,7 +83,7 @@
                                     <label for="interval">الفترة</label>
                                     <select class="form-control" id="interval" name="interval">
                                         <option selected disabled >--اختار الفترة--</option>
-                                        <option value="صباح">صباح</option>
+                                        <option value="صباح" selected>صباح</option>
                                         <option value="مساء">مساء</option>
                                     </select>
                                     @error('interval')
@@ -95,7 +96,7 @@
                                     <select class="form-control" id="type_of_event" name="type_of_event">
                                         <option selected disabled >--اختار نوع الحدث--</option>
                                         <option value="مؤتمر">مؤتمر</option>
-                                        <option value="ندوة"> ندوة </option>
+                                        <option value="ندوة" selected> ندوة </option>
                                         <option value="ورشة عمل">ورشة عمل</option>
                                         <option value="تدريب"> تدريب </option>
                                     </select>
